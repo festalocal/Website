@@ -15,7 +15,7 @@ npm run dev
 * Vous allez remarquer qu'il y a un serveur local d'éxecution js
 - Vous pouvez maintenant y accéder par ce lien -> http://localhost:5173/
 
-#### Si vous n'aimez pas suiver les consignes copier coller ce code sur votre terminal
+#### Si vous n'aimez pas suivre les consignes copier coller ce code sur votre terminal
 - il faut d'abord être sur le dossier du projet.
 ```sh
 npm i
