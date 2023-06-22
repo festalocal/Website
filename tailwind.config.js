@@ -5,6 +5,19 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    // Festa Local color palette
+    colors: {
+      "festa-yellow": "#F2C87D",
+      "festa-beige": "#FCEFDE",
+      "festa-light-blue": "#A7CDEE",
+      "festa-blue": "#4089C8",
+      "festa-dark-blue": "#283F92",
+      "festa-red": "#EA5866",
+      "festa-pink": "#F4B8B8",
+    },
+    fontFamily: {
+
+    },
     extend: {},
   },
   plugins: [],
