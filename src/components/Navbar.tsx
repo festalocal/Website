@@ -1,7 +1,14 @@
+/**
+ * REACT component that represents the top sticky Navbar
+ * with the different website sections.
+ * FOR NOW NOT RESPONSIVE.
+ * @returns
+ */
 function Navbar() {
   return (
     <>
       <nav className="z-100 bg-white flex flex-row justify-between fixed shadow-lg w-full top-0 left-0 px-14 py-2">
+        {/* Clickable logo container */}
         <div className="rounded-full">
           <a href="#" className="flex items-center">
             <img
@@ -10,22 +17,24 @@ function Navbar() {
             ></img>
           </a>
         </div>
+        {/* Sections links container */}
         <div className="flex grow items-center justify-center pr-28">
           <ul className="p-4 flex flex-row place-content-evenly w-full">
-            <li className="inline ml-16 text-xl">
+            <li className="inline ml-16 md:text-md xl:text-xl hover:text-cyan-800 hover:underline hover:underline-offset-4">
               <a href="#">Trouv'Ta fête</a>
             </li>
-            <li className="inline  ml-16 text-xl">
+            <li className="inline  ml-16 md:text-md xl:text-xl hover:text-cyan-800 hover:underline hover:underline-offset-4">
               <a href="#">Carte</a>
             </li>
-            <li className="inline  ml-16 text-xl">
+            <li className="inline  ml-16 md:text-md xl:text-xl hover:text-cyan-800 hover:underline hover:underline-offset-4">
               <a href="#">Organisateur</a>
             </li>
-            <li className="inline  ml-16 text-xl">
+            <li className="inline  ml-16 md:text-md xl:text-xl hover:text-cyan-800 hover:underline hover:underline-offset-4">
               <a href="#">A propos?</a>
             </li>
           </ul>
         </div>
+        {/* Profile buttons section container */}
         <div className="flex items-center justify-between">
           <div className="">
             <a href="">
@@ -36,7 +45,7 @@ function Navbar() {
             </a>
           </div>
           <div className="rounded-full m-4 shadow-md shadow-slate-500">
-            <button className="rounded-full bg-blue-700 px-5 py-3 text-white my-auto">
+            <button className="rounded-full bg-blue-700 px-5 py-3 text-white my-auto hover:bg-blue-800">
               <a href="">Inscription</a>
             </button>
           </div>
