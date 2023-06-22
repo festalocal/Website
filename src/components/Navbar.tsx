@@ -7,7 +7,7 @@
 function Navbar() {
   return (
     <>
-      <nav className="bg-white z-100 flex flex-row justify-between fixed shadow-lg w-full top-0 left-0 px-14 py-2">
+      <nav className="bg-white flex flex-row justify-between fixed shadow-lg w-full top-0 left-0 px-14 py-2">
         {/* Clickable logo container */}
         <div className="rounded-full">
           <a href="#" className="flex items-center">
