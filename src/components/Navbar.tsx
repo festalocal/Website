@@ -10,7 +10,7 @@ function Navbar() {
       <nav className="flex flex-row justify-between fixed shadow-lg w-full top-0 left-0 px-14 py-2 z-20 bg-festa-beige">
         {/* Clickable logo container */}
         <div className="rounded-full">
-          <a href="#" className="flex items-center">
+          <a href="/" className="flex items-center">
             <img
               className="rounded-full shadow-md h-20"
               src="/festa_local_logo.jpg"
@@ -21,7 +21,7 @@ function Navbar() {
         <div className="flex grow items-center justify-center pr-28">
           <ul className="p-4 flex flex-row place-content-evenly w-full">
             <li className="inline ml-16 md:text-md xl:text-xl hover:festa-dark-blue hover:underline hover:underline-offset-4">
-              <a href="#">Trouv'Ta fête</a>
+              <a href="/fetes">Trouv'Ta fête</a>
             </li>
             <li className="inline  ml-16 md:text-md xl:text-xl hover:festa-dark-blue hover:underline hover:underline-offset-4">
               <a href="#">Carte</a>
