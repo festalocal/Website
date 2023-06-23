@@ -10,6 +10,7 @@ export default {
     },
     extend: {
       backgroundImage: {
+        // Image used in as background in the hero banner
         'hero-image': "url(/feria_background.jpg)",
       },
       // Festa Local color palette

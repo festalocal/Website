@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 /**
  * REACT component that represents the top sticky Navbar
  * with the different website sections.
@@ -5,32 +7,67 @@
  * @returns
  */
 function Navbar() {
+  /**
+   * Choose the coresponding color of a nav link text
+   * Gives the red color to the active link, black otherwise
+   * @param { Boolean } active the state of the NavLink
+   * @returns { String } Gives the red color to the active link, black otherwise.
+   */
+  function activeLink(active: Boolean): string {
+    if (active) {
+      return "text-festa-red font-bold";
+    }
+    return "text-black";
+  }
+
   return (
     <>
-      <nav className="flex flex-row justify-between fixed shadow-lg w-full top-0 left-0 px-14 py-2 z-20 bg-festa-beige">
+      <nav className="flex flex-row justify-between sticky shadow-lg w-full top-0 left-0 px-14 py-2 z-20 bg-festa-beige">
         {/* Clickable logo container */}
         <div className="rounded-full">
-          <a href="/" className="flex items-center">
-            <img
-              className="rounded-full shadow-md h-20"
-              src="/festa_local_logo.jpg"
-            ></img>
-          </a>
+          <NavLink to="/">
+            <div className="flex items-center">
+              <img
+                className="rounded-full shadow-md h-20"
+                src="/festa_local_logo.jpg"
+              ></img>
+            </div>
+          </NavLink>
         </div>
         {/* Sections links container */}
         <div className="flex grow items-center justify-center pr-28">
           <ul className="p-4 flex flex-row place-content-evenly w-full">
             <li className="inline ml-16 md:text-md xl:text-xl hover:festa-dark-blue hover:underline hover:underline-offset-4">
-              <a href="/fetes">Trouv'Ta fête</a>
+              <NavLink
+                className={({ isActive }) => activeLink(isActive)}
+                to="/fetes"
+              >
+                Trouv'Ta fête
+              </NavLink>
             </li>
             <li className="inline  ml-16 md:text-md xl:text-xl hover:festa-dark-blue hover:underline hover:underline-offset-4">
-              <a href="#">Carte</a>
+              <NavLink
+                className={({ isActive }) => activeLink(isActive)}
+                to="/carte"
+              >
+                Carte
+              </NavLink>
             </li>
             <li className="inline  ml-16 md:text-md xl:text-xl hover:festa-dark-blue hover:underline hover:underline-offset-4">
-              <a href="#">Organisateur</a>
+              <NavLink
+                className={({ isActive }) => activeLink(isActive)}
+                to="/organisateur"
+              >
+                Organisateur
+              </NavLink>
             </li>
             <li className="inline  ml-16 md:text-md xl:text-xl hover:festa-dark-blue hover:underline hover:underline-offset-4">
-              <a href="#">A propos?</a>
+              <NavLink
+                className={({ isActive }) => activeLink(isActive)}
+                to="/about"
+              >
+                A propos?
+              </NavLink>
             </li>
           </ul>
         </div>
