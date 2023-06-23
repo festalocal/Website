@@ -5,7 +5,14 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    // Festa Local color palette
+    fontFamily: {
+
+    },
+    extend: {
+      backgroundImage: {
+        'hero-image': "url(/feria_background.jpg)",
+      },
+      // Festa Local color palette
     colors: {
       "festa-yellow": "#F2C87D",
       "festa-beige": "#FCEFDE",
@@ -15,10 +22,7 @@ export default {
       "festa-red": "#EA5866",
       "festa-pink": "#F4B8B8",
     },
-    fontFamily: {
-
     },
-    extend: {},
   },
   plugins: [],
 }
