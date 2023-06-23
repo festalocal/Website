@@ -1,8 +1,9 @@
 function HeroBanner() {
   return (
     <>
-      <div className="w-full bg-festa-beige drop-shadow-lg">
-        <div className="max-w-lg xl:max-w-2xl px-4 mx-auto flex flex-col justify-center align-center min-h-[85vh] mt-24 items-center gap-4">
+      <div className="bg-cover bg-hero-image bg-center w-full h-screen fixed"></div>
+      <div className="w-full drop-shadow-lg z-10 backdrop-blur text-white">
+        <div className="max-w-lg xl:max-w-2xl px-4 mx-auto flex flex-col justify-center align-center h-screen items-center gap-4">
           <div>
             <h1 className="font-medium text-4xl lg:text-5xl xl:text-6xl">
               FestaLocal votre guide préferé des fêtes
