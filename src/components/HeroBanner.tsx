@@ -5,7 +5,7 @@ function HeroBanner() {
         <div className="max-w-lg xl:max-w-2xl px-4 mx-auto flex flex-col justify-center align-center min-h-[85vh] mt-24 items-center gap-4">
           <div>
             <h1 className="font-medium text-4xl lg:text-5xl xl:text-6xl">
-              FestaLocal votre guide préferée des fêtes
+              FestaLocal votre guide préferé des fêtes
             </h1>
           </div>
           <div>
