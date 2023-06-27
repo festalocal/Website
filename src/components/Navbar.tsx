@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { NavLink } from "react-router-dom";
 
 /**
@@ -25,25 +26,30 @@ function Navbar() {
       <nav className="flex flex-row justify-between shadow-lg w-full px-14 py-2 z-20 bg-festa-light-blue">
         {/* Clickable logo container */}
         <div className="rounded-full">
-          <NavLink to="/">
-            <div className="flex items-center">
-              <img
-                className="rounded-full shadow-md h-20"
-                src="/festa_local_logo.jpg"
-              ></img>
-            </div>
-          </NavLink>
+          <Suspense>
+            <NavLink to="/">
+              <div className="flex items-center">
+                <img
+                  className="rounded-full shadow-md h-20"
+                  src="/festa_local_logo.jpg"
+                  alt="Logo Festa Local"
+                ></img>
+              </div>
+            </NavLink>
+          </Suspense>
         </div>
         {/* Sections links container */}
         <div className="flex grow items-center justify-center pr-28">
           <ul className="p-4 flex flex-row place-content-evenly w-full">
             <li className="inline ml-16 md:text-md xl:text-xl hover:festa-dark-blue hover:underline hover:underline-offset-4">
-              <NavLink
-                className={({ isActive }) => activeLink(isActive)}
-                to="/fetes"
-              >
-                Trouv'Ta fête
-              </NavLink>
+              <Suspense>
+                <NavLink
+                  className={({ isActive }) => activeLink(isActive)}
+                  to="/fetes"
+                >
+                  Trouv'Ta fête
+                </NavLink>
+              </Suspense>
             </li>
             <li className="inline  ml-16 md:text-md xl:text-xl hover:festa-dark-blue hover:underline hover:underline-offset-4">
               <NavLink
@@ -74,16 +80,20 @@ function Navbar() {
         {/* Profile buttons section container */}
         <div className="flex items-center justify-between">
           <div className="">
-            <a href="">
+            <a href="#">
               <div className="flex">
-                <img className="mr-1" src="/user_connect.svg"></img>
+                <img
+                  className="mr-1"
+                  src="/user_connect.svg"
+                  alt="Icone profil utilisateur"
+                ></img>
                 <p className="text-black">connexion</p>
               </div>
             </a>
           </div>
           <div className="rounded-full m-4 shadow-md shadow-slate-500">
             <button className="rounded-full bg-festa-blue px-5 py-3 text-festa-beige my-auto hover:bg-festa-dark-blue">
-              <a href="">Inscription</a>
+              <a href="#">Inscription</a>
             </button>
           </div>
         </div>

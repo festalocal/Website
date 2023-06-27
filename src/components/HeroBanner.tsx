@@ -1,4 +1,5 @@
-import FindFestivalButton from "./FindFestivalButton";
+import { lazy } from "react";
+const FindFestivalButton = lazy(() => import("./FindFestivalButton"));
 
 function HeroBanner() {
   return (

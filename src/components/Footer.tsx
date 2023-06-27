@@ -45,6 +45,7 @@ function Footer({ fb_link, insta_link, lkd_link }: Props) {
                 <img
                   className="max-h-8 drop-shadow-lg"
                   src="/facebook_logo.svg"
+                  alt="Icone Facebook pour le lien de la page Festa Local"
                 ></img>
               </a>
             </li>
@@ -53,6 +54,7 @@ function Footer({ fb_link, insta_link, lkd_link }: Props) {
                 <img
                   className="max-h-8 drop-shadow-lg"
                   src="/instagram_logo.svg"
+                  alt="Icone Instagram pour le lien de la page Festa Local"
                 ></img>
               </a>
             </li>
@@ -61,6 +63,7 @@ function Footer({ fb_link, insta_link, lkd_link }: Props) {
                 <img
                   className="max-h-8 drop-shadow-lg"
                   src="/linkedin_logo.svg"
+                  alt="Icone Linkedin pour le lien de la page Festa Local"
                 ></img>
               </a>
             </li>
