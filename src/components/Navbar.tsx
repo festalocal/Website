@@ -22,7 +22,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className="flex flex-row justify-between sticky shadow-lg w-full top-0 left-0 px-14 py-2 z-20 bg-festa-beige">
+      <nav className="flex flex-row justify-between shadow-lg w-full px-14 py-2 z-20 bg-festa-light-blue">
         {/* Clickable logo container */}
         <div className="rounded-full">
           <NavLink to="/">

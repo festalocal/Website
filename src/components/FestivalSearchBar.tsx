@@ -1,10 +1,10 @@
 function FestivalSearchBar() {
   return (
     <>
-      <div className="w-full left-0 px-14 py-3 z-10 bg-festa-beige">
+      <div className="w-full px-14 py-3 z-10 bg-festa-light-blue">
         <div className="bg-white rounded-full border-2 border-festa-blue drop-shadow-lg py-4 px-4 flex flex-row justify-between gap-4">
           <input
-            className="w-full"
+            className="w-full focus:outline-festa-blue"
             type="string"
             name="festival-search"
             placeholder="Cherchez votre prochaine fête..."
