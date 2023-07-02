@@ -16,7 +16,7 @@ function FestivalCard({ event }: Props) {
         <div className="flex flex-col">
           <div className="shadow-inner drop-shadow-xl">
             <img
-              className="rounded-lg shadow-inner drop-shadow-xl w-full aspect-square"
+              className="rounded-2xl shadow-inner drop-shadow-xl w-full aspect-square"
               src={event.image.base + event.image.variants[1].filename}
               alt="Image de la fete"
             />
@@ -27,7 +27,7 @@ function FestivalCard({ event }: Props) {
             <img
               className="float-left mr-2"
               src="/mark.svg"
-              alt="Icone balise de localisation de carte"
+              alt="Icône balise de localisation de carte"
             />
             <p className="text-lg">{event.location.address}</p>
           </div>
