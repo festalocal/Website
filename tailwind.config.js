@@ -10,12 +10,13 @@ export default {
     },
     extend: {
       backgroundImage: {
+        // Image used in as background in the hero banner
         'hero-image': "url(/feria_background.jpg)",
       },
       // Festa Local color palette
       colors: {
         "festa-yellow": "#F2C87D",
-        "festa-beige": "#FCEFDE",
+        "festa-beige": "#fff7ed",
         "festa-light-blue": "#A7CDEE",
         "festa-blue": "#4089C8",
         "festa-dark-blue": "#283F92",
