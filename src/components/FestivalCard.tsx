@@ -1,5 +1,6 @@
+import { lazy } from "react";
 import { Link } from "react-router-dom";
-import Carousel from "./Carousel";
+const Carousel = lazy(() => import("./Carousel"));
 
 interface Props {
   event: any;

@@ -4,8 +4,6 @@ const Navbar = lazy(() => import("../components/Navbar"));
 const Footer = lazy(() => import("../components/Footer"));
 const FestivalSearchBar = lazy(() => import("../components/FestivalSearchBar"));
 const FestivalCard = lazy(() => import("../components/FestivalCard"));
-// Imports events data
-import { Link } from "react-router-dom";
 
 /**
  * Page Trouve ta fête

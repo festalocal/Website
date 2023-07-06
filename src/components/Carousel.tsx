@@ -1,6 +1,6 @@
-import { useState } from "react";
-import ChevronLeft from "./ChevronLeft";
-import ChevronRight from "./ChevronRight";
+import { lazy, useState } from "react";
+const ChevronLeft = lazy(() => import("./ChevronLeft"));
+const ChevronRight = lazy(() => import("./ChevronRight"));
 
 // Fixing the type of the JSX child elements of the Carousel component
 type Props = {

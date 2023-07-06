@@ -1,6 +1,6 @@
-import { Suspense, useState } from "react";
+import { Suspense, lazy, useState } from "react";
 import { NavLink } from "react-router-dom";
-import HamburgerMenuOverlay from "./HamburgerMenuOverlay";
+const HamburgerMenuOverlay = lazy(() => import("./HamburgerMenuOverlay"));
 
 /**
  * REACT component that represents the top sticky Navbar

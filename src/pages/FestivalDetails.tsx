@@ -1,5 +1,6 @@
 // React page components imports
 import { Suspense, lazy } from "react";
+const EnrollButton = lazy(() => import("../components/EnrollButton"));
 const Navbar = lazy(() => import("../components/Navbar"));
 const Footer = lazy(() => import("../components/Footer"));
 const FestivalCard = lazy(() => import("../components/FestivalCard"));
@@ -31,8 +32,9 @@ function FestivalDetails() {
           <Navbar />
         </Suspense>
       </div>
-      <div className="flex flex-row mx-auto pb-14 py-8 px-8 sm:px-12 md:px-16 lg:px-20 xl:px-24 bg-festa-beige">
+      <div className="flex flex-col justify-center items-center gap-2 mx-auto pb-14 py-8 px-8 sm:px-12 md:px-16 lg:px-20 xl:px-24 bg-festa-beige">
         <FestivalCard event={fetchedEvent} withDescription={true} />
+        <EnrollButton />
       </div>
       <Suspense>
         <Footer
