@@ -1,0 +1,24 @@
+{
+  "name": "festalocal-server",
+  "version": "1.0.0",
+  "description": "Server backend and API for the Festa Local app",
+  "main": "server.js",
+  "scripts": {
+    "test": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "keywords": [
+    "Backend",
+    "API"
+  ],
+  "author": "Festa Local",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/bigquery": "^6.2.0",
+    "express": "^4.18.2",
+    "express-router": "^0.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
