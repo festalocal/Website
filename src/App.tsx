@@ -4,6 +4,7 @@ import { Suspense, lazy } from "react";
 // Web app pages imports
 const Home = lazy(() => import("./pages/Home"));
 const FestivalsCatalogue = lazy(() => import("./pages/FestivalsCatalogue"));
+const FestivalDetails = lazy(() => import("./pages/FestivalDetails"));
 
 function App() {
   return (
@@ -11,8 +12,8 @@ function App() {
       <Suspense>
         <Routes>
           <Route path="/" element={<Home />} />
-
           <Route path="/fetes" element={<FestivalsCatalogue />} />
+          <Route path="/fetes/:id" element={<FestivalDetails />} />
         </Routes>
       </Suspense>
     </>

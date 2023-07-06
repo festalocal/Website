@@ -25,6 +25,16 @@ function HamburgerMenuOverlay() {
             <Suspense>
               <NavLink
                 className={({ isActive }) => activeLinkHamburger(isActive)}
+                to="/"
+              >
+                Accueil
+              </NavLink>
+            </Suspense>
+          </li>
+          <li className="text-2xl text-festa-blue border-b-2 mx-auto w-full text-center drop-shadow-xl">
+            <Suspense>
+              <NavLink
+                className={({ isActive }) => activeLinkHamburger(isActive)}
                 to="/fetes"
               >
                 Trouv'Ta fête
