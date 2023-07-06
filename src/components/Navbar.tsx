@@ -117,7 +117,7 @@ function Navbar() {
         </div>
         <div
           id="toggleMenu"
-          className=":hover:cursor grid md:hidden place-content-center w-20 h-16 md:h-20"
+          className="hover:cursor-pointer grid md:hidden place-content-center w-20 h-16 md:h-20"
           onClick={toggleHamburgerMenu}
         >
           <div className="w-10 h-1.5 bg-black rounded-full transition-all duration-150 before:content-[''] before:absolute before:w-10 before:h-1.5 before:bg-black before:rounded-full before:-translate-y-4 before:transition-all before:duration:150 after:content-[''] after:absolute after:w-10 after:h-1.5 after:bg-black after:rounded-full after:translate-y-4 after:transition-all after:duration-150"></div>
