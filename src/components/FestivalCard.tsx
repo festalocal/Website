@@ -44,8 +44,7 @@ function FestivalCard({ event, withDescription }: Props) {
               alt="Icone de calendrier"
             />
             <p className="text-lg font-bold">
-              {event.dateDebut}
-              {event.dateFin}
+              {event.dateDebut} - {event.dateFin}
             </p>
           </div>
         </Link>

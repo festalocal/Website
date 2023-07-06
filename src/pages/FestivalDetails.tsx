@@ -23,7 +23,7 @@ function FestivalDetails() {
       "/src/assets/image5.png",
     ],
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed convallis, tellus a maximus malesuada, velit tellus venenatis purus, nec bibendum elit sapien nec ipsum. Vivamus ultricies urna nec erat lacinia, vel posuere diam venenatis. Cras at nunc pellentesque, finibus mauris id, porta nisl. Vestibulum tincidunt orci non nunc sagittis luctus. Fusce a tellus vel leo euismod ultrices vitae sit amet quam. Maecenas ac mauris et enim malesuada tristique. Donec non turpis ut sapien venenatis volutpat. Aenean enim nunc, condimentum eget iaculis ac, vehicula et felis. Aliquam dapibus urna nibh",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed convallis, tellus a maximus malesuada, velit tellus venenatis purus, nec bibendum elit sapien nec ipsum. Vivamus ultricies urna nec erat lacinia, vel posuere diam venenatis. Cras at nunc pellentesque, finibus mauris id, porta nisl. Vestibulum tincidunt orci non nunc sagittis luctus. Fusce a tellus vel leo euismod ultrices vitae sit amet quam.",
   };
   return (
     <>
@@ -32,7 +32,7 @@ function FestivalDetails() {
           <Navbar />
         </Suspense>
       </div>
-      <div className="flex flex-col justify-center items-center gap-2 mx-auto pb-14 py-8 px-8 sm:px-12 md:px-16 lg:px-20 xl:px-24 bg-festa-beige">
+      <div className="flex flex-col items-end gap-2 mx-auto pb-14 py-8 px-8 sm:px-12 md:px-16 lg:px-20 xl:px-24 bg-festa-beige">
         <FestivalCard event={fetchedEvent} withDescription={true} />
         <EnrollButton />
       </div>
