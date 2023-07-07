@@ -1,4 +1,5 @@
 import express from 'express';
+// Importing Evenement API routes
 import evenementRoutes from './routes/evenement.route';
 
 const app = express();
@@ -10,5 +11,5 @@ app.use('/api', evenementRoutes);
 // Starting the server
 app.listen(port, () => {
   console.log('Server running');
-  console.log({"port": port});
-})
+  console.log({'port': port});
+});
