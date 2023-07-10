@@ -10,6 +10,7 @@ import "./index.css";
 import "./styles/main.css";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+  // <StrictMode> lets you find common bugs in your components early during development.
   <React.StrictMode>
     <BrowserRouter>
       <App />

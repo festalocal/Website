@@ -1,6 +1,6 @@
 // React page components imports
 import { Suspense, lazy, useEffect, useState } from "react";
-import axios from "axios";
+import axios, { CancelTokenSource } from "axios";
 import { Params, useParams } from "react-router-dom";
 const EnrollButton = lazy(() => import("../components/EnrollButton"));
 const Navbar = lazy(() => import("../components/Navbar"));
@@ -14,23 +14,27 @@ const FestivalCard = lazy(() => import("../components/FestivalCard"));
 function FestivalDetails() {
   // evenement state with it's setter
   const [evenement, setEvenement] = useState<Object>({});
+  // Extracting the evend id for the url path
+  const params: Readonly<Params<string>> = useParams();
+  const evendId: string = params.id != undefined ? params.id : "";
 
   /**
    * Fetch call that gets the festival of given Id from
    * the backend API.
-   * @returns { JSON } Evenement JSON Object.
+   * @param { CancelTokenSource } cancelToken
    */
-  const fetchEvenement = async () => {
+  const fetchEvenement: CallableFunction = async (
+    cancelToken: CancelTokenSource
+  ): Promise<any> => {
     // Configuring the API call options and API path
-    const params: Readonly<Params<string>> = useParams();
-    console.log(params);
     const axiosConfig: Object = {
       method: "GET",
-      url: `http://localhost:3000/api/fetes/${params.id}`,
+      url: `http://localhost:3000/api/fetes/${evendId}`,
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
       },
+      cancelToken: cancelToken.token,
     };
     try {
       // Axios API HTTP call
@@ -42,7 +46,11 @@ function FestivalDetails() {
         })
         .catch((error) => {
           // In case we have an error
-          console.error({ error });
+          if (axios.isCancel(error)) {
+            console.log("cancelled");
+          } else {
+            console.error({ error });
+          }
         })
         .finally(() => {
           console.log("finished request successfully");
@@ -57,8 +65,17 @@ function FestivalDetails() {
   with the backend external API.
   */
   useEffect(() => {
-    fetchEvenement;
-  }, []);
+    // To cancel API fetch request when changing component or going to
+    // another page.
+    const cancelToken: CancelTokenSource = axios.CancelToken.source();
+    fetchEvenement(cancelToken);
+
+    // clean up function
+    return () => {
+      // Signals to DOM change observers to cancel any activity
+      cancelToken.cancel();
+    };
+  }, [evendId]);
 
   return (
     <>

@@ -1,6 +1,6 @@
 // React page components imports
 import { Suspense, lazy, useEffect, useState } from "react";
-import axios from "axios";
+import axios, { CancelTokenSource } from "axios";
 const Navbar = lazy(() => import("../components/Navbar"));
 const Footer = lazy(() => import("../components/Footer"));
 const FestivalSearchBar = lazy(() => import("../components/FestivalSearchBar"));
@@ -17,9 +17,11 @@ function FestivalsCatalogue() {
   /**
    * Fetch call that gets all the festivals from
    * the backend API.
-   * @returns { JSON[] } Array of Evenement JSON objects.
+   * @param { CancelTokenSource } cancelToken
    */
-  const fetchAllFestivals = async (): Promise<any> => {
+  const fetchAllFestivals: CallableFunction = async (
+    cancelToken: CancelTokenSource
+  ): Promise<any> => {
     // Configuring the API call options and API path
     const axiosConfig: Object = {
       method: "GET",
@@ -28,6 +30,7 @@ function FestivalsCatalogue() {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
       },
+      cancelToken: cancelToken.token,
     };
     try {
       // Axios API HTTP call
@@ -39,7 +42,11 @@ function FestivalsCatalogue() {
         })
         .catch((error) => {
           // In case we have an error
-          console.error({ error });
+          if (axios.isCancel(error)) {
+            console.log("cancelled");
+          } else {
+            console.error({ error });
+          }
         })
         .finally(() => {
           console.log("finished request successfully");
@@ -54,8 +61,16 @@ function FestivalsCatalogue() {
   with the backend external API.
   */
   useEffect(() => {
-    fetchAllFestivals();
+    const cancelToken: CancelTokenSource = axios.CancelToken.source();
+
+    fetchAllFestivals(cancelToken);
+
+    // Clean up function
+    return () => {
+      cancelToken.cancel();
+    };
   }, []);
+
   return (
     <>
       <div className="w-full flex flex-col sticky top-0 z-10 drop-shadow-lg">
