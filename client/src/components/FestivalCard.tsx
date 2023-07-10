@@ -13,12 +13,19 @@ interface Props {
  * @returns
  */
 function FestivalCard({ event, withDescription }: Props) {
+  const images: string[] = [
+    "/src/assets/image1.png",
+    "/src/assets/image2.png",
+    "/src/assets/image3.png",
+    "/src/assets/image4.png",
+    "/src/assets/image5.png",
+  ];
   return (
     <>
       <div className="flex flex-col">
         {/* Card Carousel container for slide images */}
         <Carousel>
-          {event.images.map((imgPath: string) => (
+          {images.map((imgPath: string) => (
             <img
               className="rounded-2xl shadow-inner drop-shadow-xl w-full aspect-square"
               src={imgPath}
@@ -27,7 +34,7 @@ function FestivalCard({ event, withDescription }: Props) {
           ))}
         </Carousel>
         <Link to={`/fetes/1`}>
-          <p className="font-bold text-festa-blue text-2xl">{event.title}</p>
+          <p className="font-bold text-festa-blue text-2xl">{event.titre}</p>
           {withDescription && <p className="text-sm">{event.description}</p>}
           <div className="mt-2">
             <img
@@ -35,7 +42,7 @@ function FestivalCard({ event, withDescription }: Props) {
               src="/mark.svg"
               alt="Icône balise de localisation de carte"
             />
-            <p className="text-lg">{event.localisation}</p>
+            <p className="text-lg">{event.ville}</p>
           </div>
           <div className="mt-1">
             <img
@@ -44,7 +51,7 @@ function FestivalCard({ event, withDescription }: Props) {
               alt="Icone de calendrier"
             />
             <p className="text-lg font-bold">
-              {event.dateDebut} - {event.dateFin}
+              {event.date_debut.value} - {event.date_fin.value}
             </p>
           </div>
         </Link>
