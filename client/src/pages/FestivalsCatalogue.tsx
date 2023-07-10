@@ -19,7 +19,7 @@ function FestivalsCatalogue() {
    * the backend API.
    * @returns { JSON[] } Array of Evenement JSON objects.
    */
-  const fetchAllFestivals = async () => {
+  const fetchAllFestivals = async (): Promise<any> => {
     // Configuring the API call options and API path
     const axiosConfig: Object = {
       method: "GET",
@@ -35,7 +35,6 @@ function FestivalsCatalogue() {
         .then((res) => {
           // In case we receive the data
           // We update the festival state array
-          console.log(res.data);
           setFestivals(res.data);
         })
         .catch((error) => {
@@ -57,7 +56,6 @@ function FestivalsCatalogue() {
   useEffect(() => {
     fetchAllFestivals();
   }, []);
-  let i: number = 0;
   return (
     <>
       <div className="w-full flex flex-col sticky top-0 z-10 drop-shadow-lg">
@@ -69,7 +67,7 @@ function FestivalsCatalogue() {
       <div className="mx-auto pb-14 py-8 px-8 sm:px-12 md:px-16 lg:px-20 xl:px-24 grid gap-x-6 gap-y-12 lg:gap-x-8 lg:gap-y-14 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 bg-festa-beige">
         {festivals.map((festival) => (
           <Suspense>
-            <FestivalCard key={i++} event={festival} withDescription={false} />
+            <FestivalCard event={festival} withDescription={false} />
           </Suspense>
         ))}
       </div>

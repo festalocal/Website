@@ -20,6 +20,7 @@ function FestivalCard({ event, withDescription }: Props) {
     "/src/assets/image4.png",
     "/src/assets/image5.png",
   ];
+  console.log(event);
   return (
     <>
       <div className="flex flex-col">
