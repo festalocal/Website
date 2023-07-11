@@ -6,17 +6,27 @@ const EnrollButton = lazy(() => import("../components/EnrollButton"));
 const Navbar = lazy(() => import("../components/Navbar"));
 const Footer = lazy(() => import("../components/Footer"));
 const FestivalCard = lazy(() => import("../components/FestivalCard"));
-
+const FestivalGallery = lazy(() => import("../components/FestivalGallery"));
 /**
  * Page Details Fête
  * @returns
  */
 function FestivalDetails() {
+  // boolean state to define if the device viewport is mobile or not
+  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 768);
   // evenement state with it's setter
   const [evenement, setEvenement] = useState<Object>({});
   // Extracting the evend id for the url path
   const params: Readonly<Params<string>> = useParams();
   const evendId: string = params.id != undefined ? params.id : "";
+
+  const updateViewport = () => {
+    setIsMobile(window.innerWidth <= 768);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", updateViewport);
+  });
 
   /**
    * Fetch call that gets the festival of given Id from
@@ -84,9 +94,21 @@ function FestivalDetails() {
           <Navbar />
         </Suspense>
       </div>
-      <div className="flex flex-col items-end gap-2 mx-auto pb-14 py-8 px-8 sm:px-12 md:px-16 lg:px-20 xl:px-24 bg-festa-beige">
-        <FestivalCard key={evendId} event={evenement} withDescription={true} />
-        <EnrollButton />
+      <div className="flex flex-col items-end gap-2 mx-auto pb-14 py-8 px-8 sm:px-12 md:px-16 lg:px-20 xl:px-24">
+        {isMobile ? (
+          <>
+            <FestivalCard
+              key={evendId}
+              event={evenement}
+              withDescription={true}
+            />
+            <EnrollButton />
+          </>
+        ) : (
+          <>
+            <FestivalGallery key={evendId} event={evenement} />
+          </>
+        )}
       </div>
       <Suspense>
         <Footer
