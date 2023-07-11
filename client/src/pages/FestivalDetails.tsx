@@ -85,7 +85,7 @@ function FestivalDetails() {
         </Suspense>
       </div>
       <div className="flex flex-col items-end gap-2 mx-auto pb-14 py-8 px-8 sm:px-12 md:px-16 lg:px-20 xl:px-24 bg-festa-beige">
-        <FestivalCard event={evenement} withDescription={true} />
+        <FestivalCard key={evendId} event={evenement} withDescription={true} />
         <EnrollButton />
       </div>
       <Suspense>

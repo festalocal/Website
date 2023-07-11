@@ -34,15 +34,21 @@ function FestivalCard({ event, withDescription }: Props) {
           ))}
         </Carousel>
         <Link to={`/fetes/1`}>
-          <p className="font-bold text-festa-blue text-2xl">{event.titre}</p>
-          {withDescription && <p className="text-sm">{event.description}</p>}
+          <p className="font-bold text-festa-blue text-2xl">
+            {event.titre != undefined && event.titre}
+          </p>
+          {withDescription && (
+            <p className="text-sm">
+              {event.description != undefined && event.description}
+            </p>
+          )}
           <div className="mt-2">
             <img
               className="float-left mr-2"
               src="/mark.svg"
               alt="Icône balise de localisation de carte"
             />
-            <p className="text-lg">{event.ville}</p>
+            <p className="text-lg">{event.ville != undefined && event.ville}</p>
           </div>
           <div className="mt-1">
             <img
@@ -51,7 +57,8 @@ function FestivalCard({ event, withDescription }: Props) {
               alt="Icone de calendrier"
             />
             <p className="text-lg font-bold">
-              {event.date_debut.value} - {event.date_fin.value}
+              {event.date_debut != undefined && event.date_debut.value} -{" "}
+              {event.date_fin != undefined && event.date_fin.value}
             </p>
           </div>
         </Link>
