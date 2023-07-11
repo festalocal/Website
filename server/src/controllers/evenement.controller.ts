@@ -16,7 +16,7 @@ import { QueryRowsResponse } from '@google-cloud/bigquery';
  */
 export const getAllEvenements = async (req: Request, res: Response) => {
     try {
-        const queryStatement: string = `SELECT * FROM 
+        const queryStatement: string = `SELECT id, titre, ville, date_debut, date_fin, description FROM 
             ${bigquery.projectId}.${datasetId}.evenement`;
         const [evenements]: QueryRowsResponse = await bigquery.query(queryStatement);
         res.status(200).send(JSON.stringify(evenements));
@@ -32,7 +32,7 @@ export const getAllEvenements = async (req: Request, res: Response) => {
  */
 export const getEvenementOfId = async  (req: Request, res: Response) => {
     try {
-        const queryStatement: string = `SELECT * FROM
+        const queryStatement: string = `SELECT id, titre, ville, date_debut, date_fin, description FROM
             ${bigquery.projectId}.${datasetId}.evenement
             WHERE id = "${req.params.id}"`;
         const evenement: QueryRowsResponse = await bigquery.query(queryStatement);
