@@ -1,5 +1,8 @@
 // Importing React for lazy loading
 import { Suspense, lazy } from "react";
+// Importing block for higher order component
+// with faster rendering times thanks to million
+import { block } from "million/react";
 // Page components imports
 const Navbar = lazy(() => import("../components/Navbar"));
 const Footer = lazy(() => import("../components/Footer"));
@@ -9,7 +12,10 @@ const HeroBanner = lazy(() => import("../components/HeroBanner"));
  * Home page
  * @returns
  */
-function Home() {
+// wrapping component around millionjs block HOC in order to
+// block reactjs virtual DOM and use millionjs faster virtual DOM
+// ADD THIS FEATURE AFTER
+const Home = () => {
   return (
     <>
       <Suspense>
@@ -23,6 +29,5 @@ function Home() {
       </Suspense>
     </>
   );
-}
-
+};
 export default Home;
