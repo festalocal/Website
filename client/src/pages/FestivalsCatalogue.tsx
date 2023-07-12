@@ -2,7 +2,7 @@
 import { Suspense, lazy, useEffect, useState } from "react";
 // Importing block for higher order component
 // with faster rendering times thanks to million
-import { block } from "million/react";
+// import { block } from "million/react";
 import axios, { CancelTokenSource } from "axios";
 const Navbar = lazy(() => import("../components/Navbar"));
 const Footer = lazy(() => import("../components/Footer"));
