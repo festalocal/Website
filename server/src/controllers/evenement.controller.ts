@@ -36,7 +36,11 @@ export const getEvenementOfId = async  (req: Request, res: Response) => {
             ${bigquery.projectId}.${datasetId}.evenement
             WHERE id = "${req.params.id}"`;
         const evenement: QueryRowsResponse = await bigquery.query(queryStatement);
-        res.status(200).send(JSON.stringify(evenement[0][0]));
+        if(evenement[0].length > 0) {
+            res.status(200).send(JSON.stringify(evenement[0][0])) 
+        } else {
+            res.status(400).send({error: `No Evenement found of id : ${req.params.id}}`});
+        }
     } catch (error) {
         res.status(500).send({error: `Database error when trying to fetch for Evenement of Id:${req.params.id}, maybe couldn't found this Id`})
     }
