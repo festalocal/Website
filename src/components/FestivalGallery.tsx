@@ -7,11 +7,11 @@ interface Props {
 
 function FestivalGallery({ event }: Props) {
   const images: string[] = [
-    "/src/assets/image1.png",
-    "/src/assets/image2.png",
-    "/src/assets/image3.png",
-    "/src/assets/image4.png",
-    "/src/assets/image5.png",
+    "/image1.png",
+    "/image2.png",
+    "/image3.png",
+    "/image4.png",
+    "/image5.png",
   ];
   return (
     <>
