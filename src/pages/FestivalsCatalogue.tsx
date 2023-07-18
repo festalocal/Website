@@ -28,7 +28,7 @@ function FestivalsCatalogue() {
     // Configuring the API call options and API path
     const axiosConfig: Object = {
       method: "GET",
-      url: "http://localhost:3000/api/fetes",
+      url: "https://api-docker-image-km7u7kfpba-od.a.run.app/api/fetes",
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
@@ -76,10 +76,10 @@ function FestivalsCatalogue() {
 
   return (
     <>
-      <div className="w-full flex flex-col sticky top-0 z-10 drop-shadow-lg">
+      <div key={Math.random()} className="w-full flex flex-col sticky top-0 z-10 drop-shadow-lg">
         <Suspense>
-          <Navbar />
-          <FestivalSearchBar />
+          <Navbar key={Math.random()}/>
+          <FestivalSearchBar key={Math.random()}/>
         </Suspense>
       </div>
       <div className="mx-auto pb-14 py-8 px-8 sm:px-12 md:px-16 lg:px-20 xl:px-24 grid gap-x-6 gap-y-12 lg:gap-x-8 lg:gap-y-14 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 bg-festa-beige">

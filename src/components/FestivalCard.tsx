@@ -33,7 +33,7 @@ function FestivalCard({ event, withDescription }: Props) {
             />
           ))}
         </Carousel>
-        <Link to={`/fetes/1`}>
+        <Link to={`/fetes/${event.id}`}>
           <p className="font-bold text-festa-blue text-2xl">
             {event.titre != undefined && event.titre}
           </p>
