@@ -39,7 +39,7 @@ function FestivalDetails() {
     // Configuring the API call options and API path
     const axiosConfig: Object = {
       method: "GET",
-      url: `https://api-docker-image-km7u7kfpba-od.a.run.app/api/fetes/${evendId}`,
+      url: `http://localhost:3000/api/fetes/${evendId}`,
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",

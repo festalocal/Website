@@ -18,7 +18,7 @@ function HamburgerMenuOverlay() {
   }
   return (
     <>
-      <div className="absolute top-0 w-screen h-screen z-10 bg-[#0000007a]"></div>
+      <div className="absolute -top-20 w-screen h-screen z-10 bg-[#0000007a]"></div>
       <nav className="sticky top-0 w-full bg-white z-30 shadow-lg">
         <ul className="flex flex-col space-evenly items-center">
           <li className="text-2xl text-festa-blue border-b-2 mx-auto w-full text-center drop-shadow-xl">
@@ -71,7 +71,6 @@ function HamburgerMenuOverlay() {
               <button className="w-full rounded-full bg-festa-blue px-3 py-3 text-white my-auto hover:bg-festa-dark-blue">
                 <a href="#">
                   <img
-                    className="mr-1"
                     src="/user_connect.svg"
                     alt="Icône profil utilisateur"
                   ></img>

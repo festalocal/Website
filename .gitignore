@@ -7,8 +7,6 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-./server/BigQueryCredentials.*
-
 node_modules
 dist
 dist-ssr
