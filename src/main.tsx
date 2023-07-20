@@ -5,7 +5,6 @@ import { BrowserRouter } from "react-router-dom";
 
 // React components imports and Styles
 import App from "./App.tsx";
-import "./index.css";
 // Importing tailwind rules
 import "./styles/main.css";
 
