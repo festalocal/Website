@@ -24,7 +24,7 @@ interface Props {
 function Footer({ fb_link, insta_link, lkd_link }: Props) {
   return (
     <>
-      <footer className="z-20 fixed bottom-0 flex flex-row px-2 sm:px-4 md:px-14 py-2 w-full shadow-inner justify-between items-center bg-white border-black border-t-[1px]">
+      <footer className="z-20 absolute md:fixed md:bottom-0 flex flex-row px-2 sm:px-4 md:px-14 py-2 w-full shadow-inner justify-between items-center bg-white border-black border-t-[1px]">
         {/* Copyright and legal notice container */}
         <div>
           <p className="font-light text-xs md:text-base">

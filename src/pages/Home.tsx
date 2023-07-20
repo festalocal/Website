@@ -18,14 +18,20 @@ const HeroBanner = lazy(() => import("../components/HeroBanner"));
 const Home = () => {
   return (
     <>
+    <div key={Math.random()} className="w-full flex flex-col sticky top-0 z-10 drop-shadow-lg">
       <Suspense>
-        <Navbar></Navbar>
-        <HeroBanner></HeroBanner>
-        <Footer
-          fb_link="https://www.facebook.com/profile.php?id=100087768589954"
-          insta_link="https://www.instagram.com/festa.local/"
-          lkd_link="https://www.linkedin.com/company/festa-local/"
-        ></Footer>
+        <Navbar />
+      </Suspense>
+    </div>
+        <Suspense>
+          <HeroBanner />
+        </Suspense>
+        <Suspense>
+          <Footer
+            fb_link="https://www.facebook.com/profile.php?id=100087768589954"
+            insta_link="https://www.instagram.com/festa.local/"
+            lkd_link="https://www.linkedin.com/company/festa-local/"
+          ></Footer>
       </Suspense>
     </>
   );
