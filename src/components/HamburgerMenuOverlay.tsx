@@ -1,4 +1,3 @@
-import 'material-icons/iconfont/material-icons.css';
 import { Suspense } from "react";
 import { NavLink } from "react-router-dom";
 
