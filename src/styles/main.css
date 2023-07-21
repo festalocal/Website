@@ -3,9 +3,7 @@
 @tailwind utilities;
 
 /* Added utilities */
-@layer utilities {
-    
-}
+@layer utilities {}
 
 /** 
     Slide in left animation

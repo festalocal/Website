@@ -52,7 +52,7 @@ function Navbar() {
         <div className="rounded-full">
           <Suspense>
             <NavLink to="/">
-              <div className="flex items-center">
+              <div className="flex items-center justify-center w-20">
                 <img
                   className="rounded-full shadow-md h-14 md:h-16"
                   src="/festa_local_logo.webp"
@@ -102,24 +102,19 @@ function Navbar() {
           </ul>
         </div>
         {/* Profile buttons section container for full container*/}
-        <div className="hidden md:flex md:items-center md:justify-between">
-          <div className="rounded-full m-1 shadow-md shadow-slate-500">
-            <button className="rounded-full bg-festa-blue px-3 py-3 text-white my-auto hover:bg-festa-dark-blue">
-              <a href="#">
-                <img
-                  src="/user_connect.svg"
-                  alt="Icône profil utilisateur"
-                ></img>
-              </a>
-            </button>
-          </div>
-        </div>
+        <button className="hidden md:flex md:items-center md:justify-between rounded-full m-1 shadow-md shadow-slate-500">    
+          <span className="material-symbols-outlined rounded-full bg-festa-blue p-3 text-white my-auto hover:bg-festa-dark-blue">
+            person
+          </span>
+        </button>
         <div
           id="toggleMenu"
           className="hover:cursor-pointer grid md:hidden place-content-center w-20 h-14"
           onClick={toggleHamburgerMenu}
         >
-          <div className="w-12 h-1.5 bg-black rounded-full transition-all duration-150 before:content-[''] before:absolute before:w-12 before:h-1.5 before:bg-black before:rounded-full  before:-translate-y-4 before:transition-all before:duration:150 after:content-[''] after:absolute after:w-12 after:h-1.5 after:bg-black after:rounded-full after:translate-y-4 after:transition-all after:duration-150"></div>
+          <span className={`material-symbols-outlined ${toggledHamburger ? "text-festa-red" : "text-black"}`} style={{fontSize: "50px"}}>
+            {toggledHamburger ? "close" : "menu"}
+          </span>
         </div>
       </nav>
       {/* --------- Responsive Navbar for full container --------- */}

@@ -44,19 +44,11 @@ function FestivalCard({ event, withDescription }: Props) {
             </p>
           )}
           <div className="mt-2">
-            <img
-              className="float-left mr-2"
-              src="/mark.svg"
-              alt="Icône balise de localisation de carte"
-            />
+            <span className="material-symbols-outlined float-left mr-2" style={{fontSize: "28px"}}>location_on</span>
             <p className="text-lg">{event.ville != undefined && event.ville}</p>
           </div>
           <div className="mt-1">
-            <img
-              className="float-left mr-2"
-              src="/calendar.svg"
-              alt="Icone de calendrier"
-            />
+            <span className="material-symbols-outlined float-left mr-2" style={{fontSize: "28px", fontWeight: "600"}}>event</span>
             <p className="text-lg font-bold">
               {event.date_debut != undefined && event.date_debut.value} -{" "}
               {event.date_fin != undefined && event.date_fin.value}

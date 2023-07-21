@@ -8,13 +8,11 @@ function FindFestivalButton() {
   return (
     <>
       <Link to="/fetes">
-        <button className="flex flex-row px-9 py-6 bg-festa-pink hover:bg-festa-light-blue rounded-full drop-shadow-lg">
-          <img src="/search_icon.svg" alt="Icone loupe de recherche"></img>
-          <p className="px-4 text-black">trouv'Ta fête</p>
-          <img 
-            src="/right_arrow.svg"
-            alt="fleche vers droite"
-          ></img>
+        <button className="flex flex-row px-8 py-5 bg-festa-pink hover:bg-festa-light-blue rounded-full drop-shadow-lg">
+          <p className="px-4 text-white text-base">trouv'Ta fête</p>
+          <span className="material-symbols-outlined">
+            search
+          </span>
         </button>
       </Link>
     </>

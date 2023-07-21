@@ -1,5 +1,6 @@
 // Importing React for lazy loading
 import { Suspense, lazy } from "react";
+import MaterialIcon, { colorPalette } from "material-icons-react";
 // Importing block for higher order component
 // with faster rendering times thanks to million
 // import { block } from "million/react";
@@ -18,20 +19,23 @@ const HeroBanner = lazy(() => import("../components/HeroBanner"));
 const Home = () => {
   return (
     <>
-    <div key={Math.random()} className="w-full flex flex-col sticky top-0 z-10 drop-shadow-lg">
-      <Suspense>
-        <Navbar />
-      </Suspense>
-    </div>
+      <div
+        key={Math.random()}
+        className="w-full flex flex-col sticky top-0 z-10 drop-shadow-lg"
+      >
         <Suspense>
-          <HeroBanner />
+          <Navbar />
         </Suspense>
-        <Suspense>
-          <Footer
-            fb_link="https://www.facebook.com/profile.php?id=100087768589954"
-            insta_link="https://www.instagram.com/festa.local/"
-            lkd_link="https://www.linkedin.com/company/festa-local/"
-          ></Footer>
+      </div>
+      <Suspense>
+        <HeroBanner />
+      </Suspense>
+      <Suspense>
+        <Footer
+          fb_link="https://www.facebook.com/profile.php?id=100087768589954"
+          insta_link="https://www.instagram.com/festa.local/"
+          lkd_link="https://www.linkedin.com/company/festa-local/"
+        ></Footer>
       </Suspense>
     </>
   );

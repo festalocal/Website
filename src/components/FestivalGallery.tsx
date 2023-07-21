@@ -7,11 +7,11 @@ interface Props {
 
 function FestivalGallery({ event }: Props) {
   const images: string[] = [
-    "/image1.png",
-    "/image2.png",
-    "/image3.png",
-    "/image4.png",
-    "/image5.png",
+    "/image1.webp",
+    "/image2.webp",
+    "/image3.webp",
+    "/image4.webp",
+    "/image5.webp",
   ];
   return (
     <>
@@ -28,11 +28,9 @@ function FestivalGallery({ event }: Props) {
 
           {/* Festival location container */}
           <div className="flex items-center gap-4">
-            <img
-              className="w-6 h-6 xl:w-10 xl:h-10"
-              src="/mark.svg"
-              alt="Icône balise de localisation de carte"
-            />
+            <span className="material-symbols-outlined float-left mr-2 text-4xl lg:text-5xl xl:text-6xl">
+              location_on
+            </span>
             <div>
               <h4 className="text-xl lg:text-2xl xl:text-4xl text-festa-dark-blue font-semibold">
                 Région
@@ -45,11 +43,9 @@ function FestivalGallery({ event }: Props) {
 
           {/* Festival dates container */}
           <div className="flex items-center gap-4">
-            <img
-              className="w-6 h-6 xl:w-10 xl:h-10"
-              src="/calendar.svg"
-              alt="Icône balise de localisation de carte"
-            />
+            <span className="material-symbols-outlined float-left mr-2 text-4xl lg:text-5xl xl:text-6xl">
+              event
+            </span>
             <div>
               <h4 className="text-xl lg:text-2xl xl:text-4xl text-festa-dark-blue font-semibold">
                 Dates

@@ -12,10 +12,12 @@ function EnrollButton() {
           <p className="text-xl text-md md:text-xl lg:text-2xl text-white">
             Participer
           </p>
-          <img
-            src="/upper_right_arrow.svg"
-            alt="arrow that is pointing to the upper right corner"
-          />
+          <span
+            className="material-symbols-outlined text-white"
+            style={{ fontSize: "32px" }}
+          >
+            arrow_outward
+          </span>
         </button>
       </Link>
     </>

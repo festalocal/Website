@@ -78,14 +78,12 @@ function Carousel({ children }: Props) {
             <button
               key={Math.random()}
               onClick={previous}
-              className="bg-white/80 w-6 h-6 hover:bg-white shadow rounded-full p-1.5"
             >
               <ChevronLeft key={Math.random()}/>
             </button>
             <button
               key={Math.random()}
-              onClick={next}
-              className="bg-white/80 w-6 h-6 hover:bg-white shadow rounded-full p-1.5"
+              onClick={next}      
             >
               <ChevronRight key={Math.random()}/>
             </button>

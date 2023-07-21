@@ -1,3 +1,4 @@
+import 'material-icons/iconfont/material-icons.css';
 import { Suspense } from "react";
 import { NavLink } from "react-router-dom";
 
@@ -10,7 +11,7 @@ function HamburgerMenuOverlay() {
    * @returns { String } Gives the style for the link
    */
   function activeLinkHamburger(active: Boolean): string {
-    const baseClassList: string = "block w-full py-6";
+    const baseClassList: string = "block w-full py-4";
     if (active) {
       return `${baseClassList} text-festa-beige font-bold bg-festa-dark-blue`;
     }
@@ -18,8 +19,8 @@ function HamburgerMenuOverlay() {
   }
   return (
     <>
-      <div className="absolute -top-20 w-screen h-screen z-10 bg-[#0000007a]"></div>
-      <nav className="sticky top-0 w-full bg-white z-30 shadow-lg">
+      <div className="md:hidden absolute -top-18 w-screen h-screen z-10 bg-[#0000007a]"></div>
+      <nav className="md:hidden sticky top-0 w-full bg-white z-30 shadow-lg">
         <ul className="flex flex-col space-evenly items-center">
           <li className="text-2xl text-festa-blue border-b-2 mx-auto w-full text-center drop-shadow-xl">
             <Suspense>
@@ -27,7 +28,9 @@ function HamburgerMenuOverlay() {
                 className={({ isActive }) => activeLinkHamburger(isActive)}
                 to="/"
               >
-                Accueil
+                <span className="material-symbols-outlined">
+                  home
+                </span>
               </NavLink>
             </Suspense>
           </li>
@@ -37,7 +40,9 @@ function HamburgerMenuOverlay() {
                 className={({ isActive }) => activeLinkHamburger(isActive)}
                 to="/fetes"
               >
-                Trouv'Ta fête
+                <span className="material-symbols-outlined">
+                  search
+                </span>
               </NavLink>
             </Suspense>
           </li>
@@ -46,7 +51,9 @@ function HamburgerMenuOverlay() {
               className={({ isActive }) => activeLinkHamburger(isActive)}
               to="/carte"
             >
-              Carte
+              <span className="material-symbols-outlined">
+                  map
+              </span>
             </NavLink>
           </li>
           
@@ -55,7 +62,9 @@ function HamburgerMenuOverlay() {
               className={({ isActive }) => activeLinkHamburger(isActive)}
               to="/about"
             >
-              A propos?
+              <span className="material-symbols-outlined">
+                info
+              </span>
             </NavLink>
           </li>
           <li className="text-2xl text-festa-blue border-b-2 mx-auto w-full text-center drop-shadow-xl">
@@ -63,21 +72,21 @@ function HamburgerMenuOverlay() {
               className={({ isActive }) => activeLinkHamburger(isActive)}
               to="/organisateur"
             >
-              Organisateur
+              <span className="material-symbols-outlined">
+                publish
+              </span>
+              <span className="material-symbols-outlined">
+                celebration
+              </span>
             </NavLink>
           </li>
           <li>
-            {/* Profile buttons section container for hamburger menu container*/}
-            <div className="rounded-full m-4 shadow-md shadow-slate-500">
-              <button className="w-full rounded-full bg-festa-blue px-3 py-3 text-white my-auto hover:bg-festa-dark-blue">
-                <a href="#">
-                  <img
-                    src="/user_connect.svg"
-                    alt="Icône profil utilisateur"
-                  ></img>
-                </a>
-              </button>
-            </div>
+            {/* Profile buttons section container for hamburger menu container*/}       
+            <button className="rounded-full m-4 flex items-center md:justify-between shadow-md shadow-slate-500">    
+              <span className="material-symbols-outlined rounded-full bg-festa-blue p-3 text-white my-auto hover:bg-festa-dark-blue">
+                person
+              </span>
+            </button>
           </li>
         </ul>
       </nav>
