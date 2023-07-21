@@ -136,7 +136,7 @@ function FestivalsCatalogue() {
       </div>
       <div className="mx-auto pb-14 py-8 px-8 sm:px-12 md:px-16 lg:px-20 xl:px-24 grid gap-x-6 gap-y-12 lg:gap-x-8 lg:gap-y-14 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 bg-festa-beige">
         {festivals.map((festival) => (
-          <Suspense>
+          <Suspense key={Math.random()}>
               <FestivalCard
                 key={festival.id}
                 event={festival}

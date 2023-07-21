@@ -49,20 +49,21 @@ function HamburgerMenuOverlay() {
               Carte
             </NavLink>
           </li>
-          <li className="text-2xl text-festa-blue border-b-2 mx-auto w-full text-center drop-shadow-xl">
-            <NavLink
-              className={({ isActive }) => activeLinkHamburger(isActive)}
-              to="/organisateur"
-            >
-              Organisateur
-            </NavLink>
-          </li>
+          
           <li className="text-2xl text-festa-blue border-b-2 mx-auto w-full text-center drop-shadow-xl">
             <NavLink
               className={({ isActive }) => activeLinkHamburger(isActive)}
               to="/about"
             >
               A propos?
+            </NavLink>
+          </li>
+          <li className="text-2xl text-festa-blue border-b-2 mx-auto w-full text-center drop-shadow-xl">
+            <NavLink
+              className={({ isActive }) => activeLinkHamburger(isActive)}
+              to="/organisateur"
+            >
+              Organisateur
             </NavLink>
           </li>
           <li>

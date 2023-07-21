@@ -1,8 +1,8 @@
 function FestivalSearchBar() {
   return (
     <>
-      <div className="w-full px-2 sm:px-4 md:px-14 py-3 z-10 bg-white">
-        <div className="bg-white rounded-full border-2 border-festa-blue drop-shadow-lg py-4 px-4 flex flex-row justify-between gap-4">
+      <div className="w-full px-2 sm:px-4 md:px-14 py-2 md:py-3 z-10 bg-white">
+        <div className="bg-white rounded-full border-2 border-festa-blue drop-shadow-lg py-3 px-3 md:py-4 md:px-4 flex flex-row justify-between gap-0 sm:gap-2 md:gap-4">
           <button className="min-w-min px-2 flex md:hidden items-center gap-2">
             <img className="" src="/settings.svg" alt="Icône de paramètres" />
           </button>

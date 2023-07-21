@@ -14,11 +14,11 @@ interface Props {
  */
 function FestivalCard({ event, withDescription }: Props) {
   const images: string[] = [
-    "/image1.png",
-    "/image2.png",
-    "/image3.png",
-    "/image4.png",
-    "/image5.png",
+    "/image1.webp",
+    "/image2.webp",
+    "/image3.webp",
+    "/image4.webp",
+    "/image5.webp",
   ];
   return (
     <>
@@ -27,7 +27,8 @@ function FestivalCard({ event, withDescription }: Props) {
         <Carousel>
           {images.map((imgPath: string) => (
             <img
-              className="rounded-2xl shadow-inner drop-shadow-xl w-full aspect-square"
+              key={Math.random()}
+              className="shadow-inner w-full aspect-square"
               src={imgPath}
               alt="Image de la fete"
             />

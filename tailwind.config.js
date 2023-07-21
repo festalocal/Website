@@ -11,7 +11,7 @@ export default {
     extend: {
       backgroundImage: {
         // Image used in as background in the hero banner
-        'hero-image': "url(/feria_background.jpg)",
+        'hero-image': "url(/feria_background.webp)",
       },
       // Festa Local color palette
       colors: {

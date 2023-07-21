@@ -47,15 +47,15 @@ function Navbar() {
   return (
     <>
       {/* --------- Responsive Navbar for full container --------- */}
-      <nav className="flex flex-row justify-between shadow-lg w-full p-2 sm:px-4 md:px-14 z-20 bg-white">
+      <nav className="flex flex-row justify-between items-center shadow-lg w-full p-1.5 sm:px-4 md:px-14 z-20 bg-white">
         {/* Clickable logo container */}
         <div className="rounded-full">
           <Suspense>
             <NavLink to="/">
               <div className="flex items-center">
                 <img
-                  className="rounded-full shadow-md h-16 md:h-20"
-                  src="/festa_local_logo.jpg"
+                  className="rounded-full shadow-md h-14 md:h-16"
+                  src="/festa_local_logo.webp"
                   alt="Logo Festa Local"
                 ></img>
               </div>
@@ -86,28 +86,27 @@ function Navbar() {
             <li className="inline md:ml-8 lg:ml-16 sm:text-base md:text-lg xl:text-xl hover:festa-dark-blue hover:underline hover:underline-offset-4">
               <NavLink
                 className={({ isActive }) => activeLink(isActive)}
-                to="/organisateur"
+                to="/about"
               >
-                Organisateur
+                A propos?
               </NavLink>
             </li>
             <li className="inline md:ml-8 lg:ml-16 sm:text-base md:text-lg xl:text-xl hover:festa-dark-blue hover:underline hover:underline-offset-4">
               <NavLink
                 className={({ isActive }) => activeLink(isActive)}
-                to="/about"
+                to="/organisateur"
               >
-                A propos?
+                Organisateur
               </NavLink>
             </li>
           </ul>
         </div>
         {/* Profile buttons section container for full container*/}
         <div className="hidden md:flex md:items-center md:justify-between">
-          <div className="rounded-full m-4 shadow-md shadow-slate-500">
+          <div className="rounded-full m-1 shadow-md shadow-slate-500">
             <button className="rounded-full bg-festa-blue px-3 py-3 text-white my-auto hover:bg-festa-dark-blue">
               <a href="#">
                 <img
-                  className="mr-1"
                   src="/user_connect.svg"
                   alt="Icône profil utilisateur"
                 ></img>
@@ -117,10 +116,10 @@ function Navbar() {
         </div>
         <div
           id="toggleMenu"
-          className="hover:cursor-pointer grid md:hidden place-content-center w-20 h-16 md:h-20"
+          className="hover:cursor-pointer grid md:hidden place-content-center w-20 h-14"
           onClick={toggleHamburgerMenu}
         >
-          <div className="w-10 h-1.5 bg-black rounded-full transition-all duration-150 before:content-[''] before:absolute before:w-10 before:h-1.5 before:bg-black before:rounded-full before:-translate-y-4 before:transition-all before:duration:150 after:content-[''] after:absolute after:w-10 after:h-1.5 after:bg-black after:rounded-full after:translate-y-4 after:transition-all after:duration-150"></div>
+          <div className="w-12 h-1.5 bg-black rounded-full transition-all duration-150 before:content-[''] before:absolute before:w-12 before:h-1.5 before:bg-black before:rounded-full  before:-translate-y-4 before:transition-all before:duration:150 after:content-[''] after:absolute after:w-12 after:h-1.5 after:bg-black after:rounded-full after:translate-y-4 after:transition-all after:duration-150"></div>
         </div>
       </nav>
       {/* --------- Responsive Navbar for full container --------- */}
