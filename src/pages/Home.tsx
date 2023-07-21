@@ -1,6 +1,5 @@
 // Importing React for lazy loading
 import { Suspense, lazy } from "react";
-import MaterialIcon, { colorPalette } from "material-icons-react";
 // Importing block for higher order component
 // with faster rendering times thanks to million
 // import { block } from "million/react";
