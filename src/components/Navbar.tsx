@@ -112,7 +112,7 @@ function Navbar() {
           className="hover:cursor-pointer grid md:hidden place-content-center w-20 h-14"
           onClick={toggleHamburgerMenu}
         >
-          <span className={`material-symbols-outlined ${toggledHamburger ? "text-festa-red" : "text-black"}`} style={{fontSize: "50px"}}>
+          <span className={`material-symbols-outlined text-5xl ${toggledHamburger ? "text-festa-red" : "text-black"}`}>
             {toggledHamburger ? "close" : "menu"}
           </span>
         </div>

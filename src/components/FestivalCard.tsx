@@ -43,13 +43,13 @@ function FestivalCard({ event, withDescription }: Props) {
               {event.description != undefined && event.description}
             </p>
           )}
-          <div className="mt-2">
-            <span className="material-symbols-outlined float-left mr-2" style={{fontSize: "28px"}}>location_on</span>
+          <div className="mt-2 text-lg">
+            <span className="material-symbols-outlined float-left mr-2 font-extrabold">location_on</span>
             <p className="text-lg">{event.ville != undefined && event.ville}</p>
           </div>
-          <div className="mt-1">
-            <span className="material-symbols-outlined float-left mr-2" style={{fontSize: "28px", fontWeight: "600"}}>event</span>
-            <p className="text-lg font-bold">
+          <div className="mt-1 text-lg font-bold">
+            <span className="material-symbols-outlined float-left mr-2">event</span>
+            <p>
               {event.date_debut != undefined && event.date_debut.value} -{" "}
               {event.date_fin != undefined && event.date_fin.value}
             </p>

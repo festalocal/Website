@@ -13,11 +13,11 @@ function FestivalSearchBar() {
             placeholder="Cherchez votre prochaine fête..."
           />
           <button className="hidden min-w-min px-2 md:flex items-center gap-2 mr-8 border-festa-light-blue border-l-2">
-            <img src="/calendar.svg" alt="Icône de calendrier" />
+            <span className="material-symbols-outlined">event</span>
             <p className="my-auto">Dates</p>
           </button>
           <button className="hidden min-w-min px-2 md:flex items-center gap-2 mr-16 border-festa-light-blue border-l-2">
-            <img src="/mark.svg" alt="Icône balise de localisation de carte" />
+            <span className="material-symbols-outlined">location_on</span>
             <p className="my-auto">Localisation</p>
           </button>
           <button>
