@@ -1,4 +1,4 @@
-import { lazy, useRef, useState } from "react";
+import { lazy, useState } from "react";
 const ChevronLeft = lazy(() => import("./ChevronLeft"));
 const ChevronRight = lazy(() => import("./ChevronRight"));
 
