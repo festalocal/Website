@@ -38,9 +38,9 @@ function Navbar() {
    */
   function openHamburgerMenuOverlay(toggled: Boolean): string {
     if (toggled) {
-      return "slide-in-left";
+      return "slide-in-right";
     } else {
-      return "hidden overflow-hidden relative left-[-100%]";
+      return "hidden overflow-hidden relative right-[100%]";
     }
   }
 
@@ -102,7 +102,7 @@ function Navbar() {
           </ul>
         </div>
         {/* Profile buttons section container for full container*/}
-        <button className="hidden md:flex md:items-center md:justify-between rounded-full m-1 shadow-md shadow-slate-500">    
+        <button className="hidden md:flex md:items-center md:justify-between rounded-full m-1 shadow-md shadow-slate-500">
           <span className="material-symbols-outlined rounded-full bg-festa-blue p-3 text-white my-auto hover:bg-festa-dark-blue">
             person
           </span>
@@ -112,7 +112,11 @@ function Navbar() {
           className="hover:cursor-pointer grid md:hidden place-content-center w-20 h-14"
           onClick={toggleHamburgerMenu}
         >
-          <span className={`material-symbols-outlined text-5xl ${toggledHamburger ? "text-festa-red" : "text-black"}`}>
+          <span
+            className={`material-symbols-outlined text-5xl ${
+              toggledHamburger ? "text-festa-red" : "text-black"
+            }`}
+          >
             {toggledHamburger ? "close" : "menu"}
           </span>
         </div>

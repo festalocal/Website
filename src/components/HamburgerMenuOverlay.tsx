@@ -21,67 +21,79 @@ function HamburgerMenuOverlay() {
       <div className="md:hidden absolute -top-18 w-screen h-screen z-10 bg-[#0000007a]"></div>
       <nav className="md:hidden sticky top-0 w-full bg-white z-30 shadow-lg">
         <ul className="flex flex-col space-evenly items-center">
-          <li className="text-2xl text-festa-blue border-b-2 mx-auto w-full text-center drop-shadow-xl">
+          <li className="text-festa-blue border-b-2 mx-auto w-full text-center drop-shadow-xl">
             <Suspense>
               <NavLink
-                className={({ isActive }) => activeLinkHamburger(isActive)}
+                className={({ isActive }) =>
+                  activeLinkHamburger(isActive) +
+                  " " +
+                  "flex items-center justify-center text-2xl gap-2"
+                }
                 to="/"
               >
-                <span className="material-symbols-outlined">
-                  home
-                </span>
+                <span className="material-symbols-outlined">home</span>
+                <p>Accueil</p>
               </NavLink>
             </Suspense>
           </li>
-          <li className="text-2xl text-festa-blue border-b-2 mx-auto w-full text-center drop-shadow-xl">
+          <li className="text-festa-blue border-b-2 mx-auto w-full text-center drop-shadow-xl">
             <Suspense>
               <NavLink
-                className={({ isActive }) => activeLinkHamburger(isActive)}
+                className={({ isActive }) =>
+                  activeLinkHamburger(isActive) +
+                  " " +
+                  "flex items-center justify-center text-2xl gap-2"
+                }
                 to="/fetes"
               >
-                <span className="material-symbols-outlined">
-                  search
-                </span>
+                <span className="material-symbols-outlined">search</span>
+                Trouve'Ta fête
               </NavLink>
             </Suspense>
           </li>
-          <li className="text-2xl text-festa-blue border-b-2 mx-auto w-full text-center drop-shadow-xl">
+          <li className="text-festa-blue border-b-2 mx-auto w-full text-center drop-shadow-xl">
             <NavLink
-              className={({ isActive }) => activeLinkHamburger(isActive)}
+              className={({ isActive }) =>
+                activeLinkHamburger(isActive) +
+                " " +
+                "flex items-center justify-center text-2xl gap-2"
+              }
               to="/carte"
             >
-              <span className="material-symbols-outlined">
-                  map
-              </span>
+              <span className="material-symbols-outlined">map</span>
+              Carte
             </NavLink>
           </li>
-          
-          <li className="text-2xl text-festa-blue border-b-2 mx-auto w-full text-center drop-shadow-xl">
+
+          <li className="text-festa-blue border-b-2 mx-auto w-full text-center drop-shadow-xl">
             <NavLink
-              className={({ isActive }) => activeLinkHamburger(isActive)}
+              className={({ isActive }) =>
+                activeLinkHamburger(isActive) +
+                " " +
+                "flex items-center justify-center text-2xl gap-2"
+              }
               to="/about"
             >
-              <span className="material-symbols-outlined">
-                info
-              </span>
+              <span className="material-symbols-outlined">info</span>A propos
             </NavLink>
           </li>
-          <li className="text-2xl text-festa-blue border-b-2 mx-auto w-full text-center drop-shadow-xl">
+          <li className="text-festa-blue border-b-2 mx-auto w-full text-center drop-shadow-xl">
             <NavLink
-              className={({ isActive }) => activeLinkHamburger(isActive)}
+              className={({ isActive }) =>
+                activeLinkHamburger(isActive) +
+                " " +
+                "flex items-center justify-center text-2xl gap-2"
+              }
               to="/organisateur"
             >
-              <span className="material-symbols-outlined">
-                publish
-              </span>
-              <span className="material-symbols-outlined">
-                celebration
-              </span>
+              <span className="material-symbols-outlined">publish</span>
+              Organisateur
+              <span className="material-symbols-outlined">celebration</span>
             </NavLink>
           </li>
           <li>
-            {/* Profile buttons section container for hamburger menu container*/}       
-            <button className="rounded-full m-4 flex items-center md:justify-between shadow-md shadow-slate-500">    
+            {/* Profile buttons section container for hamburger menu container*/}
+            <button className="rounded-full m-4 flex items-center md:justify-between shadow-md shadow-slate-500">
               <span className="material-symbols-outlined rounded-full bg-festa-blue p-3 text-white my-auto hover:bg-festa-dark-blue">
                 person
               </span>
