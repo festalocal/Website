@@ -31,21 +31,19 @@ function Carousel({ children }: Props) {
     setSwipeEnd(null);
     // setting the swipe start x axis (column) pixel from the first
     // touch finger
-    setSwipeStart(e.touches[0].clientX);
+    setSwipeStart(e.touches[0].pageX);
   };
   const onSwipeEnd: React.TouchEventHandler | React.MouseEventHandler = (
     e: any
   ) => {
-    setSwipeEnd(e.touches[0].clientX);
+    setSwipeEnd(e.touches[0].pageX);
     console.log(swipeEnd);
     //if (swipeStart == null || swipeEnd == null) return;
     if (swipeStart != null) {
-      const distanceCovered: number = Math.abs(
-        swipeStart - e.touches[0].clientX
-      );
+      const distanceCovered: number = Math.abs(swipeStart - e.touches[0].pageX);
       // console.log(`distance covered : ${distanceCovered}`);
       if (distanceCovered > swipeThreshold) {
-        if (swipeStart > e.touches[0].clientX) {
+        if (swipeStart > e.touches[0].pageX) {
           next(e);
         } else {
           previous(e);
@@ -58,10 +56,10 @@ function Carousel({ children }: Props) {
   //   event: any
   // ) => {
   //   if (swipeStart != null && swipeEnd == null) {
-  //     //console.log(event.touches[0].clientX);
-  //     // const distanceCovered: number = Math.abs(swipeStart - event.touches[0].clientX);
+  //     //console.log(event.touches[0].pageX);
+  //     // const distanceCovered: number = Math.abs(swipeStart - event.touches[0].pageX);
   //     // const translateDistance: number | null = null;
-  //     // if (swipeStart > event.touches[0].clientX) {
+  //     // if (swipeStart > event.touches[0].pageX) {
   //     //   translateDistance =
   //     //     (-distanceCovered / sliderContainer.current?.clientWidth) * 100;
   //     // } else {
