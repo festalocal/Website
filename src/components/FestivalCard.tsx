@@ -1,7 +1,6 @@
 import { lazy } from "react";
 import { Link } from "react-router-dom";
 const Carousel = lazy(() => import("./Carousel"));
-
 interface Props {
   event: any;
   withDescription: boolean;
@@ -28,7 +27,7 @@ function FestivalCard({ event, withDescription }: Props) {
           {images.map((imgPath: string) => (
             <img
               key={Math.random()}
-              className="shadow-inner w-full aspect-square"
+              className="shadow-inner aspect-square"
               src={imgPath}
               alt="Image de la fete"
             />
@@ -44,11 +43,15 @@ function FestivalCard({ event, withDescription }: Props) {
             </p>
           )}
           <div className="mt-2 text-lg">
-            <span className="material-symbols-outlined float-left mr-2 font-extrabold">location_on</span>
+            <span className="material-symbols-outlined float-left mr-2 font-extrabold">
+              location_on
+            </span>
             <p className="text-lg">{event.ville != undefined && event.ville}</p>
           </div>
           <div className="mt-1 text-lg font-bold">
-            <span className="material-symbols-outlined float-left mr-2">event</span>
+            <span className="material-symbols-outlined float-left mr-2">
+              event
+            </span>
             <p>
               {event.date_debut != undefined && event.date_debut.value} -{" "}
               {event.date_fin != undefined && event.date_fin.value}
