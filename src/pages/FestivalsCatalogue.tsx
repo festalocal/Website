@@ -73,6 +73,7 @@ function FestivalsCatalogue() {
           // In case we receive the data
           // We update the festival state array
           // We pass to the next packet of festivals for the next API request
+          console.log(res.data);
           setPage((prevPage) => prevPage + festivalsPacketSize);
           setFestivals((previousFestival) => [
             ...previousFestival,
