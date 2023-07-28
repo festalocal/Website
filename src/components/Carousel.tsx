@@ -31,19 +31,30 @@ function Carousel({ children }: Props) {
     setSwipeEnd(null);
     // setting the swipe start x axis (column) pixel from the first
     // touch finger
-    setSwipeStart(e.pageX);
+    if (isMobile) {
+      setSwipeStart(e.touches[0].pageX);
+    } else {
+      setSwipeStart(e.pageX);
+    }
+    //console.log(swipeStart);
   };
   const onSwipeEnd: React.TouchEventHandler | React.MouseEventHandler = (
     e: any
   ) => {
-    setSwipeEnd(e.pageX);
-    console.log(swipeEnd);
+    let stopSwipe: number | null = null;
+    if (isMobile) {
+      stopSwipe = e.touches[0].pageX;
+    } else {
+      stopSwipe = e.pageX;
+    }
+    setSwipeEnd(stopSwipe);
+    console.log(e);
     //if (swipeStart == null || swipeEnd == null) return;
-    if (swipeStart != null) {
-      const distanceCovered: number = Math.abs(swipeStart - e.pageX);
+    if (swipeStart != null && stopSwipe != null) {
+      const distanceCovered: number = Math.abs(swipeStart - stopSwipe);
       // console.log(`distance covered : ${distanceCovered}`);
       if (distanceCovered > swipeThreshold) {
-        if (swipeStart > e.pageX) {
+        if (swipeStart > stopSwipe) {
           next(e);
         } else {
           previous(e);
@@ -55,7 +66,7 @@ function Carousel({ children }: Props) {
   const swipping: React.TouchEventHandler | React.MouseEventHandler = (
     event: any
   ) => {
-    console.log(event);
+    //console.log(event);
     // if (swipeStart != null && swipeEnd == null) {
     //   console.log(event.pageX);
     //   const distanceCovered: number = Math.abs(swipeStart - event.pageX);
@@ -81,10 +92,14 @@ function Carousel({ children }: Props) {
    */
   const [curr, setCurr] = useState<number>(0);
   // Handler function to come back to the previous slide
-  const previous: React.MouseEventHandler<HTMLButtonElement> = () =>
+  const previous:
+    | React.MouseEventHandler<HTMLButtonElement>
+    | React.TouchEventHandler = () =>
     setCurr((curr) => (curr === 0 ? children.length - 1 : curr - 1));
   // Handler function to pass to the next slide.
-  const next: React.MouseEventHandler<HTMLButtonElement> = () =>
+  const next:
+    | React.MouseEventHandler<HTMLButtonElement>
+    | React.TouchEventHandler = () =>
     setCurr((curr) => (curr === children.length - 1 ? 0 : curr + 1));
 
   const updateViewport = () => {
@@ -129,10 +144,16 @@ function Carousel({ children }: Props) {
             key={Math.random()}
             className="fade-in hover:opacity-100 absolute inset-0 flex items-center justify-between p-4"
           >
-            <button key={Math.random()} onClick={previous}>
+            <button
+              key={Math.random()}
+              onClick={previous as React.MouseEventHandler}
+            >
               <ChevronLeft key={Math.random()} />
             </button>
-            <button key={Math.random()} onClick={next}>
+            <button
+              key={Math.random()}
+              onClick={next as React.MouseEventHandler}
+            >
               <ChevronRight key={Math.random()} />
             </button>
           </div>
