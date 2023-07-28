@@ -96,10 +96,10 @@ function Carousel({ children }: Props) {
    */
   const [curr, setCurr] = useState<number>(0);
   // Handler function to come back to the previous slide
-  const previous = (e: SwipeEventData) =>
+  const previous = (_e: SwipeEventData) =>
     setCurr((curr) => (curr === 0 ? children.length - 1 : curr - 1));
   // Handler function to pass to the next slide.
-  const next = (e: SwipeEventData) =>
+  const next = (_e: SwipeEventData) =>
     setCurr((curr) => (curr === children.length - 1 ? 0 : curr + 1));
 
   const updateViewport = () => {
