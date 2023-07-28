@@ -52,7 +52,7 @@ function FestivalDetails() {
         .then((res) => {
           // In case we receive the data
           // We update the evenement
-          setEvenement(res.data);
+          setEvenement(res.data.event);
         })
         .catch((error) => {
           // In case we have an error
