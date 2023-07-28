@@ -1,4 +1,5 @@
-import { lazy, useEffect, useRef, useState } from "react";
+import { lazy, useEffect, useState } from "react";
+import { SwipeEventData, useSwipeable } from "react-swipeable";
 const ChevronLeft = lazy(() => import("./ChevronLeft"));
 const ChevronRight = lazy(() => import("./ChevronRight"));
 
@@ -14,74 +15,77 @@ type Props = {
  *
  */
 function Carousel({ children }: Props) {
-  const sliderContainer = useRef<HTMLDivElement>(null);
+  //const sliderContainer = useRef<HTMLDivElement>(null);
   // boolean state to define if the device viewport is mobile or not
   // We want to disable the swipe features for browser events
   const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 768);
   /* ---- Swipe Utilities : States - Variables - Handlers ---- */
-  const [swipeStart, setSwipeStart] = useState<number | null>(null);
-  const [swipeEnd, setSwipeEnd] = useState<number | null>(null);
-  // number of pixels covered to detect a swipe
-  const swipeThreshold: number = 50;
+  // const [swipeStart, setSwipeStart] = useState<number | null>(null);
+  // const [swipeEnd, setSwipeEnd] = useState<number | null>(null);
+  // // number of pixels covered to detect a swipe
+  // const swipeThreshold: number = 50;
 
-  const onSwipeStart: React.TouchEventHandler | React.MouseEventHandler = (
-    e: any
-  ) => {
-    // we are begining a new swipe event
-    setSwipeEnd(null);
-    // setting the swipe start x axis (column) pixel from the first
-    // touch finger
-    if (isMobile) {
-      setSwipeStart(e.touches[0].pageX);
-    } else {
-      setSwipeStart(e.pageX);
-    }
-    //console.log(swipeStart);
-  };
-  const onSwipeEnd: React.TouchEventHandler | React.MouseEventHandler = (
-    e: any
-  ) => {
-    let stopSwipe: number | null = null;
-    if (isMobile) {
-      stopSwipe = e.touches[0].pageX;
-    } else {
-      stopSwipe = e.pageX;
-    }
-    setSwipeEnd(stopSwipe);
-    console.log(e);
-    //if (swipeStart == null || swipeEnd == null) return;
-    if (swipeStart != null && stopSwipe != null) {
-      const distanceCovered: number = Math.abs(swipeStart - stopSwipe);
-      // console.log(`distance covered : ${distanceCovered}`);
-      if (distanceCovered > swipeThreshold) {
-        if (swipeStart > stopSwipe) {
-          next(e);
-        } else {
-          previous(e);
-        }
-      }
-    }
-  };
+  // const onSwipeStart:
+  //   | React.TouchEventHandler
+  //   | React.MouseEventHandler
+  //   | TouchEvent = (e: any) => {
+  //   // we are begining a new swipe event
+  //   setSwipeEnd(null);
+  //   // setting the swipe start x axis (column) pixel from the first
+  //   // touch finger
+  //   if (isMobile) {
+  //     setSwipeStart(e.touches[0].pageX);
+  //   } else {
+  //     setSwipeStart(e.pageX);
+  //   }
+  //   // console.log(e);
+  // };
+  // const onSwipeEnd:
+  //   | React.TouchEventHandler
+  //   | React.MouseEventHandler
+  //   | TouchEvent = (e: any) => {
+  //   let stopSwipe: number | null = null;
+  //   if (isMobile) {
+  //     stopSwipe = e.touches[0].pageX;
+  //   } else {
+  //     stopSwipe = e.pageX;
+  //   }
+  //   setSwipeEnd(stopSwipe);
+  //   console.log(e);
+  //   //if (swipeStart == null || swipeEnd == null) return;
+  //   if (swipeStart != null && stopSwipe != null) {
+  //     const distanceCovered: number = Math.abs(swipeStart - stopSwipe);
+  //     // console.log(`distance covered : ${distanceCovered}`);
+  //     if (distanceCovered > swipeThreshold) {
+  //       if (swipeStart > stopSwipe) {
+  //         next(e);
+  //       } else {
+  //         previous(e);
+  //       }
+  //     }
+  //   }
+  // };
 
-  const swipping: React.TouchEventHandler | React.MouseEventHandler = (
-    event: any
-  ) => {
-    //console.log(event);
-    // if (swipeStart != null && swipeEnd == null) {
-    //   console.log(event.pageX);
-    //   const distanceCovered: number = Math.abs(swipeStart - event.pageX);
-    //   const translateDistance: number | null = null;
-    //   if (swipeStart > event.pageX) {
-    //     translateDistance =
-    //       (-distanceCovered / sliderContainer.current?.clientWidth) * 100;
-    //   } else {
-    //     translateDistance =
-    //       (distanceCovered / sliderContainer.current?.clientWidth) * 100;
-    //   }
-    //   console.log(translateDistance);
-    //   sliderContainer.style.top = `${translateDistance}`;
-    // }
-  };
+  // const swipping:
+  //   | React.TouchEventHandler
+  //   | React.MouseEventHandler
+  //   | Function = (event: any) => {
+  //   //console.log(event);
+  //   // if (swipeStart != null && swipeEnd == null) {
+  //   //   console.log(event.pageX);
+  //   //   const distanceCovered: number = Math.abs(swipeStart - event.pageX);
+  //   //   const translateDistance: number | null = null;
+  //   //   if (swipeStart > event.pageX) {
+  //   //     translateDistance =
+  //   //       (-distanceCovered / sliderContainer.current?.clientWidth) * 100;
+  //   //   } else {
+  //   //     translateDistance =
+  //   //       (distanceCovered / sliderContainer.current?.clientWidth) * 100;
+  //   //   }
+  //   //   console.log(translateDistance);
+  //   //   sliderContainer.style.top = `${translateDistance}`;
+  //   // }
+  // };
   /* -- END Swipe Utilities : States - Variables - Handlers -- */
 
   const [hovered, setHovered] = useState<boolean>(false);
@@ -92,20 +96,23 @@ function Carousel({ children }: Props) {
    */
   const [curr, setCurr] = useState<number>(0);
   // Handler function to come back to the previous slide
-  const previous:
-    | React.MouseEventHandler<HTMLButtonElement>
-    | React.TouchEventHandler = () =>
+  const previous = (e: SwipeEventData) =>
     setCurr((curr) => (curr === 0 ? children.length - 1 : curr - 1));
   // Handler function to pass to the next slide.
-  const next:
-    | React.MouseEventHandler<HTMLButtonElement>
-    | React.TouchEventHandler = () =>
+  const next = (e: SwipeEventData) =>
     setCurr((curr) => (curr === children.length - 1 ? 0 : curr + 1));
 
   const updateViewport = () => {
     setIsMobile(window.innerWidth <= 768);
   };
-
+  const handlers = useSwipeable({
+    onSwipedLeft: (e) => {
+      next(e);
+    },
+    onSwipedRight: (e) => {
+      previous(e);
+    },
+  });
   useEffect(() => {
     window.addEventListener("resize", updateViewport);
   });
@@ -127,13 +134,14 @@ function Carousel({ children }: Props) {
           key={Math.random()}
           className="rounded-2xl flex transition-transform ease-out duration-500"
           style={{ transform: `translateX(-${curr * 100}%)` }}
-          ref={sliderContainer}
-          onTouchStart={onSwipeStart as React.TouchEventHandler} // for mobile support
-          onTouchMove={swipping as React.TouchEventHandler} // for mobile support
-          onTouchEnd={onSwipeEnd as React.TouchEventHandler} // for mobile support
-          onMouseDown={onSwipeStart as React.MouseEventHandler} // for browser support
-          onMouseMove={swipping as React.MouseEventHandler} // for browser support
-          onMouseUp={onSwipeEnd as React.MouseEventHandler} // for browser support
+          //ref={sliderContainer}
+          {...handlers}
+          // onTouchStart={onSwipeStart as React.TouchEventHandler} // for mobile support
+          // onTouchMove={swipping as React.TouchEventHandler} // for mobile support
+          // onTouchEnd={onSwipeEnd as React.TouchEventHandler} // for mobile support
+          // onMouseDown={onSwipeStart as React.MouseEventHandler} // for browser support
+          // onMouseMove={swipping as React.MouseEventHandler} // for browser support
+          // onMouseUp={onSwipeEnd as React.MouseEventHandler} // for browser support
         >
           {children}
         </div>
