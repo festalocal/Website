@@ -96,21 +96,21 @@ function Carousel({ children }: Props) {
    */
   const [curr, setCurr] = useState<number>(0);
   // Handler function to come back to the previous slide
-  const previous = (_e: SwipeEventData) =>
+  const previous = () =>
     setCurr((curr) => (curr === 0 ? children.length - 1 : curr - 1));
   // Handler function to pass to the next slide.
-  const next = (_e: SwipeEventData) =>
+  const next = () =>
     setCurr((curr) => (curr === children.length - 1 ? 0 : curr + 1));
 
   const updateViewport = () => {
     setIsMobile(window.innerWidth <= 768);
   };
   const handlers = useSwipeable({
-    onSwipedLeft: (e) => {
-      next(e);
+    onSwipedLeft: () => {
+      setCurr((curr) => (curr === children.length - 1 ? 0 : curr + 1));
     },
-    onSwipedRight: (e) => {
-      previous(e);
+    onSwipedRight: () => {
+      setCurr((curr) => (curr === 0 ? children.length - 1 : curr - 1));
     },
   });
   useEffect(() => {
