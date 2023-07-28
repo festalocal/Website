@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 
 function FestivalSearchBar() {
-  const [townSearch, setTownSearch] = useState<string>("");
+  // const [townSearch, setTownSearch] = useState<string>("");
   return (
     <>
       <form className="w-full px-2 sm:px-4 md:px-14 py-2 md:py-3 z-10 bg-white">
