@@ -7,6 +7,16 @@ interface Props {
 }
 
 /**
+ * Gets the name of the day from the given date
+ * @param { string } date - The date
+ * @returns { string } The name of the day
+ */
+const getDayName: Function = (date: string): string => {
+  const dateObject: Date = new Date(date);
+  return dateObject.toLocaleDateString("fr", { weekday: "long" });
+};
+
+/**
  * React Component that represents
  * a Product card for a Festival.
  * @returns
@@ -53,8 +63,16 @@ function FestivalCard({ event, withDescription }: Props) {
               event
             </span>
             <p>
-              {event.date_debut != undefined && event.date_debut.value} -{" "}
-              {event.date_fin != undefined && event.date_fin.value}
+              {/* {event.date_debut != undefined &&
+                getDayName(event.date_debut) + " " + event.date_debut}{" "}
+              && {event.date_fin !== event.date} && -{" "}
+              {event.date_fin != undefined &&
+                getDayName(event.date_fin) + " " + event.date_fin} */}
+              {event.date_debut !== undefined &&
+                getDayName(event.date_debut) + " " + event.date_debut}
+              {event.date_fin !== undefined &&
+                event.date_debut !== event.date_fin &&
+                " " + getDayName(event.date_fin) + " " + event.date_fin}
             </p>
           </div>
         </Link>

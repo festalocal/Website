@@ -101,12 +101,17 @@ function Navbar() {
             </li>
           </ul>
         </div>
+
         {/* Profile buttons section container for full container*/}
-        <button className="hidden md:flex md:items-center md:justify-between rounded-full m-1 shadow-md shadow-slate-500">
+        <NavLink
+          to="/login"
+          className="hidden md:flex md:items-center md:justify-between rounded-full m-1 shadow-md shadow-slate-500"
+        >
           <span className="material-symbols-outlined rounded-full bg-festa-blue p-3 text-white my-auto hover:bg-festa-dark-blue">
             person
           </span>
-        </button>
+        </NavLink>
+
         <div
           id="toggleMenu"
           className="hover:cursor-pointer grid md:hidden place-content-center w-20 h-14"

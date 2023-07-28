@@ -93,11 +93,14 @@ function HamburgerMenuOverlay() {
           </li>
           <li>
             {/* Profile buttons section container for hamburger menu container*/}
-            <button className="rounded-full m-4 flex items-center md:justify-between shadow-md shadow-slate-500">
+            <NavLink
+              to="/login"
+              className="rounded-full m-4 flex items-center md:justify-between shadow-md shadow-slate-500"
+            >
               <span className="material-symbols-outlined rounded-full bg-festa-blue p-3 text-white my-auto hover:bg-festa-dark-blue">
                 person
               </span>
-            </button>
+            </NavLink>
           </li>
         </ul>
       </nav>
