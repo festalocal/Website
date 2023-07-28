@@ -52,24 +52,25 @@ function Carousel({ children }: Props) {
     }
   };
 
-  // const swipping: React.TouchEventHandler | React.MouseEventHandler = (
-  //   event: any
-  // ) => {
-  //   if (swipeStart != null && swipeEnd == null) {
-  //     //console.log(event.pageX);
-  //     // const distanceCovered: number = Math.abs(swipeStart - event.pageX);
-  //     // const translateDistance: number | null = null;
-  //     // if (swipeStart > event.pageX) {
-  //     //   translateDistance =
-  //     //     (-distanceCovered / sliderContainer.current?.clientWidth) * 100;
-  //     // } else {
-  //     //   translateDistance =
-  //     //     (distanceCovered / sliderContainer.current?.clientWidth) * 100;
-  //     // }
-  //     // console.log(translateDistance);
-  //     // sliderContainer.style.top = `${translateDistance}`;
-  //   }
-  // };
+  const swipping: React.TouchEventHandler | React.MouseEventHandler = (
+    event: any
+  ) => {
+    console.log(event);
+    // if (swipeStart != null && swipeEnd == null) {
+    //   console.log(event.pageX);
+    //   const distanceCovered: number = Math.abs(swipeStart - event.pageX);
+    //   const translateDistance: number | null = null;
+    //   if (swipeStart > event.pageX) {
+    //     translateDistance =
+    //       (-distanceCovered / sliderContainer.current?.clientWidth) * 100;
+    //   } else {
+    //     translateDistance =
+    //       (distanceCovered / sliderContainer.current?.clientWidth) * 100;
+    //   }
+    //   console.log(translateDistance);
+    //   sliderContainer.style.top = `${translateDistance}`;
+    // }
+  };
   /* -- END Swipe Utilities : States - Variables - Handlers -- */
 
   const [hovered, setHovered] = useState<boolean>(false);
@@ -113,12 +114,11 @@ function Carousel({ children }: Props) {
           style={{ transform: `translateX(-${curr * 100}%)` }}
           ref={sliderContainer}
           onTouchStart={onSwipeStart as React.TouchEventHandler} // for mobile support
-          //onTouchMove={swipping as React.TouchEventHandler} // for mobile support
+          onTouchMove={swipping as React.TouchEventHandler} // for mobile support
           onTouchEnd={onSwipeEnd as React.TouchEventHandler} // for mobile support
           onMouseDown={onSwipeStart as React.MouseEventHandler} // for browser support
-          //onMouseMove={swipping as React.MouseEventHandler} // for browser support
+          onMouseMove={swipping as React.MouseEventHandler} // for browser support
           onMouseUp={onSwipeEnd as React.MouseEventHandler} // for browser support
-          //onTouchMove={dragging}
         >
           {children}
         </div>
