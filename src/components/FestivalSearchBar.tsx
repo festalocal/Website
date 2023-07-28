@@ -16,7 +16,7 @@ function FestivalSearchBar() {
             type="text"
             name="ville"
             placeholder="Cherchez votreprochaine fête..."
-            onChange={(event) => setTownSearch(event.target.value)}
+            //onChange={(event) => setTownSearch(event.target.value)}
           />
           <button className="hidden min-w-min px-2 md:flex items-center gap-2 mr-8 border-festa-light-blue border-l-2">
             <span className="material-symbols-outlined">event</span>
