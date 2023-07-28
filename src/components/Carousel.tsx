@@ -1,5 +1,5 @@
 import { lazy, useEffect, useState } from "react";
-import { SwipeEventData, useSwipeable } from "react-swipeable";
+import { useSwipeable } from "react-swipeable";
 const ChevronLeft = lazy(() => import("./ChevronLeft"));
 const ChevronRight = lazy(() => import("./ChevronRight"));
 
