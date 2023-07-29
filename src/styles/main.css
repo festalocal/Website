@@ -3,7 +3,10 @@
 @tailwind utilities;
 
 /* Added utilities */
-@layer utilities {}
+@layer utilities {
+    .fade-in{-webkit-animation:fade-in .2s ease-out both;animation:fade-in .2s ease-out both}
+    @-webkit-keyframes fade-in{0%{opacity:0}100%{opacity:1}}@keyframes fade-in{0%{opacity:0}100%{opacity:1}}
+}
 
 /** 
     Slide in left animation
@@ -11,6 +14,3 @@
 */
 .slide-in-right{-webkit-animation:slide-in-right .8s ease-in-out both;animation:slide-in-right .8s ease-in-out both}
 @-webkit-keyframes slide-in-right{0%{-webkit-transform:translateX(1000px);transform:translateX(1000px);opacity:0}100%{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}}@keyframes slide-in-right{0%{-webkit-transform:translateX(1000px);transform:translateX(1000px);opacity:0}100%{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}}
-
-.fade-in{-webkit-animation:fade-in .2s ease-out both;animation:fade-in .2s ease-out both}
-@-webkit-keyframes fade-in{0%{opacity:0}100%{opacity:1}}@keyframes fade-in{0%{opacity:0}100%{opacity:1}}

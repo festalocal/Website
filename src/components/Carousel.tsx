@@ -147,10 +147,10 @@ function Carousel({ children }: Props) {
         </div>
 
         {/* Button slider controls */}
-        {true && !isMobile && (
+        {hovered && !isMobile && (
           <div
-            key={Math.random()}
-            className="hover:fade-in hover:opacity-200 absolute inset-0 flex items-center justify-between p-4"
+            key={"buttons"}
+            className="hover:fade-in absolute inset-0 flex items-center justify-between p-4"
           >
             <button
               key={Math.random()}
