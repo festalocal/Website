@@ -131,8 +131,8 @@ function Carousel({ children }: Props) {
       >
         {/* Images flex container */}
         <div
-          key={Math.random()}
-          className="rounded-2xl flex transition-transform ease-out duration-500"
+          key={"carousel"}
+          className="flex transition-transform ease-out duration-500"
           style={{ transform: `translateX(-${curr * 100}%)` }}
           //ref={sliderContainer}
           {...handlers}
@@ -147,10 +147,10 @@ function Carousel({ children }: Props) {
         </div>
 
         {/* Button slider controls */}
-        {hovered !== false && isMobile == false && (
+        {true && !isMobile && (
           <div
             key={Math.random()}
-            className="fade-in hover:opacity-100 absolute inset-0 flex items-center justify-between p-4"
+            className="hover:fade-in hover:opacity-200 absolute inset-0 flex items-center justify-between p-4"
           >
             <button
               key={Math.random()}
