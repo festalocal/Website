@@ -35,7 +35,7 @@ function FestivalsCatalogue(): JSX.Element {
   let searchFiltersValues: searchFilters = {
     titre: searchParams.get("titre"),
     ville: searchParams.get("ville"),
-    dateParam: searchParams.get("dateParam"),
+    dateParam: searchParams.get("dateParamInput"),
     dateDebut: searchParams.get("dateDebut"),
     dateFin: searchParams.get("dateFin"),
   };
