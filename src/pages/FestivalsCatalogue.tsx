@@ -31,7 +31,7 @@ function FestivalsCatalogue(): JSX.Element {
   /* ------------------ FETCHING FILTER PARAMETERS ------------------ */
   // Query hook that is used to read the parameters of a query
   // from the current URL
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   let searchFiltersValues: searchFilters = {
     titre: searchParams.get("titre"),
     ville: searchParams.get("ville"),

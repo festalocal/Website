@@ -1,4 +1,4 @@
-import { ChangeEvent, MouseEventHandler, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { searchFilters } from "../pages/FestivalsCatalogue";
 import { CITY_TITLE_REGEX } from "../RegExPatterns";
 
@@ -14,10 +14,10 @@ export enum DateFilterParameter {
 function FestivalSearchBar({
   titre,
   ville,
-  dateParam,
-  dateDebut,
-  dateFin,
-}: searchFilters): JSX.Element {
+}: // dateParam,
+// dateDebut,
+// dateFin,
+searchFilters): JSX.Element {
   const [isAfterOrBeforeSwitchDisabled, setIsAfterOrBeforeSwitchDisabled] =
     useState<boolean>(false);
   const [afterOrBeforeSwitch, setAfterOrBeforeSwitch] =
