@@ -1,6 +1,8 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, lazy, useState } from "react";
 import { searchFilters } from "../pages/FestivalsCatalogue";
 import { CITY_TITLE_REGEX } from "../RegExPatterns";
+const DateFilterButton = lazy(() => import("./DateFilterButton"));
+const LocationFilterButton = lazy(() => import("./LocationFilterButton"));
 
 // Enumeration of values
 // that is used to tweak the dates filter.
@@ -77,14 +79,14 @@ searchFilters): JSX.Element {
         role="search"
         className="w-full px-2 sm:px-4 md:px-14 py-2 md:py-3 z-10 bg-white"
       >
-        <div className="bg-white rounded-full border-2 border-festa-blue drop-shadow-lg py-3 px-3 md:py-4 md:px-4 flex flex-row justify-between gap-0 sm:gap-2 md:gap-4">
+        <div className="bg-white rounded-full border-2 border-festa-blue drop-shadow-lg px-3 md:px-4 flex flex-row justify-between items-stretch gap-0 sm:gap-2 md:gap-4">
           <button>
             <span className="material-symbols-outlined min-w-min px-2 flex md:hidden items-center gap-2">
               tune
             </span>
           </button>
           <input
-            className="w-full focus:outline-festa-blue"
+            className="w-full focus:outline-festa-blue py-3 md:py-4"
             type="text"
             name="titre"
             pattern={CITY_TITLE_REGEX}
@@ -92,15 +94,24 @@ searchFilters): JSX.Element {
             placeholder="Cherchez votre prochaine fête..."
             onChange={(event) => setTitleSearch(event.target.value)}
           />
-          <a
-            className="hidden min-w-min px-2 md:flex items-center gap-2 mr-8 border-festa-light-blue border-l-2 hover:cursor-pointer"
+
+          {/* Filtre Date A partir de */}
+          <div
             onClick={() => {
               setClikedDateFilterButton(!clikedDateFilterButton);
             }}
           >
-            <span className="material-symbols-outlined">event</span>
-            <p className="my-auto">Dates</p>
-          </a>
+            <DateFilterButton buttonText={"A partir de ?"} />
+          </div>
+
+          {/* Filtre Date Jusqu'au */}
+          <div
+            onClick={() => {
+              setClikedDateFilterButton(!clikedDateFilterButton);
+            }}
+          >
+            <DateFilterButton buttonText={"Jusqu'au ?"} />
+          </div>
 
           <div style={{ display: clikedDateFilterButton ? "block" : "none" }}>
             <input type="hidden" name="dateParamInput" value={dateParamInput} />
@@ -133,15 +144,13 @@ searchFilters): JSX.Element {
             {periodSwitch && <input type="date" name="dateFin" />}
           </div>
 
-          <a
-            className="hidden min-w-min px-2 md:flex items-center gap-2 mr-16 border-festa-light-blue border-l-2 hover:cursor-pointer"
+          <div
             onClick={() => {
               setClickedVilleFilterButton(!clickedVilleFilterButton);
             }}
           >
-            <span className="material-symbols-outlined">location_on</span>
-            <p className="my-auto">Localisation</p>
-          </a>
+            <LocationFilterButton />
+          </div>
 
           <div>
             <input
