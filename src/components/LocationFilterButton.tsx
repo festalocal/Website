@@ -18,7 +18,7 @@ function LocationFilterButton(): JSX.Element {
         >
           <span className="material-symbols-outlined">location_on</span>
 
-          <p>Date</p>
+          <p>Localisation</p>
         </a>
       </div>
     </>
