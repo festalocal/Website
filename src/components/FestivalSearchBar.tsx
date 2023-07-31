@@ -1,6 +1,7 @@
 import { ChangeEvent, lazy, useState } from "react";
 import { searchFilters } from "../pages/FestivalsCatalogue";
 import { CITY_TITLE_REGEX } from "../RegExPatterns";
+const SearchBarFilterPad = lazy(() => import("./SearchBarFilterPad"));
 const DateFilterButton = lazy(() => import("./DateFilterButton"));
 const LocationFilterButton = lazy(() => import("./LocationFilterButton"));
 
@@ -113,37 +114,6 @@ searchFilters): JSX.Element {
             <DateFilterButton buttonText={"Jusqu'au ?"} />
           </div>
 
-          <div style={{ display: clikedDateFilterButton ? "block" : "none" }}>
-            <input type="hidden" name="dateParamInput" value={dateParamInput} />
-            <label htmlFor="periodSwitch">Vous cherchez une periode ?</label>
-            <input
-              type="checkbox"
-              id="periodSwitch"
-              checked={periodSwitch}
-              onChange={(e) => periodSwitchHandler(e)}
-            />
-            {!periodSwitch && (
-              <>
-                <label htmlFor="afterOrBeforeSwitch">
-                  Vous cherchez les evenements{" "}
-                  {dateParamInput === DateFilterParameter.AFTER
-                    ? "avant"
-                    : "apres"}{" "}
-                  ?
-                </label>
-                <input
-                  type="checkbox"
-                  id="afterOrBeforeSwitch"
-                  disabled={isAfterOrBeforeSwitchDisabled}
-                  checked={afterOrBeforeSwitch}
-                  onChange={(e) => afterOrBeforeSwitchHandler(e)}
-                />
-              </>
-            )}
-            <input type="date" name="dateDebut" />
-            {periodSwitch && <input type="date" name="dateFin" />}
-          </div>
-
           <div
             onClick={() => {
               setClickedVilleFilterButton(!clickedVilleFilterButton);
@@ -170,6 +140,37 @@ searchFilters): JSX.Element {
             </span>
           </button>
         </div>
+        {/* <div style={{ display: clikedDateFilterButton ? "block" : "none" }}>
+          <input type="hidden" name="dateParamInput" value={dateParamInput} />
+          <label htmlFor="periodSwitch">Vous cherchez une periode ?</label>
+          <input
+            type="checkbox"
+            id="periodSwitch"
+            checked={periodSwitch}
+            onChange={(e) => periodSwitchHandler(e)}
+          />
+          {!periodSwitch && (
+            <>
+              <label htmlFor="afterOrBeforeSwitch">
+                Vous cherchez les evenements{" "}
+                {dateParamInput === DateFilterParameter.AFTER
+                  ? "avant"
+                  : "apres"}{" "}
+                ?
+              </label>
+              <input
+                type="checkbox"
+                id="afterOrBeforeSwitch"
+                disabled={isAfterOrBeforeSwitchDisabled}
+                checked={afterOrBeforeSwitch}
+                onChange={(e) => afterOrBeforeSwitchHandler(e)}
+              />
+            </>
+          )}
+          <input type="date" name="dateDebut" />
+          {periodSwitch && <input type="date" name="dateFin" />}
+        </div> */}
+        {clikedDateFilterButton && <SearchBarFilterPad />}
       </form>
     </>
   );
