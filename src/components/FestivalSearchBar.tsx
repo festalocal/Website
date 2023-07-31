@@ -1,4 +1,4 @@
-import { ChangeEvent, lazy, useState } from "react";
+import { lazy, useState } from "react";
 import { searchFilters } from "../pages/FestivalsCatalogue";
 import { CITY_TITLE_REGEX } from "../RegExPatterns";
 const SearchBarFilterPad = lazy(() => import("./SearchBarFilterPad"));
@@ -21,42 +21,42 @@ function FestivalSearchBar({
 // dateDebut,
 // dateFin,
 searchFilters): JSX.Element {
-  const [isAfterOrBeforeSwitchDisabled, setIsAfterOrBeforeSwitchDisabled] =
-    useState<boolean>(false);
-  const [afterOrBeforeSwitch, setAfterOrBeforeSwitch] =
-    useState<boolean>(false);
-  const [dateParamInput, setDateParamInput] = useState<string>(
-    DateFilterParameter.AFTER
-  );
+  // const [isAfterOrBeforeSwitchDisabled, setIsAfterOrBeforeSwitchDisabled] =
+  //   useState<boolean>(false);
+  // const [afterOrBeforeSwitch, setAfterOrBeforeSwitch] =
+  //   useState<boolean>(false);
+  // const [dateParamInput, setDateParamInput] = useState<string>(
+  //   DateFilterParameter.AFTER
+  // );
 
-  const [periodSwitch, setPeriodSwitch] = useState<boolean>(false);
-  const periodSwitchHandler: Function = (
-    e: ChangeEvent<HTMLInputElement>
-  ): void => {
-    setPeriodSwitch(!periodSwitch);
-    if (e.target.checked) {
-      setDateParamInput(DateFilterParameter.IN_PERIOD);
-    } else {
-      if (afterOrBeforeSwitch) {
-        setDateParamInput(DateFilterParameter.BEFORE);
-      } else {
-        setDateParamInput(DateFilterParameter.AFTER);
-      }
-    }
+  // const [periodSwitch, setPeriodSwitch] = useState<boolean>(false);
+  // const periodSwitchHandler: Function = (
+  //   e: ChangeEvent<HTMLInputElement>
+  // ): void => {
+  //   setPeriodSwitch(!periodSwitch);
+  //   if (e.target.checked) {
+  //     setDateParamInput(DateFilterParameter.IN_PERIOD);
+  //   } else {
+  //     if (afterOrBeforeSwitch) {
+  //       setDateParamInput(DateFilterParameter.BEFORE);
+  //     } else {
+  //       setDateParamInput(DateFilterParameter.AFTER);
+  //     }
+  //   }
 
-    setIsAfterOrBeforeSwitchDisabled(!isAfterOrBeforeSwitchDisabled);
-  };
+  //   setIsAfterOrBeforeSwitchDisabled(!isAfterOrBeforeSwitchDisabled);
+  // };
 
-  const afterOrBeforeSwitchHandler: Function = (
-    e: ChangeEvent<HTMLInputElement>
-  ): void => {
-    setAfterOrBeforeSwitch(!afterOrBeforeSwitch);
-    if (e.target.checked) {
-      setDateParamInput(DateFilterParameter.BEFORE);
-    } else {
-      setDateParamInput(DateFilterParameter.AFTER);
-    }
-  };
+  // const afterOrBeforeSwitchHandler: Function = (
+  //   e: ChangeEvent<HTMLInputElement>
+  // ): void => {
+  //   setAfterOrBeforeSwitch(!afterOrBeforeSwitch);
+  //   if (e.target.checked) {
+  //     setDateParamInput(DateFilterParameter.BEFORE);
+  //   } else {
+  //     setDateParamInput(DateFilterParameter.AFTER);
+  //   }
+  // };
 
   const [clikedDateFilterButton, setClikedDateFilterButton] =
     useState<boolean>(false);
