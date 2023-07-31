@@ -1,7 +1,7 @@
 /**
  * Chevron Left React component
  */
-function ChevronLeft() {
+function ChevronLeft(): JSX.Element {
   return (
     <span
       className={`

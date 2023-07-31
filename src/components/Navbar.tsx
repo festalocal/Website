@@ -1,6 +1,8 @@
-import { Suspense, lazy, useState } from "react";
+import { LazyExoticComponent, Suspense, lazy, useState } from "react";
 import { NavLink } from "react-router-dom";
-const HamburgerMenuOverlay = lazy(() => import("./HamburgerMenuOverlay"));
+const HamburgerMenuOverlay: LazyExoticComponent<() => JSX.Element> = lazy(
+  () => import("./HamburgerMenuOverlay")
+);
 
 /**
  * REACT component that represents the top sticky Navbar
@@ -8,7 +10,7 @@ const HamburgerMenuOverlay = lazy(() => import("./HamburgerMenuOverlay"));
  * FOR NOW NOT RESPONSIVE.
  * @returns
  */
-function Navbar() {
+function Navbar(): JSX.Element {
   // State hook for managing toggle of the hamburger menu list
   let [toggledHamburger, setToggledHamburger]: Array<any> = useState(false);
   /**

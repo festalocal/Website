@@ -21,7 +21,7 @@ const getDayName: Function = (date: string): string => {
  * a Product card for a Festival.
  * @returns
  */
-function FestivalCard({ event, withDescription }: Props) {
+function FestivalCard({ event, withDescription }: Props): JSX.Element {
   const images: string[] = [
     "/image1.webp",
     "/image2.webp",

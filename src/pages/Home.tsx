@@ -15,7 +15,7 @@ const HeroBanner = lazy(() => import("../components/HeroBanner"));
 // wrapping component around millionjs block HOC in order to
 // block reactjs virtual DOM and use millionjs faster virtual DOM
 // ADD THIS FEATURE AFTER
-const Home = () => {
+function Home(): JSX.Element {
   return (
     <>
       <div
@@ -38,5 +38,5 @@ const Home = () => {
       </Suspense>
     </>
   );
-};
+}
 export default Home;

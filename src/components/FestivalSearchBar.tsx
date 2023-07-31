@@ -1,10 +1,82 @@
-// import React, { useState } from "react";
+import { ChangeEvent, MouseEventHandler, useState } from "react";
+import { searchFilters } from "../pages/FestivalsCatalogue";
+import { CITY_TITLE_REGEX } from "../RegExPatterns";
 
-function FestivalSearchBar() {
-  // const [townSearch, setTownSearch] = useState<string>("");
+// Enumeration of values
+// that is used to tweak the dates filter.
+export enum DateFilterParameter {
+  BEFORE = "BEFORE", // In case we want Evenements before a date
+  AFTER = "AFTER", // In case we want Evenements after a date
+  IN_PERIOD = "IN-PERIOD", // In case we want Evenements of a given period between 2 dates
+  // to be inclued another period
+}
+
+function FestivalSearchBar({
+  titre,
+  ville,
+  dateParam,
+  dateDebut,
+  dateFin,
+}: searchFilters): JSX.Element {
+  const [isAfterOrBeforeSwitchDisabled, setIsAfterOrBeforeSwitchDisabled] =
+    useState<boolean>(false);
+  const [afterOrBeforeSwitch, setAfterOrBeforeSwitch] =
+    useState<boolean>(false);
+  const [dateParamInput, setDateParamInput] = useState<string>(
+    DateFilterParameter.AFTER
+  );
+
+  const [periodSwitch, setPeriodSwitch] = useState<boolean>(false);
+  const periodSwitchHandler: Function = (
+    e: ChangeEvent<HTMLInputElement>
+  ): void => {
+    setPeriodSwitch(!periodSwitch);
+    if (e.target.checked) {
+      setDateParamInput(DateFilterParameter.IN_PERIOD);
+    } else {
+      if (afterOrBeforeSwitch) {
+        setDateParamInput(DateFilterParameter.BEFORE);
+      } else {
+        setDateParamInput(DateFilterParameter.AFTER);
+      }
+    }
+
+    setIsAfterOrBeforeSwitchDisabled(!isAfterOrBeforeSwitchDisabled);
+  };
+
+  const afterOrBeforeSwitchHandler: Function = (
+    e: ChangeEvent<HTMLInputElement>
+  ): void => {
+    setAfterOrBeforeSwitch(!afterOrBeforeSwitch);
+    if (e.target.checked) {
+      setDateParamInput(DateFilterParameter.BEFORE);
+    } else {
+      setDateParamInput(DateFilterParameter.AFTER);
+    }
+  };
+
+  const [clikedDateFilterButton, setClikedDateFilterButton] =
+    useState<boolean>(false);
+  const [clickedVilleFilterButton, setClickedVilleFilterButton] =
+    useState<boolean>(false);
+  const [titleSearch, setTitleSearch] = useState<string | null | undefined>(
+    titre
+  );
+  const [villeSearch, setVilleSearch] = useState<string | null | undefined>(
+    ville
+  );
+
   return (
     <>
-      <form className="w-full px-2 sm:px-4 md:px-14 py-2 md:py-3 z-10 bg-white">
+      {/* Unfortunately can't use the react router Form because it only works with
+      Data Router type in the root at main.tsx file
+      */}
+      <form
+        method="GET"
+        action="/fetes"
+        role="search"
+        className="w-full px-2 sm:px-4 md:px-14 py-2 md:py-3 z-10 bg-white"
+      >
         <div className="bg-white rounded-full border-2 border-festa-blue drop-shadow-lg py-3 px-3 md:py-4 md:px-4 flex flex-row justify-between gap-0 sm:gap-2 md:gap-4">
           <button>
             <span className="material-symbols-outlined min-w-min px-2 flex md:hidden items-center gap-2">
@@ -14,18 +86,75 @@ function FestivalSearchBar() {
           <input
             className="w-full focus:outline-festa-blue"
             type="text"
-            name="ville"
-            placeholder="Cherchez votreprochaine fête..."
-            //onChange={(event) => setTownSearch(event.target.value)}
+            name="titre"
+            pattern={CITY_TITLE_REGEX}
+            value={titleSearch as string}
+            placeholder="Cherchez votre prochaine fête..."
+            onChange={(event) => setTitleSearch(event.target.value)}
           />
-          <button className="hidden min-w-min px-2 md:flex items-center gap-2 mr-8 border-festa-light-blue border-l-2">
+          <a
+            className="hidden min-w-min px-2 md:flex items-center gap-2 mr-8 border-festa-light-blue border-l-2 hover:cursor-pointer"
+            onClick={() => {
+              setClikedDateFilterButton(!clikedDateFilterButton);
+            }}
+          >
             <span className="material-symbols-outlined">event</span>
             <p className="my-auto">Dates</p>
-          </button>
-          <button className="hidden min-w-min px-2 md:flex items-center gap-2 mr-16 border-festa-light-blue border-l-2">
+          </a>
+
+          <div style={{ display: clikedDateFilterButton ? "block" : "none" }}>
+            <input type="hidden" name="dateParamInput" value={dateParamInput} />
+            <label htmlFor="periodSwitch">Vous cherchez une periode ?</label>
+            <input
+              type="checkbox"
+              id="periodSwitch"
+              checked={periodSwitch}
+              onChange={(e) => periodSwitchHandler(e)}
+            />
+            {!periodSwitch && (
+              <>
+                <label htmlFor="afterOrBeforeSwitch">
+                  Vous cherchez les evenements{" "}
+                  {dateParamInput === DateFilterParameter.AFTER
+                    ? "avant"
+                    : "apres"}{" "}
+                  ?
+                </label>
+                <input
+                  type="checkbox"
+                  id="afterOrBeforeSwitch"
+                  disabled={isAfterOrBeforeSwitchDisabled}
+                  checked={afterOrBeforeSwitch}
+                  onChange={(e) => afterOrBeforeSwitchHandler(e)}
+                />
+              </>
+            )}
+            <input type="date" name="dateDebut" />
+            {periodSwitch && <input type="date" name="dateFin" />}
+          </div>
+
+          <a
+            className="hidden min-w-min px-2 md:flex items-center gap-2 mr-16 border-festa-light-blue border-l-2 hover:cursor-pointer"
+            onClick={() => {
+              setClickedVilleFilterButton(!clickedVilleFilterButton);
+            }}
+          >
             <span className="material-symbols-outlined">location_on</span>
             <p className="my-auto">Localisation</p>
-          </button>
+          </a>
+
+          <div>
+            <input
+              style={{ display: clickedVilleFilterButton ? "block" : "none" }}
+              type="text"
+              name="ville"
+              pattern={CITY_TITLE_REGEX}
+              value={villeSearch as string}
+              placeholder="Cherchez votre ville..."
+              onChange={(event) => setVilleSearch(event.target.value)}
+            />
+          </div>
+
           <button type="submit">
             <span className="material-symbols-outlined rounded-full border border-1 p-2 shadow-inner shadow-lg">
               search

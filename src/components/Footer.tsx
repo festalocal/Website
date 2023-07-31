@@ -1,11 +1,3 @@
-/**
- * REACT component that represents the Footer of the website
- * IT contains the links to different social networks
- * and links to the legal notice.
- * Static stateless component.
- * @returns
- */
-
 import { NavLink } from "react-router-dom";
 
 /**
@@ -13,7 +5,7 @@ import { NavLink } from "react-router-dom";
  * to the social networks for redirection
  * on the social network icon links.
  */
-interface Props {
+export interface Props {
   // Facebook link
   fb_link: string;
   // Instagram link
@@ -22,7 +14,14 @@ interface Props {
   lkd_link: string;
 }
 
-function Footer({ fb_link, insta_link, lkd_link }: Props) {
+/**
+ * REACT component that represents the Footer of the website
+ * IT contains the links to different social networks
+ * and links to the legal notice.
+ * Static stateless component.
+ * @returns
+ */
+function Footer({ fb_link, insta_link, lkd_link }: Props): JSX.Element {
   return (
     <>
       <footer className="z-20 absolute md:fixed md:bottom-0 flex flex-col gap-2 sm:flex-row px-2 sm:px-4 md:px-14 py-2 sm:py-1 w-full shadow-inner justify-between items-center bg-white border-black border-t-[1px]">

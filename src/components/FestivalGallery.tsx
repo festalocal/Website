@@ -5,7 +5,7 @@ interface Props {
   event: any;
 }
 
-function FestivalGallery({ event }: Props) {
+function FestivalGallery({ event }: Props): JSX.Element {
   const images: string[] = [
     "/image1.webp",
     "/image2.webp",

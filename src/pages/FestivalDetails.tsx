@@ -11,7 +11,7 @@ const FestivalGallery = lazy(() => import("../components/FestivalGallery"));
  * Page Details Fête
  * @returns
  */
-function FestivalDetails() {
+function FestivalDetails(): JSX.Element {
   // boolean state to define if the device viewport is mobile or not
   const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 768);
   // evenement state with it's setter

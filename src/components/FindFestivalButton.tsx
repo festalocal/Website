@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
  * React component button
  * Trouv'Ta fête button
  */
-function FindFestivalButton() {
+function FindFestivalButton(): JSX.Element {
   return (
     <>
       <Link to="/fetes">

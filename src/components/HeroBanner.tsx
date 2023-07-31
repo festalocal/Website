@@ -1,7 +1,9 @@
-import { lazy } from "react";
-const FindFestivalButton = lazy(() => import("./FindFestivalButton"));
+import { LazyExoticComponent, lazy } from "react";
+const FindFestivalButton: LazyExoticComponent<() => JSX.Element> = lazy(
+  () => import("./FindFestivalButton")
+);
 
-function HeroBanner() {
+function HeroBanner(): JSX.Element {
   return (
     <>
       <div className="z-0 w-full h-screen relative -top-16">

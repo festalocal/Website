@@ -1,12 +1,23 @@
 // Router import
 import { Route, Routes } from "react-router-dom";
-import { Suspense, lazy } from "react";
-import UnderWork from "./pages/UnderWork";
-import LegalNotice from "./pages/LegalNotice";
+import { LazyExoticComponent, Suspense, lazy } from "react";
 // Web app pages imports
-const Home = lazy(() => import("./pages/Home"));
-const FestivalsCatalogue = lazy(() => import("./pages/FestivalsCatalogue"));
-const FestivalDetails = lazy(() => import("./pages/FestivalDetails"));
+const Home: LazyExoticComponent<() => JSX.Element> = lazy(
+  () => import("./pages/Home")
+);
+
+const FestivalsCatalogue: LazyExoticComponent<() => JSX.Element> = lazy(
+  () => import("./pages/FestivalsCatalogue")
+);
+const FestivalDetails: LazyExoticComponent<() => JSX.Element> = lazy(
+  () => import("./pages/FestivalDetails")
+);
+const UnderWork: LazyExoticComponent<() => JSX.Element> = lazy(
+  () => import("./pages/UnderWork")
+);
+const LegalNotice: LazyExoticComponent<() => JSX.Element> = lazy(
+  () => import("./pages/LegalNotice")
+);
 
 function App() {
   return (

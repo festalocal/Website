@@ -1,13 +1,18 @@
 // Importing React for lazy loading
-import { Suspense, lazy } from "react";
+import { LazyExoticComponent, Suspense, lazy } from "react";
 // Importing block for higher order component
 // with faster rendering times thanks to million
 // import { block } from "million/react";
 // Page components imports
-const Navbar = lazy(() => import("../components/Navbar"));
-const Footer = lazy(() => import("../components/Footer"));
+const Navbar: LazyExoticComponent<() => JSX.Element> = lazy(
+  () => import("../components/Navbar")
+);
+import { Props } from "./../components/Footer";
+const Footer: LazyExoticComponent<
+  ({ fb_link, insta_link, lkd_link }: Props) => JSX.Element
+> = lazy(() => import("../components/Footer"));
 
-function LegalNotice() {
+function LegalNotice(): JSX.Element {
   return (
     <>
       <div

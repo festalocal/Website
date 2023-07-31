@@ -14,7 +14,7 @@ type Props = {
  * of the current slide.
  *
  */
-function Carousel({ children }: Props) {
+function Carousel({ children }: Props): JSX.Element {
   //const sliderContainer = useRef<HTMLDivElement>(null);
   // boolean state to define if the device viewport is mobile or not
   // We want to disable the swipe features for browser events

@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { NavLink } from "react-router-dom";
 
-function HamburgerMenuOverlay() {
+function HamburgerMenuOverlay(): JSX.Element {
   /**
    * Choose the color of a nav link text
    * Gives the white color on a festa dark blue background

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
  * Enroll Button React component
  * @returns JSX.Element Enroll Button
  */
-function EnrollButton() {
+function EnrollButton(): JSX.Element {
   return (
     <>
       <Link to="/">

@@ -4,21 +4,50 @@ import { Suspense, lazy, useEffect, useState, useRef } from "react";
 // with faster rendering times thanks to million
 // import { block } from "million/react";
 import axios, { CancelTokenSource } from "axios";
+import { useSearchParams } from "react-router-dom";
 const Navbar = lazy(() => import("../components/Navbar"));
 const Footer = lazy(() => import("../components/Footer"));
 const FestivalSearchBar = lazy(() => import("../components/FestivalSearchBar"));
 const FestivalCard = lazy(() => import("../components/FestivalCard"));
 
 /**
+ * Interface that contains
+ * all the data of filters that can
+ * be sent to the API
+ */
+export interface searchFilters {
+  titre?: string | null;
+  ville?: string | null;
+  dateParam?: string | null;
+  dateDebut?: string | null;
+  dateFin?: string | null;
+}
+
+/**
  * Page Trouve ta fête
  * @returns
  */
-function FestivalsCatalogue() {
-  /* ------------------ INFINITE SCROLL STATES ------------------ */
+function FestivalsCatalogue(): JSX.Element {
+  /* ------------------ FETCHING FILTER PARAMETERS ------------------ */
+  // Query hook that is used to read the parameters of a query
+  // from the current URL
+  const [searchParams, setSearchParams] = useSearchParams();
+  let searchFiltersValues: searchFilters = {
+    titre: searchParams.get("titre"),
+    ville: searchParams.get("ville"),
+    dateParam: searchParams.get("dateParam"),
+    dateDebut: searchParams.get("dateDebut"),
+    dateFin: searchParams.get("dateFin"),
+  };
+  /* ---------------- END FETCHING FILTER PARAMETERS ---------------- */
+
+  /* ---------------- INFINITE SCROLL STATES ---------------- */
   // festivals state array with it's setter
   const [festivals, setFestivals] = useState<Array<any>>([]);
   // isLoading state to notify if we are loading new festivals
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  // hasMore state to notify if we still have data available to fetch from the API
+  const [hasMore, setHasMore] = useState<boolean>(true);
   // state error if there's any issues when fetching data from the API
   const [error, setError] = useState<any>(null);
   // state of the current number page of festival (packets of festivals)
@@ -55,11 +84,34 @@ function FestivalsCatalogue() {
     setIsLoading(true);
     // Starting the fetch with no errors
     setError(null);
-
+    let apiPath = `https://api-docker-image-km7u7kfpba-od.a.run.app/api/fetes/?offset=${page}&limit=${festivalsPacketSize}`;
+    if (searchFiltersValues.titre !== null) {
+      apiPath += `&q=${searchFiltersValues.titre}`;
+    }
+    if (searchFiltersValues.ville !== null) {
+      apiPath += `&ville=${searchFiltersValues.ville}`;
+    }
+    if (searchFiltersValues.dateParam !== null) {
+      apiPath += `&dateParam=${searchFiltersValues.dateParam}`;
+    }
+    if (
+      searchFiltersValues.dateDebut !== null &&
+      searchFiltersValues.dateDebut !== undefined
+    ) {
+      const dateValues = searchFiltersValues.dateDebut.split("-");
+      apiPath += `&dateStart=${dateValues[2]}-${dateValues[1]}-${dateValues[0]}`;
+    }
+    if (
+      searchFiltersValues.dateFin !== null &&
+      searchFiltersValues.dateFin !== undefined
+    ) {
+      const dateValues = searchFiltersValues.dateFin.split("-");
+      apiPath += `&dateEnd=${dateValues[2]}-${dateValues[1]}-${dateValues[0]}`;
+    }
     // Configuring the API call options and API path
     let axiosConfig: Object = {
       method: "GET",
-      url: `https://api-docker-image-km7u7kfpba-od.a.run.app/api/fetes/?offset=${page}&limit=${festivalsPacketSize}`,
+      url: apiPath,
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
@@ -74,11 +126,15 @@ function FestivalsCatalogue() {
           // We update the festival state array
           // We pass to the next packet of festivals for the next API request
           console.log(res.data);
-          setPage((prevPage) => prevPage + festivalsPacketSize);
-          setFestivals((previousFestival) => [
-            ...previousFestival,
-            ...res.data.events,
-          ]);
+          if (res.data.events.length === 0) {
+            setHasMore(true);
+          } else {
+            setPage((prevPage) => prevPage + festivalsPacketSize);
+            setFestivals((previousFestival) => [
+              ...previousFestival,
+              ...res.data.events,
+            ]);
+          }
         })
         .catch((error) => {
           // In case we have an error
@@ -113,10 +169,11 @@ function FestivalsCatalogue() {
 
     const observer: IntersectionObserver = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting) {
+        if (entries[0].isIntersecting && hasMore) {
           fetchAllFestivals(cancelToken, page, festivalsPacketSize);
         }
       },
+
       { threshold: 1 }
     );
 
@@ -143,7 +200,14 @@ function FestivalsCatalogue() {
       >
         <Suspense>
           <Navbar key={Math.random()} />
-          <FestivalSearchBar key={Math.random()} />
+          <FestivalSearchBar
+            key={Math.random()}
+            titre={searchFiltersValues.titre}
+            ville={searchFiltersValues.ville}
+            dateParam={searchFiltersValues.dateParam}
+            dateDebut={searchFiltersValues.dateDebut}
+            dateFin={searchFiltersValues.dateFin}
+          />
         </Suspense>
       </div>
       <div className="mx-auto pb-14 py-8 px-8 sm:px-12 md:px-16 lg:px-20 xl:px-24 grid gap-x-6 gap-y-12 lg:gap-x-8 lg:gap-y-14 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 bg-festa-beige">
@@ -157,10 +221,15 @@ function FestivalsCatalogue() {
           </Suspense>
         ))}
 
-        {isLoading && "Loading..."}
-        {error && "Error: {error.message}"}
         <div ref={observerTargert as React.LegacyRef<HTMLDivElement>}></div>
       </div>
+      {isLoading && "Loading..."}
+      {!isLoading && festivals.length === 0 && (
+        <p className="text-center mx-auto">
+          Nous n'avons pas trouvez de resultats suivants vos criteres
+        </p>
+      )}
+      {error && "Error: {error.message}"}
       <Suspense>
         <Footer
           fb_link="https://www.facebook.com/profile.php?id=100087768589954"
