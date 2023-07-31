@@ -27,104 +27,127 @@ function LegalNotice(): JSX.Element {
         <h1 className="text-festa-dark-blue text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-6xl text-center">
           <b>Mentions légales</b>
         </h1>
-        <ul>
-          <li>
-            <b>Forme de la société : </b> xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-          </li>
-          <li>
-            <b>Capital social : </b> xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-          </li>
-          <li>
-            <b>Siège social : </b> xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-          </li>
-          <li>
-            <b>Numéros d'appel (standard du siège social) : Tél : </b>{" "}
-            xxxxxxxxxxxxx
-          </li>
-          <li>
-            <b>Numéro de TVA : </b>xxxxxxxxxxxxxxxxx
-          </li>
-          <li>
-            <b>Garantie financière : </b>xxxxxxxxxxxxx
-          </li>
-        </ul>
-
         <section>
           <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-5xl">
-            <b>Mention 1</b>
+            <b>Propriétaire du site web : </b>
           </h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus
-            tenetur iure vero sit beatae aspernatur ea voluptas praesentium
-            doloribus voluptate commodi sed illum quod eveniet pariatur aliquid,
-            tempora impedit blanditiis! Lorem ipsum dolor sit amet consectetur,
-            adipisicing elit. Delectus tenetur iure vero sit beatae aspernatur
-            ea voluptas praesentium doloribus voluptate commodi sed illum quod
-            eveniet pariatur aliquid, tempora impedit blanditiis! Lorem ipsum
-            dolor sit amet consectetur, adipisicing elit. Delectus tenetur iure
-            vero sit beatae aspernatur ea voluptas praesentium doloribus
-            voluptate commodi sed illum quod eveniet pariatur aliquid, tempora
-            impedit blanditiis!
-          </p>
-        </section>
-
-        <section>
-          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-5xl">
-            <b>Mention 2</b>
-          </h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus
-            tenetur iure vero sit beatae aspernatur ea voluptas praesentium
-            doloribus voluptate commodi sed illum quod eveniet pariatur aliquid,
-            tempora impedit blanditiis! Lorem ipsum dolor sit amet consectetur,
-          </p>
-        </section>
-
-        <section>
-          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-5xl">
-            <b>Mention 3</b>
-          </h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus
-            tenetur iure vero sit beatae aspernatur ea voluptas praesentium
-            doloribus voluptate commodi sed illum quod eveniet pariatur aliquid,
-            tempora impedit blanditiis! Lorem ipsum dolor sit amet consectetur,
-            adipisicing elit. Delectus tenetur iure vero sit beatae aspernatur
-            ea voluptas praesentium doloribus voluptate commodi sed illum quod
-            eveniet pariatur aliquid, tempora impedit blanditiis! Lorem ipsum
-            voluptate commodi sed illum quod eveniet pariatur aliquid, tempora
-            impedit blanditiis!
-          </p>
-        </section>
-
-        <section>
-          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-5xl">
-            <b>Mention 4</b>
-          </h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus
-            tenetur iure vero sit beatae aspernatur ea voluptas praesentium
-            doloribus voluptate commodi sed illum quod eveniet pariatur aliquid,
-            tempora impedit blanditiis! Lorem ipsum dolor sit amet consectetur,
-            adipisicing elit. Delectus tenetur iure vero sit beatae aspernatur
-            ea voluptas praesentium doloribus voluptate commodi sed illum quod
-            eveniet pariatur aliquid, tempora impedit blanditiis! Lorem ipsum
-            voluptate commodi sed illum quod eveniet pariatur aliquid, tempora
-            impedit blanditiis!
-          </p>
           <ul>
             <li>
-              <b>element 1 : </b>xxxxxxxxxxxxxxxxx
+              <b>EI : </b> Thibault Le Pluart
             </li>
             <li>
-              <b>element 2 : </b>xxxxxxxxxxxxx
+              <b>Mail : </b> festalocal.app@gmail.com
+            </li>
+            <li>
+              <b>Numéro de téléphone : </b> +33 06.13.93.40.30
+            </li>
+            <li>
+              <b>Immatriculation : </b> 952 162 626 R.C.S. Vannes
+            </li>
+            <li>
+              <b>Numéro d’identification à la TVA : </b>Entreprise non redevable
+              à la TVA (Micro-entreprise)
+            </li>
+            <li>
+              <b>Siège social : </b>2 RUE du Fety, 56000, Vannes
+            </li>
+            <li>
+              <b>SIRET : </b>95216262600016
             </li>
           </ul>
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-            consequuntur tempora temporibus excepturi magni tenetur dignissimos
-            unde illum, porro dolorem facere nihil aliquid delectus facilis quae
-            nobis eos error blanditiis?
+            <b>Activitée exercée : </b>Vente sur catalogue spécialisé. Vente de
+            produits non alimentaires et non réglementés
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-5xl">
+            <b>Hébergement du site web : 1</b>
+          </h2>
+          <p>
+            Ce site est hébergé par la société Vercel.{" "}
+            <a className="text-festa-light-blue" href="https://vercel.com/">
+              https://vercel.com/
+            </a>
+            , dont le siège social est situé à San Francisco, California, 94133,
+            US. La conception et le développement est assurée en interme par
+            l’EI - festa local.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-5xl">
+            <b>Description du site : </b>
+          </h2>
+          <p>
+            Festa Local fourni sur le site{" "}
+            <a
+              className="text-festa-light-blue"
+              href="https://www.festalocal.fr/"
+            >
+              https://www.festalocal.fr/"
+            </a>{" "}
+            des informations aussi précises que possible. Cependant, il ne
+            pourra être tenue responsable des omissions, des inexactitudes et
+            des carences dans la mise à jour, qu’elles soient de son fait ou du
+            fait des tiers partenaires qui lui fournissent ces informations.
+          </p>
+          <p className="mt-2">
+            Toutes les informations indiquées sur le site
+            <a
+              className="text-festa-light-blue"
+              href="https://www.festalocal.fr/"
+            >
+              https://www.festalocal.fr/"
+            </a>{" "}
+            sont données à titre indicatif, et sont susceptibles d’évoluer. Par
+            ailleurs, les renseignements figurant sur le site
+            <a
+              className="text-festa-light-blue"
+              href="https://www.festalocal.fr/"
+            >
+              https://www.festalocal.fr/"
+            </a>{" "}
+            ne sont pas exhaustifs. Ils sont donnés sous réserve de
+            modifications ayant été apportées depuis leur mise en ligne.{" "}
+          </p>
+          <p className="mt-2">
+            Le site{" "}
+            <a
+              className="text-festa-light-blue"
+              href="https://www.festalocal.fr/"
+            >
+              https://www.festalocal.fr/"
+            </a>
+            ne pourra être tenu responsable de dommages matériels liés à
+            l’utilisation du site. De plus l’utilisateur du site s’engage à
+            accéder au site en utilisant un matériel conforme, ne contenant pas
+            de virus et avec un navigateur de dernière génération mis-à-jour.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-5xl">
+            <b>Propriété intellectuelle et contrefaçon : </b>
+          </h2>
+          <p>
+            Festa Local est propriétaire des droits de propriété intellectuelle
+            ou détient les droits d’usage sur tous les éléments accessibles sur
+            le site, notamment les textes, images, graphismes, logo, icônes,
+            sons, logiciels.
+          </p>
+          <p className="mt-2">
+            Toute reproduction, représentation, modification, publication,
+            adaptation de tout ou partie des éléments du site, quel que soit le
+            moyen ou le procédé utilisé, est interdite, sauf autorisation écrite
+            préalable de : Festa Local et son fondateur Thibault Le Pluart
+          </p>
+          <p className="mt-2">
+            Toute exploitation non autorisée du site ou de l’un quelconque des
+            éléments qu’il contient sera considérée comme constitutive d’une
+            contrefaçon et poursuivie conformément aux dispositions des articles
+            L.335-2 et suivants du Code de Propriété Intellectuelle.
           </p>
         </section>
       </div>
