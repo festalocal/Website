@@ -12,8 +12,15 @@ interface Props {
  * @returns { string } The name of the day
  */
 const getDayName: Function = (date: string): string => {
-  const dateObject: Date = new Date(date);
-  return dateObject.toLocaleDateString("fr", { weekday: "long" });
+  //console.log(date);
+  const dateValues = date.split("/");
+  console.log(dateValues);
+  const dateObject: Date = new Date(
+    parseInt(dateValues[2]),
+    parseInt(dateValues[1]),
+    parseInt(dateValues[0])
+  );
+  return dateObject.toLocaleString("fr", { weekday: "long" });
 };
 
 /**
