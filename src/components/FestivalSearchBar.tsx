@@ -107,7 +107,7 @@ searchFilters): JSX.Element {
               setToggledVilleFilterPad(!toggledVilleFilterPad);
             }}
           >
-            <LocationFilterButton />
+            <LocationFilterButton toggled={toggledVilleFilterPad} />
           </div>
           <button type="submit">
             <span className="material-symbols-outlined rounded-full border border-1 p-2 shadow-inner shadow-lg">
