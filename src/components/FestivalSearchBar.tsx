@@ -1,4 +1,4 @@
-import { MouseEventHandler, lazy, useRef, useState } from "react";
+import { lazy, useState } from "react";
 import { searchFilters } from "../pages/FestivalsCatalogue";
 import { CITY_TITLE_REGEX } from "../RegExPatterns";
 const SearchBarFilterPad = lazy(() => import("./SearchBarFilterPad"));
@@ -16,7 +16,6 @@ export enum DateFilterParameter {
 
 function FestivalSearchBar({
   titre,
-  ville,
 }: // dateParam,
 // dateDebut,
 // dateFin,
@@ -43,9 +42,9 @@ searchFilters): JSX.Element {
   const [titleSearch, setTitleSearch] = useState<string | null | undefined>(
     titre
   );
-  const [villeSearch, setVilleSearch] = useState<string | null | undefined>(
-    ville
-  );
+  // const [villeSearch, setVilleSearch] = useState<string | null | undefined>(
+  //   ville
+  // );
 
   return (
     <>
