@@ -1,4 +1,4 @@
-import { lazy, useContext, useEffect, useState } from "react";
+import { lazy, useContext, useState } from "react";
 import CITY_TITLE_REGEX from "../RegExPatterns";
 import { urlToFormData } from "../pages/FestivalsCatalogue";
 // import { DateFilterParameter } from "./FestivalSearchBar";
