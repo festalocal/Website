@@ -1,5 +1,5 @@
-import { lazy, useState } from "react";
-import { searchFilters } from "../pages/FestivalsCatalogue";
+import { lazy, useState, useContext, useRef, createContext } from "react";
+import { urlToFormData } from "./../pages/FestivalsCatalogue";
 import { CITY_TITLE_REGEX } from "../RegExPatterns";
 const SearchBarFilterPad = lazy(() => import("./SearchBarFilterPad"));
 const DateFilterButton = lazy(() => import("./DateFilterButton"));
@@ -14,12 +14,13 @@ export enum DateFilterParameter {
   // to be inclued another period
 }
 
-function FestivalSearchBar({
-  titre,
-}: // dateParam,
-// dateDebut,
-// dateFin,
-searchFilters): JSX.Element {
+export const hiddenFormData = createContext<any>({});
+
+function FestivalSearchBar(): JSX.Element {
+  const formData = useContext(urlToFormData);
+  const dateParamInput = useRef(null);
+  const dateDebutInput = useRef(null);
+  const dateFinInput = useRef(null);
   const [toggledDateFilterPad, setToggledDateFilterPad] =
     useState<boolean>(false);
   const [lastDateFilterButtonClicked, setLastDateFilterButtonClicked] =
@@ -40,7 +41,7 @@ searchFilters): JSX.Element {
   const [toggledVilleFilterPad, setToggledVilleFilterPad] =
     useState<boolean>(false);
   const [titleSearch, setTitleSearch] = useState<string | null | undefined>(
-    titre
+    formData.titre
   );
   // const [villeSearch, setVilleSearch] = useState<string | null | undefined>(
   //   ville
@@ -66,11 +67,29 @@ searchFilters): JSX.Element {
           <input
             className="w-full focus:outline-festa-blue py-3 md:py-4"
             type="text"
-            name="titre"
+            name="q"
             pattern={CITY_TITLE_REGEX}
             value={titleSearch as string}
             placeholder="Cherchez votre prochaine fête..."
             onChange={(event) => setTitleSearch(event.target.value)}
+          />
+          <input
+            type="hidden"
+            name="dateParam"
+            value={formData.dateParam as string}
+            ref={dateParamInput}
+          />
+          <input
+            type="hidden"
+            name="dateDebut"
+            value={formData.dateDebut as string}
+            ref={dateDebutInput}
+          />
+          <input
+            type="hidden"
+            name="dateFin"
+            value={formData.dateFin as string}
+            ref={dateFinInput}
           />
           {/* Filtre Date A partir de */}
           <div
@@ -125,10 +144,18 @@ searchFilters): JSX.Element {
           transition-transform ease-in-out duration-150
           `}
         >
-          <SearchBarFilterPad
-            dateFilterPad={toggledDateFilterPad ? true : false}
-            villeFilterPad={toggledVilleFilterPad ? true : false}
-          />
+          <hiddenFormData.Provider
+            value={{
+              dateParamInput: dateParamInput,
+              dateDebutInput: dateDebutInput,
+              dateFinInput: dateFinInput,
+            }}
+          >
+            <SearchBarFilterPad
+              dateFilterPad={toggledDateFilterPad ? true : false}
+              villeFilterPad={toggledVilleFilterPad ? true : false}
+            />
+          </hiddenFormData.Provider>
         </div>
       </form>
     </>

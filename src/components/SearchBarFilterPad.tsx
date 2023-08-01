@@ -1,5 +1,7 @@
-import { lazy } from "react";
+import { lazy, useContext, useEffect, useState } from "react";
 import CITY_TITLE_REGEX from "../RegExPatterns";
+import { urlToFormData } from "../pages/FestivalsCatalogue";
+// import { DateFilterParameter } from "./FestivalSearchBar";
 const AgendaDateInput = lazy(() => import("./AgendaDateInput"));
 
 interface Props {
@@ -11,6 +13,23 @@ function SearchBarFilterPad({
   dateFilterPad,
   villeFilterPad,
 }: Props): JSX.Element {
+  const formData = useContext(urlToFormData);
+  const [villeInput, setVilleInput] = useState<string>(
+    formData.ville as string
+  );
+
+  // useEffect(() => {
+  //   console.log(formData);
+  //   if (formData.dateDebut !== null && formData.dateFin !== null) {
+  //     formData.dateParam = DateFilterParameter.IN_PERIOD;
+  //   }
+  //   if (formData.dateDebut !== null && formData.dateFin === null) {
+  //     formData.dateParam = DateFilterParameter.AFTER;
+  //   }
+  //   if (formData.dateDebut === null && formData.dateFin !== null) {
+  //     formData.dateParam = DateFilterParameter.BEFORE;
+  //   }
+  // }, []);
   return (
     <>
       <div
@@ -23,11 +42,11 @@ function SearchBarFilterPad({
         >
           <div>
             <p className="font-bold">A partir de ?</p>
-            <AgendaDateInput />
+            <AgendaDateInput startingFrom={true} />
           </div>
           <div>
             <p className="font-bold">Jusqu'au ?</p>
-            <AgendaDateInput />
+            <AgendaDateInput startingFrom={false} />
           </div>
         </div>
 
@@ -45,6 +64,8 @@ function SearchBarFilterPad({
             name="ville"
             pattern={CITY_TITLE_REGEX}
             placeholder="Cherchez votre ville..."
+            value={villeInput}
+            onChange={(e) => setVilleInput(e.target.value)}
           />
         </div>
       </div>

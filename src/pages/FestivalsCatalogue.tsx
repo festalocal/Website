@@ -1,5 +1,12 @@
-// React page components imports
-import { Suspense, lazy, useEffect, useState, useRef } from "react";
+// React modules imports
+import {
+  Suspense,
+  lazy,
+  useEffect,
+  useState,
+  useRef,
+  createContext,
+} from "react";
 // Importing block for higher order component
 // with faster rendering times thanks to million
 // import { block } from "million/react";
@@ -23,6 +30,8 @@ export interface searchFilters {
   dateFin?: string | null;
 }
 
+export let urlToFormData = createContext<searchFilters>({});
+
 /**
  * Page Trouve ta fête
  * @returns
@@ -33,9 +42,9 @@ function FestivalsCatalogue(): JSX.Element {
   // from the current URL
   const [searchParams] = useSearchParams();
   let searchFiltersValues: searchFilters = {
-    titre: searchParams.get("titre"),
+    titre: searchParams.get("q"),
     ville: searchParams.get("ville"),
-    dateParam: searchParams.get("dateParamInput"),
+    dateParam: searchParams.get("dateParam"),
     dateDebut: searchParams.get("dateDebut"),
     dateFin: searchParams.get("dateFin"),
   };
@@ -98,15 +107,13 @@ function FestivalsCatalogue(): JSX.Element {
       searchFiltersValues.dateDebut !== null &&
       searchFiltersValues.dateDebut !== undefined
     ) {
-      const dateValues = searchFiltersValues.dateDebut.split("-");
-      apiPath += `&dateStart=${dateValues[2]}-${dateValues[1]}-${dateValues[0]}`;
+      apiPath += `&dateStart=${searchFiltersValues.dateDebut}`;
     }
     if (
       searchFiltersValues.dateFin !== null &&
       searchFiltersValues.dateFin !== undefined
     ) {
-      const dateValues = searchFiltersValues.dateFin.split("-");
-      apiPath += `&dateEnd=${dateValues[2]}-${dateValues[1]}-${dateValues[0]}`;
+      apiPath += `&dateEnd=${searchFiltersValues.dateFin}`;
     }
     // Configuring the API call options and API path
     let axiosConfig: Object = {
@@ -200,14 +207,17 @@ function FestivalsCatalogue(): JSX.Element {
       >
         <Suspense>
           <Navbar key={Math.random()} />
-          <FestivalSearchBar
-            key={Math.random()}
-            titre={searchFiltersValues.titre}
-            ville={searchFiltersValues.ville}
-            dateParam={searchFiltersValues.dateParam}
-            dateDebut={searchFiltersValues.dateDebut}
-            dateFin={searchFiltersValues.dateFin}
-          />
+          <urlToFormData.Provider
+            value={{
+              titre: searchFiltersValues.titre,
+              ville: searchFiltersValues.ville,
+              dateParam: null,
+              dateDebut: null,
+              dateFin: null,
+            }}
+          >
+            <FestivalSearchBar key={Math.random()} />
+          </urlToFormData.Provider>
         </Suspense>
       </div>
       <div className="mx-auto pb-14 py-8 px-8 sm:px-12 md:px-16 lg:px-20 xl:px-24 grid gap-x-6 gap-y-12 lg:gap-x-8 lg:gap-y-14 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 bg-festa-beige">
