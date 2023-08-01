@@ -19,8 +19,6 @@ function AgendaDateInput(): JSX.Element {
   const [selectedDay, setSelectedDay] = useState(today);
 
   const areSameDate: Function = (inputDate: dayjs.Dayjs): boolean => {
-    console.log({ dateInput: inputDate });
-    console.log({ selcedtedDay: selectedDay.date });
     return (
       inputDate.toDate().toDateString() === selectedDay.toDate().toDateString()
     );
@@ -80,8 +78,12 @@ function AgendaDateInput(): JSX.Element {
                     className={`
 										w-10 h-10 grid place-content-center rounded-full font-bold 
 										${day.currentMonth ? "" : "text-gray-400"} 
-										${day.today ? "bg-festa-light-blue" : ""}
 										${areSameDate(day.date) ? "bg-festa-blue" : ""}
+                    ${
+                      day.today && !areSameDate(day.date)
+                        ? "bg-festa-light-blue"
+                        : ""
+                    }
 										${!day.currentMonth ? "hidden" : ""}
 									hover:bg-festa-pink cursor-pointer transition-all
 									`}

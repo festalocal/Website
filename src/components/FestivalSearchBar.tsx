@@ -1,4 +1,4 @@
-import { lazy, useState } from "react";
+import { MouseEventHandler, lazy, useRef, useState } from "react";
 import { searchFilters } from "../pages/FestivalsCatalogue";
 import { CITY_TITLE_REGEX } from "../RegExPatterns";
 const SearchBarFilterPad = lazy(() => import("./SearchBarFilterPad"));
@@ -21,46 +21,24 @@ function FestivalSearchBar({
 // dateDebut,
 // dateFin,
 searchFilters): JSX.Element {
-  // const [isAfterOrBeforeSwitchDisabled, setIsAfterOrBeforeSwitchDisabled] =
-  //   useState<boolean>(false);
-  // const [afterOrBeforeSwitch, setAfterOrBeforeSwitch] =
-  //   useState<boolean>(false);
-  // const [dateParamInput, setDateParamInput] = useState<string>(
-  //   DateFilterParameter.AFTER
-  // );
-
-  // const [periodSwitch, setPeriodSwitch] = useState<boolean>(false);
-  // const periodSwitchHandler: Function = (
-  //   e: ChangeEvent<HTMLInputElement>
-  // ): void => {
-  //   setPeriodSwitch(!periodSwitch);
-  //   if (e.target.checked) {
-  //     setDateParamInput(DateFilterParameter.IN_PERIOD);
-  //   } else {
-  //     if (afterOrBeforeSwitch) {
-  //       setDateParamInput(DateFilterParameter.BEFORE);
-  //     } else {
-  //       setDateParamInput(DateFilterParameter.AFTER);
-  //     }
-  //   }
-
-  //   setIsAfterOrBeforeSwitchDisabled(!isAfterOrBeforeSwitchDisabled);
-  // };
-
-  // const afterOrBeforeSwitchHandler: Function = (
-  //   e: ChangeEvent<HTMLInputElement>
-  // ): void => {
-  //   setAfterOrBeforeSwitch(!afterOrBeforeSwitch);
-  //   if (e.target.checked) {
-  //     setDateParamInput(DateFilterParameter.BEFORE);
-  //   } else {
-  //     setDateParamInput(DateFilterParameter.AFTER);
-  //   }
-  // };
-
-  const [clikedDateFilterButton, setClikedDateFilterButton] =
+  const [toggledDateFilterPad, setToggledDateFilterPad] =
     useState<boolean>(false);
-  const [clickedVilleFilterButton, setClickedVilleFilterButton] =
+  const [lastDateFilterButtonClicked, setLastDateFilterButtonClicked] =
+    useState<string>("");
+  const clickDateFilterHandler: Function = (_: any, source: string): void => {
+    setLastDateFilterButtonClicked(source);
+    if (toggledVilleFilterPad) {
+      setToggledVilleFilterPad(false);
+    }
+    if (
+      lastDateFilterButtonClicked === "" ||
+      lastDateFilterButtonClicked === source ||
+      !toggledDateFilterPad
+    ) {
+      setToggledDateFilterPad(!toggledDateFilterPad);
+    }
+  };
+  const [toggledVilleFilterPad, setToggledVilleFilterPad] =
     useState<boolean>(false);
   const [titleSearch, setTitleSearch] = useState<string | null | undefined>(
     titre
@@ -80,7 +58,7 @@ searchFilters): JSX.Element {
         role="search"
         className="w-full px-2 sm:px-4 md:px-14 py-2 md:py-3 z-10 bg-white"
       >
-        <div className="bg-white rounded-full border-2 border-festa-blue drop-shadow-lg px-3 md:px-4 flex flex-row justify-between items-stretch gap-0 sm:gap-2 md:gap-4">
+        <div className="relative z-20 bg-white rounded-full border-2 border-festa-blue drop-shadow-lg px-3 md:px-4 flex flex-row justify-between items-stretch gap-0 sm:gap-2 md:gap-4">
           <button>
             <span className="material-symbols-outlined min-w-min px-2 flex md:hidden items-center gap-2">
               tune
@@ -95,82 +73,64 @@ searchFilters): JSX.Element {
             placeholder="Cherchez votre prochaine fête..."
             onChange={(event) => setTitleSearch(event.target.value)}
           />
-
           {/* Filtre Date A partir de */}
           <div
-            onClick={() => {
-              setClikedDateFilterButton(!clikedDateFilterButton);
+            onClick={(_) => {
+              clickDateFilterHandler(_, "startingFrom");
             }}
           >
-            <DateFilterButton buttonText={"A partir de ?"} />
+            <DateFilterButton
+              buttonText={"A partir de ?"}
+              toggled={
+                toggledDateFilterPad &&
+                lastDateFilterButtonClicked === "startingFrom"
+              }
+            />
           </div>
-
           {/* Filtre Date Jusqu'au */}
           <div
-            onClick={() => {
-              setClikedDateFilterButton(!clikedDateFilterButton);
+            onClick={(_) => {
+              clickDateFilterHandler(_, "until");
             }}
           >
-            <DateFilterButton buttonText={"Jusqu'au ?"} />
+            <DateFilterButton
+              buttonText={"Jusqu'au ?"}
+              toggled={
+                toggledDateFilterPad && lastDateFilterButtonClicked === "until"
+              }
+            />
           </div>
-
           <div
             onClick={() => {
-              setClickedVilleFilterButton(!clickedVilleFilterButton);
+              if (toggledDateFilterPad) {
+                setToggledDateFilterPad(false);
+              }
+              setToggledVilleFilterPad(!toggledVilleFilterPad);
             }}
           >
             <LocationFilterButton />
           </div>
-
-          <div>
-            <input
-              style={{ display: clickedVilleFilterButton ? "block" : "none" }}
-              type="text"
-              name="ville"
-              pattern={CITY_TITLE_REGEX}
-              value={villeSearch as string}
-              placeholder="Cherchez votre ville..."
-              onChange={(event) => setVilleSearch(event.target.value)}
-            />
-          </div>
-
           <button type="submit">
             <span className="material-symbols-outlined rounded-full border border-1 p-2 shadow-inner shadow-lg">
               search
             </span>
           </button>
         </div>
-        {/* <div style={{ display: clikedDateFilterButton ? "block" : "none" }}>
-          <input type="hidden" name="dateParamInput" value={dateParamInput} />
-          <label htmlFor="periodSwitch">Vous cherchez une periode ?</label>
-          <input
-            type="checkbox"
-            id="periodSwitch"
-            checked={periodSwitch}
-            onChange={(e) => periodSwitchHandler(e)}
+        <div
+          className={`${
+            toggledDateFilterPad || toggledVilleFilterPad
+              ? " "
+              : "relative -translate-y-full h-0"
+          }
+          relative z-10
+          transition-transform ease-in-out duration-150
+          `}
+        >
+          <SearchBarFilterPad
+            dateFilterPad={toggledDateFilterPad ? true : false}
+            villeFilterPad={toggledVilleFilterPad ? true : false}
           />
-          {!periodSwitch && (
-            <>
-              <label htmlFor="afterOrBeforeSwitch">
-                Vous cherchez les evenements{" "}
-                {dateParamInput === DateFilterParameter.AFTER
-                  ? "avant"
-                  : "apres"}{" "}
-                ?
-              </label>
-              <input
-                type="checkbox"
-                id="afterOrBeforeSwitch"
-                disabled={isAfterOrBeforeSwitchDisabled}
-                checked={afterOrBeforeSwitch}
-                onChange={(e) => afterOrBeforeSwitchHandler(e)}
-              />
-            </>
-          )}
-          <input type="date" name="dateDebut" />
-          {periodSwitch && <input type="date" name="dateFin" />}
-        </div> */}
-        {clikedDateFilterButton && <SearchBarFilterPad />}
+        </div>
       </form>
     </>
   );
