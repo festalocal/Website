@@ -43,6 +43,8 @@ function AgendaDateInput({ startingFrom }: Props): JSX.Element {
     }
     if (formData.dateDebut === null && formData.dateFin !== null) {
       formData.dateParam = DateFilterParameter.BEFORE;
+      formData.dateDebut = formData.dateFin;
+      formData.dateFin = "";
     }
     hiddenFormDataInputs.dateParamInput.current.value = formData.dateParam;
     hiddenFormDataInputs.dateDebutInput.current.value = formData.dateDebut;
