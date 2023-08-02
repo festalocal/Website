@@ -61,8 +61,36 @@ function AgendaDateInput({ startingFrom }: Props): JSX.Element {
     return false;
   };
 
+  const selectedDayLineDisplay: Function = (
+    agendaTypeIsStart: boolean
+  ): JSX.Element => {
+    if (agendaTypeIsStart) {
+      return (
+        <p className="font-bold">
+          A partir du{" "}
+          {formData.dateDebut !== null ? (
+            <b className="text-festa-blue">{formData.dateDebut}</b>
+          ) : (
+            ". . ."
+          )}
+        </p>
+      );
+    }
+    return (
+      <p className="font-bold">
+        Jusqu'au{" "}
+        {formData.dateFin !== null ? (
+          <b className="text-festa-red">{formData.dateFin}</b>
+        ) : (
+          ". . ."
+        )}
+      </p>
+    );
+  };
+
   return (
     <>
+      {selectedDayLineDisplay(startingFrom)}
       <div>
         <div className="flex justify-between">
           <p className="text-lg font-bold">

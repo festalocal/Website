@@ -17,35 +17,22 @@ function SearchBarFilterPad({
   const [villeInput, setVilleInput] = useState<string>(
     formData.ville as string
   );
-
-  // useEffect(() => {
-  //   console.log(formData);
-  //   if (formData.dateDebut !== null && formData.dateFin !== null) {
-  //     formData.dateParam = DateFilterParameter.IN_PERIOD;
-  //   }
-  //   if (formData.dateDebut !== null && formData.dateFin === null) {
-  //     formData.dateParam = DateFilterParameter.AFTER;
-  //   }
-  //   if (formData.dateDebut === null && formData.dateFin !== null) {
-  //     formData.dateParam = DateFilterParameter.BEFORE;
-  //   }
-  // }, []);
   return (
     <>
       <div
-        style={{ display: dateFilterPad || villeFilterPad ? "flex" : "none" }}
-        className="relative bg-white p-3 md:p-4 flex flex-row justify-center items-center max-w-fit mx-auto"
+        style={{
+          display: dateFilterPad || villeFilterPad ? "flex" : "none",
+        }}
+        className="relative bg-white p-3 md:p-4 flex justify-center items-center max-w-fit mx-auto gap-2 flex-col"
       >
         <div
           style={{ display: dateFilterPad ? "flex" : "none" }}
           className="flex gap-8"
         >
           <div>
-            <p className="font-bold">A partir de ?</p>
             <AgendaDateInput startingFrom={true} />
           </div>
           <div>
-            <p className="font-bold">Jusqu'au ?</p>
             <AgendaDateInput startingFrom={false} />
           </div>
         </div>
@@ -68,6 +55,14 @@ function SearchBarFilterPad({
             onChange={(e) => setVilleInput(e.target.value)}
           />
         </div>
+
+        <button
+          name="submit-filters"
+          className="rounded-full border border-1 p-2 shadow-lg hover:bg-festa-light-blue"
+          type="submit"
+        >
+          Appliquer
+        </button>
       </div>
     </>
   );
