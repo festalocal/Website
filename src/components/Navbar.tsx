@@ -40,9 +40,9 @@ function Navbar(): JSX.Element {
    */
   function openHamburgerMenuOverlay(toggled: Boolean): string {
     if (toggled) {
-      return "slide-in-right";
+      return "relative overflow-hidden transition-transform h-100 translate-y-0";
     } else {
-      return "hidden overflow-hidden relative right-[100%]";
+      return "relative overflow-hidden relative -translate-y-full h-0";
     }
   }
 
