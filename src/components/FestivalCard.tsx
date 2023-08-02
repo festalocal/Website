@@ -34,6 +34,28 @@ function FestivalCard({ event, withDescription }: Props): JSX.Element {
     "/image4.webp",
     "/image5.webp",
   ];
+
+  /**
+   * Displays correctly info about the festival duration
+   * @param { string } firstDate - The festival starting date
+   * @param { string } secondDate - The festival ending date
+   * @returns { string } Display the info about the Festival duration
+   */
+  const displayDates: Function = (
+    firstDate: string,
+    secondDate: string
+  ): string => {
+    if (firstDate !== undefined) {
+      if (secondDate !== undefined && secondDate !== firstDate) {
+        return `Du ${getDayName(firstDate)} ${firstDate} au ${getDayName(
+          secondDate
+        )} ${secondDate}`;
+      }
+      return `Le ${getDayName(firstDate)} ${firstDate}`;
+    }
+    return "";
+  };
+
   return (
     <>
       <div className="flex flex-col">
@@ -68,16 +90,10 @@ function FestivalCard({ event, withDescription }: Props): JSX.Element {
               event
             </span>
             <p>
-              {/* {event.date_debut != undefined &&
-                getDayName(event.date_debut) + " " + event.date_debut}{" "}
-              && {event.date_fin !== event.date} && -{" "}
-              {event.date_fin != undefined &&
-                getDayName(event.date_fin) + " " + event.date_fin} */}
-              {event.date_debut !== undefined &&
-                getDayName(event.date_debut) + " " + event.date_debut}
-              {event.date_fin !== undefined &&
-                event.date_debut !== event.date_fin &&
-                " " + getDayName(event.date_fin) + " " + event.date_fin}
+              {displayDates(
+                event.date_debut_french_format,
+                event.date_fin_french_format
+              )}
             </p>
           </div>
         </Link>

@@ -64,7 +64,7 @@ function SearchBarFilterPad({
             name="ville"
             pattern={CITY_TITLE_REGEX}
             placeholder="Cherchez votre ville..."
-            value={villeInput}
+            value={villeInput !== null ? villeInput : ""}
             onChange={(e) => setVilleInput(e.target.value)}
           />
         </div>

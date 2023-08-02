@@ -1,6 +1,6 @@
 import { lazy, useState, useContext, useRef, createContext } from "react";
 import { urlToFormData } from "./../pages/FestivalsCatalogue";
-import { CITY_TITLE_REGEX } from "../RegExPatterns";
+// import { CITY_TITLE_REGEX } from "../RegExPatterns";
 const SearchBarFilterPad = lazy(() => import("./SearchBarFilterPad"));
 const DateFilterButton = lazy(() => import("./DateFilterButton"));
 const LocationFilterButton = lazy(() => import("./LocationFilterButton"));
@@ -68,27 +68,32 @@ function FestivalSearchBar(): JSX.Element {
             className="w-full focus:outline-festa-blue py-3 md:py-4"
             type="text"
             name="q"
-            pattern={CITY_TITLE_REGEX}
-            value={titleSearch as string}
+            value={titleSearch !== null ? (titleSearch as string) : ""}
             placeholder="Cherchez votre prochaine fête..."
             onChange={(event) => setTitleSearch(event.target.value)}
           />
           <input
             type="hidden"
             name="dateParam"
-            value={formData.dateParam as string}
+            value={
+              formData.dateParam !== null ? (formData.dateParam as string) : ""
+            }
             ref={dateParamInput}
           />
           <input
             type="hidden"
             name="dateDebut"
-            value={formData.dateDebut as string}
+            value={
+              formData.dateDebut !== null ? (formData.dateDebut as string) : ""
+            }
             ref={dateDebutInput}
           />
           <input
             type="hidden"
             name="dateFin"
-            value={formData.dateFin as string}
+            value={
+              formData.dateFin !== null ? (formData.dateFin as string) : ""
+            }
             ref={dateFinInput}
           />
           {/* Filtre Date A partir de */}
