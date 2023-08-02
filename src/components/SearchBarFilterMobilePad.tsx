@@ -1,7 +1,7 @@
-import React from "react";
+// import React from "react";
 
-function SearchBarFilterMobilePad(): JSX.Element {
-  return <></>;
-}
+// function SearchBarFilterMobilePad(): JSX.Element {
+//   return <></>;
+// }
 
-export default SearchBarFilterMobilePad;
+// export default SearchBarFilterMobilePad;
