@@ -1,5 +1,13 @@
-import { lazy, useState, useContext, useRef, createContext } from "react";
+import {
+  lazy,
+  useState,
+  useContext,
+  useRef,
+  createContext,
+  useEffect,
+} from "react";
 import { urlToFormData } from "./../pages/FestivalsCatalogue";
+import SearchBarFilterMobilePad from "./SearchBarFilterMobilePad";
 // import { CITY_TITLE_REGEX } from "../RegExPatterns";
 const SearchBarFilterPad = lazy(() => import("./SearchBarFilterPad"));
 const DateFilterButton = lazy(() => import("./DateFilterButton"));
@@ -17,6 +25,8 @@ export enum DateFilterParameter {
 export const hiddenFormData = createContext<any>({});
 
 function FestivalSearchBar(): JSX.Element {
+  // boolean state to define if the device viewport is mobile or not
+  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 768);
   const formData = useContext(urlToFormData);
   const dateParamInput = useRef(null);
   const dateDebutInput = useRef(null);
@@ -46,12 +56,21 @@ function FestivalSearchBar(): JSX.Element {
   };
   const [toggledVilleFilterPad, setToggledVilleFilterPad] =
     useState<boolean>(false);
+  const [mobileFiltersPad, setMobileFiltersPad] = useState<boolean>(false);
   const [titleSearch, setTitleSearch] = useState<string | null | undefined>(
     formData.titre
   );
   // const [villeSearch, setVilleSearch] = useState<string | null | undefined>(
   //   ville
   // );
+
+  const updateViewport = () => {
+    setIsMobile(window.innerWidth <= 768);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", updateViewport);
+  });
 
   return (
     <>
@@ -65,9 +84,14 @@ function FestivalSearchBar(): JSX.Element {
         className="w-full px-2 sm:px-4 md:px-14 py-2 md:py-3 z-10 bg-white"
       >
         <div className="relative z-20 bg-white rounded-full border-2 border-festa-blue drop-shadow-lg px-3 md:px-4 flex flex-row justify-between items-stretch gap-0 sm:gap-2 md:gap-4">
-          <button>
+          <button
+            type="button"
+            onClick={() => {
+              setMobileFiltersPad(!mobileFiltersPad);
+            }}
+          >
             <span className="material-symbols-outlined min-w-min px-2 flex md:hidden items-center gap-2">
-              tune
+              {mobileFiltersPad ? "close" : "tune"}
             </span>
           </button>
           <input
@@ -102,55 +126,63 @@ function FestivalSearchBar(): JSX.Element {
             }
             ref={dateFinInput}
           />
-          {/* Filtre Date A partir de */}
-          <div
-            onClick={(_) => {
-              clickDateFilterHandler(_, "startingFrom");
-            }}
-          >
-            <DateFilterButton
-              dateValue={dateDebutText}
-              buttonText={"A partir de ?"}
-              toggled={
-                toggledDateFilterPad &&
-                lastDateFilterButtonClicked === "startingFrom"
-              }
-            />
-          </div>
-          {/* Filtre Date Jusqu'au */}
-          <div
-            onClick={(_) => {
-              clickDateFilterHandler(_, "until");
-            }}
-          >
-            <DateFilterButton
-              dateValue={dateFinText}
-              buttonText={"Jusqu'au ?"}
-              toggled={
-                toggledDateFilterPad && lastDateFilterButtonClicked === "until"
-              }
-            />
-          </div>
-          <div
-            onClick={() => {
-              if (toggledDateFilterPad) {
-                setToggledDateFilterPad(false);
-              }
-              setToggledVilleFilterPad(!toggledVilleFilterPad);
-            }}
-          >
-            <LocationFilterButton toggled={toggledVilleFilterPad} />
-          </div>
+          {/* DESKTOP form filters controls */}
+          {!isMobile && (
+            <>
+              {/* Filtre Date A partir de */}
+              <div
+                onClick={(_) => {
+                  clickDateFilterHandler(_, "startingFrom");
+                }}
+              >
+                <DateFilterButton
+                  dateValue={dateDebutText}
+                  buttonText={"A partir de ?"}
+                  toggled={
+                    toggledDateFilterPad &&
+                    lastDateFilterButtonClicked === "startingFrom"
+                  }
+                />
+              </div>
+              {/* Filtre Date Jusqu'au */}
+              <div
+                onClick={(_) => {
+                  clickDateFilterHandler(_, "until");
+                }}
+              >
+                <DateFilterButton
+                  dateValue={dateFinText}
+                  buttonText={"Jusqu'au ?"}
+                  toggled={
+                    toggledDateFilterPad &&
+                    lastDateFilterButtonClicked === "until"
+                  }
+                />
+              </div>
+              <div
+                onClick={() => {
+                  if (toggledDateFilterPad) {
+                    setToggledDateFilterPad(false);
+                  }
+                  setToggledVilleFilterPad(!toggledVilleFilterPad);
+                }}
+              >
+                <LocationFilterButton toggled={toggledVilleFilterPad} />
+              </div>
+            </>
+          )}
+
           <button name="submit-filters" type="submit">
             <span className="material-symbols-outlined rounded-full border border-1 p-2 shadow-lg">
               search
             </span>
           </button>
         </div>
+
         <div
           className={`${
-            toggledDateFilterPad || toggledVilleFilterPad
-              ? " "
+            toggledDateFilterPad || toggledVilleFilterPad || mobileFiltersPad
+              ? ""
               : "relative -translate-y-full h-0"
           }
           relative z-10
@@ -164,12 +196,19 @@ function FestivalSearchBar(): JSX.Element {
               dateFinInput: dateFinInput,
             }}
           >
-            <SearchBarFilterPad
-              setDateDebutText={setDateDebutText}
-              setDateFinText={setDateFinText}
-              dateFilterPad={toggledDateFilterPad ? true : false}
-              villeFilterPad={toggledVilleFilterPad ? true : false}
-            />
+            {!isMobile && (
+              <SearchBarFilterPad
+                setDateDebutText={setDateDebutText}
+                setDateFinText={setDateFinText}
+                dateFilterPad={toggledDateFilterPad ? true : false}
+                villeFilterPad={toggledVilleFilterPad ? true : false}
+              />
+            )}
+            {isMobile && (
+              <SearchBarFilterMobilePad
+                mobileFiltersToggled={mobileFiltersPad}
+              />
+            )}
           </hiddenFormData.Provider>
         </div>
       </form>
