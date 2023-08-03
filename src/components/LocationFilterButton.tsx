@@ -21,7 +21,7 @@ function LocationFilterButton({ toggled }: Props): JSX.Element {
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
-        <a
+        <div
           className={`
             hidden min-w-min px-2 md:flex items-center gap-2  h-full
             ${
@@ -34,7 +34,7 @@ function LocationFilterButton({ toggled }: Props): JSX.Element {
           <span className="material-symbols-outlined">location_on</span>
 
           <p>Localisation</p>
-        </a>
+        </div>
       </div>
     </>
   );

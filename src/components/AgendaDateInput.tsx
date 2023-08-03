@@ -106,14 +106,14 @@ function AgendaDateInput({
             {today.toDate().toLocaleString("fr", { year: "numeric" })}
           </p>
           <div className="flex items-center gap-2">
-            <a
+            <div
               className="cursor-pointer"
               onClick={() => {
                 setToday(today.month(today.month() - 1));
               }}
             >
               <ChevronLeft />
-            </a>
+            </div>
 
             <p
               className="font-semibold cursor-pointer"
@@ -123,14 +123,14 @@ function AgendaDateInput({
             >
               Aujourd'hui
             </p>
-            <a
+            <div
               className="cursor-pointer"
               onClick={() => {
                 setToday(today.month(today.month() + 1));
               }}
             >
               <ChevronRight />
-            </a>
+            </div>
           </div>
         </div>
         <div className="grid grid-cols-7 text-sm">

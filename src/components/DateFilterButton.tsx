@@ -25,7 +25,7 @@ function DateFilterButton({
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
-        <a
+        <div
           className={`
             hidden min-w-min px-2 md:flex items-center gap-2  
             ${
@@ -44,7 +44,7 @@ function DateFilterButton({
               <p>Date</p>
             )}
           </div>
-        </a>
+        </div>
       </div>
     </>
   );
