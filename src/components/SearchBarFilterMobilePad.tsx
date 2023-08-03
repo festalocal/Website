@@ -58,23 +58,25 @@ function SearchBarFilterMobilePad({
         onChange={(e) => setVilleInput(e.target.value)}
       />
       <label htmlFor="dateDebutInput" className="font-bold">
-        A partir du . . .
+        A partir du ?
       </label>
       <input
         id="dateDebutInput"
         type="date"
         //name="dateDebut"
         className="border-festa-blue drop-shadow-lg border-2 rounded-full py-1 px-2"
+        placeholder="DD/MM/YYYY"
         onChange={(e) => selectDayHandler(e)}
       />
       <label htmlFor="dateFinInput" className="font-bold">
-        Jusqu'au ? . . .
+        Jusqu'au ?
       </label>
       <input
         id="dateFinInput"
         type="date"
         //name="dateFin"
         className="border-festa-blue drop-shadow-lg border-2 rounded-full py-1 px-2"
+        placeholder="DD/MM/YYYY"
         onChange={(e) => selectDayHandler(e)}
       />
       <button
