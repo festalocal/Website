@@ -1,13 +1,16 @@
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
 interface Props {
+  dateValue: string | null | undefined;
   buttonText: string;
   toggled: boolean;
 }
 
-function DateFilterButton({ buttonText, toggled }: Props): JSX.Element {
+function DateFilterButton({
+  dateValue,
+  buttonText,
+  toggled,
+}: Props): JSX.Element {
   const [hovered, setHovered] = useState<boolean>(false);
-
   return (
     <>
       <div
@@ -35,7 +38,11 @@ function DateFilterButton({ buttonText, toggled }: Props): JSX.Element {
           <span className="material-symbols-outlined">event</span>
           <div className="flex flex-col whitespace-nowrap justify-center items-center">
             <p>{buttonText}</p>
-            <p>Date</p>
+            {dateValue !== null ? (
+              <p className="font-bold">{dateValue}</p>
+            ) : (
+              <p>Date</p>
+            )}
           </div>
         </a>
       </div>

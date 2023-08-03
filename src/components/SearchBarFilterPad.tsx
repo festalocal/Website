@@ -5,11 +5,15 @@ import { urlToFormData } from "../pages/FestivalsCatalogue";
 const AgendaDateInput = lazy(() => import("./AgendaDateInput"));
 
 interface Props {
+  setDateDebutText: Function;
+  setDateFinText: Function;
   dateFilterPad: boolean;
   villeFilterPad: boolean;
 }
 
 function SearchBarFilterPad({
+  setDateDebutText,
+  setDateFinText,
   dateFilterPad,
   villeFilterPad,
 }: Props): JSX.Element {
@@ -30,10 +34,18 @@ function SearchBarFilterPad({
           className="flex gap-8"
         >
           <div>
-            <AgendaDateInput startingFrom={true} />
+            <AgendaDateInput
+              setDateDebutText={setDateDebutText}
+              setDateFinText={setDateFinText}
+              startingFrom={true}
+            />
           </div>
           <div>
-            <AgendaDateInput startingFrom={false} />
+            <AgendaDateInput
+              setDateDebutText={setDateDebutText}
+              setDateFinText={setDateFinText}
+              startingFrom={false}
+            />
           </div>
         </div>
 

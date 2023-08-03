@@ -21,6 +21,12 @@ function FestivalSearchBar(): JSX.Element {
   const dateParamInput = useRef(null);
   const dateDebutInput = useRef(null);
   const dateFinInput = useRef(null);
+  const [dateDebutText, setDateDebutText] = useState<string | null | undefined>(
+    formData.dateDebut
+  );
+  const [dateFinText, setDateFinText] = useState<string | null | undefined>(
+    formData.dateFin
+  );
   const [toggledDateFilterPad, setToggledDateFilterPad] =
     useState<boolean>(false);
   const [lastDateFilterButtonClicked, setLastDateFilterButtonClicked] =
@@ -103,6 +109,7 @@ function FestivalSearchBar(): JSX.Element {
             }}
           >
             <DateFilterButton
+              dateValue={dateDebutText}
               buttonText={"A partir de ?"}
               toggled={
                 toggledDateFilterPad &&
@@ -117,6 +124,7 @@ function FestivalSearchBar(): JSX.Element {
             }}
           >
             <DateFilterButton
+              dateValue={dateFinText}
               buttonText={"Jusqu'au ?"}
               toggled={
                 toggledDateFilterPad && lastDateFilterButtonClicked === "until"
@@ -157,6 +165,8 @@ function FestivalSearchBar(): JSX.Element {
             }}
           >
             <SearchBarFilterPad
+              setDateDebutText={setDateDebutText}
+              setDateFinText={setDateFinText}
               dateFilterPad={toggledDateFilterPad ? true : false}
               villeFilterPad={toggledVilleFilterPad ? true : false}
             />

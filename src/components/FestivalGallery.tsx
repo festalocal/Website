@@ -1,4 +1,5 @@
 import { lazy } from "react";
+import { displayDates } from "../components/FestivalCard";
 const EnrollButton = lazy(() => import("./EnrollButton"));
 
 interface Props {
@@ -51,8 +52,10 @@ function FestivalGallery({ event }: Props): JSX.Element {
                 Dates
               </h4>
               <p className="text-md lg:text-xl xl:text-2xl text-festa-blue">
-                {event.date_debut != undefined && event.date_debut.value} -{" "}
-                {event.date_fin != undefined && event.date_fin.value}
+                {displayDates(
+                  event.date_debut_french_format,
+                  event.date_fin_french_format
+                )}
               </p>
             </div>
           </div>

@@ -9,10 +9,16 @@ const ChevronLeft = lazy(() => import("./ChevronLeft"));
 const ChevronRight = lazy(() => import("./ChevronRight"));
 
 interface Props {
+  setDateDebutText: Function;
+  setDateFinText: Function;
   startingFrom: boolean;
 }
 
-function AgendaDateInput({ startingFrom }: Props): JSX.Element {
+function AgendaDateInput({
+  setDateDebutText,
+  setDateFinText,
+  startingFrom,
+}: Props): JSX.Element {
   const formData = useContext(urlToFormData);
   const hiddenFormDataInputs = useContext(hiddenFormData);
   const days: string[] = [
@@ -32,8 +38,10 @@ function AgendaDateInput({ startingFrom }: Props): JSX.Element {
 
     if (startingFrom) {
       formData.dateDebut = `${day.date.format("DD-MM-YYYY")}`;
+      setDateDebutText(`${day.date.format("DD/MM/YYYY")}`);
     } else {
       formData.dateFin = `${day.date.format("DD-MM-YYYY")}`;
+      setDateFinText(`${day.date.format("DD/MM/YYYY")}`);
     }
     if (formData.dateDebut !== null && formData.dateFin !== null) {
       formData.dateParam = DateFilterParameter.IN_PERIOD;

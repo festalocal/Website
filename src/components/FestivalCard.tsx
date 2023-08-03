@@ -11,7 +11,7 @@ interface Props {
  * @param { string } date - The date
  * @returns { string } The name of the day
  */
-const getDayName: Function = (date: string): string => {
+export const getDayName: Function = (date: string): string => {
   const dateValues = date.split("/");
   const dateObject: Date = new Date(
     parseInt(dateValues[2]),
@@ -19,6 +19,27 @@ const getDayName: Function = (date: string): string => {
     parseInt(dateValues[0])
   );
   return dateObject.toLocaleString("fr", { weekday: "long" });
+};
+
+/**
+ * Displays correctly info about the festival duration
+ * @param { string } firstDate - The festival starting date
+ * @param { string } secondDate - The festival ending date
+ * @returns { string } Display the info about the Festival duration
+ */
+export const displayDates: Function = (
+  firstDate: string,
+  secondDate: string
+): string => {
+  if (firstDate !== undefined) {
+    if (secondDate !== undefined && secondDate !== firstDate) {
+      return `Du ${getDayName(firstDate)} ${firstDate} au ${getDayName(
+        secondDate
+      )} ${secondDate}`;
+    }
+    return `Le ${getDayName(firstDate)} ${firstDate}`;
+  }
+  return "";
 };
 
 /**
@@ -34,27 +55,6 @@ function FestivalCard({ event, withDescription }: Props): JSX.Element {
     "/image4.webp",
     "/image5.webp",
   ];
-
-  /**
-   * Displays correctly info about the festival duration
-   * @param { string } firstDate - The festival starting date
-   * @param { string } secondDate - The festival ending date
-   * @returns { string } Display the info about the Festival duration
-   */
-  const displayDates: Function = (
-    firstDate: string,
-    secondDate: string
-  ): string => {
-    if (firstDate !== undefined) {
-      if (secondDate !== undefined && secondDate !== firstDate) {
-        return `Du ${getDayName(firstDate)} ${firstDate} au ${getDayName(
-          secondDate
-        )} ${secondDate}`;
-      }
-      return `Le ${getDayName(firstDate)} ${firstDate}`;
-    }
-    return "";
-  };
 
   return (
     <>
