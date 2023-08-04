@@ -134,7 +134,7 @@ function FestivalsCatalogue(): JSX.Element {
           // We pass to the next packet of festivals for the next API request
           console.log(res.data);
           if (res.data.events.length === 0) {
-            setHasMore(true);
+            setHasMore(false);
           } else {
             setPage((prevPage) => prevPage + festivalsPacketSize);
             setFestivals((previousFestival) => [
@@ -197,7 +197,7 @@ function FestivalsCatalogue(): JSX.Element {
       }
       cancelToken.cancel();
     };
-  }, [observerTargert, page, festivalsPacketSize]);
+  }, [observerTargert, page, festivalsPacketSize, hasMore]);
 
   return (
     <>
