@@ -61,7 +61,31 @@ function AgendaDateInput({
   ];
 
   const [today, setToday] = useState(dayjs());
-  const [selectedDay, setSelectedDay] = useState<dayjs.Dayjs | null>(null);
+  const [selectedDay, setSelectedDay] = useState<dayjs.Dayjs | null>(() => {
+    if (startingFrom) {
+      if (
+        formData.dateDebut !== "" &&
+        formData.dateDebut !== null &&
+        formData.dateDebut !== undefined
+      ) {
+        const dateValues: string[] = formData.dateDebut.split("-");
+        setToday(dayjs(`${dateValues[2]}-${dateValues[1]}-${dateValues[0]}`));
+        return dayjs(`${dateValues[2]}-${dateValues[1]}-${dateValues[0]}`);
+      }
+    } else {
+      if (
+        formData.dateFin !== "" &&
+        formData.dateFin !== null &&
+        formData.dateFin !== undefined
+      ) {
+        const dateValues: string[] = formData.dateFin.split("-");
+        setToday(dayjs(`${dateValues[2]}-${dateValues[1]}-${dateValues[0]}`));
+        return dayjs(`${dateValues[2]}-${dateValues[1]}-${dateValues[0]}`);
+      }
+    }
+    return null;
+  });
+
   const selectDayHandler: Function = (day: any): void => {
     setSelectedDay(day.date);
 
@@ -89,6 +113,7 @@ function AgendaDateInput({
     hiddenFormDataInputs.dateFinInput.current.value = formData.dateFin;
   };
   const areSameDate: Function = (inputDate: dayjs.Dayjs): boolean => {
+    //console.log(selectedDay);
     if (selectedDay !== null) {
       return (
         inputDate.toDate().toDateString() ===
