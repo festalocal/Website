@@ -44,8 +44,7 @@ function SearchBarFilterMobilePad({
     hiddenFormDataInputs.dateFinInput.current.value = formData.dateFin;
   };
 
-  const defaultOrCurrentDateValue: Function = (dateDefault: string): string => {
-    const today: Date = new Date();
+  const defaultOrEmptyDateValue: Function = (dateDefault: string): string => {
     if (
       dateDefault !== null &&
       dateDefault !== undefined &&
@@ -54,10 +53,7 @@ function SearchBarFilterMobilePad({
       const dateValues: string[] = dateDefault.split("-");
       return `${dateValues[2]}-${dateValues[1]}-${dateValues[0]}`;
     }
-    return `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(
-      2,
-      "0"
-    )}-${String(today.getDay()).padStart(2, "0")}`;
+    return ``;
   };
 
   return (
@@ -89,7 +85,7 @@ function SearchBarFilterMobilePad({
         className="border-festa-blue drop-shadow-lg border-2 rounded-full py-1 px-2"
         placeholder="DD/MM/YYYY"
         onChange={(e) => selectDayHandler(e)}
-        defaultValue={defaultOrCurrentDateValue(dateDebutDefault)}
+        defaultValue={defaultOrEmptyDateValue(dateDebutDefault)}
       />
       <label htmlFor="dateFinInput" className="font-bold">
         Jusqu'au ?
@@ -101,7 +97,7 @@ function SearchBarFilterMobilePad({
         className="border-festa-blue drop-shadow-lg border-2 rounded-full py-1 px-2"
         placeholder="DD/MM/YYYY"
         onChange={(e) => selectDayHandler(e)}
-        defaultValue={defaultOrCurrentDateValue(dateFinDefault)}
+        defaultValue={defaultOrEmptyDateValue(dateFinDefault)}
       />
       <button
         name="submit-filters"
