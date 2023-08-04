@@ -60,9 +60,9 @@ function FestivalSearchBar(): JSX.Element {
   const [titleSearch, setTitleSearch] = useState<string | null | undefined>(
     formData.titre
   );
-  // const [villeSearch, setVilleSearch] = useState<string | null | undefined>(
-  //   ville
-  // );
+  const [villeSearch, setVilleSearch] = useState<string | null | undefined>(
+    formData.ville
+  );
 
   const updateViewport = () => {
     setIsMobile(window.innerWidth <= 768);
@@ -167,7 +167,10 @@ function FestivalSearchBar(): JSX.Element {
                   setToggledVilleFilterPad(!toggledVilleFilterPad);
                 }}
               >
-                <LocationFilterButton toggled={toggledVilleFilterPad} />
+                <LocationFilterButton
+                  toggled={toggledVilleFilterPad}
+                  townLocation={villeSearch}
+                />
               </div>
             </>
           )}
@@ -200,12 +203,15 @@ function FestivalSearchBar(): JSX.Element {
               <SearchBarFilterPad
                 setDateDebutText={setDateDebutText}
                 setDateFinText={setDateFinText}
+                setVilleButtonText={setVilleSearch}
                 dateFilterPad={toggledDateFilterPad ? true : false}
                 villeFilterPad={toggledVilleFilterPad ? true : false}
               />
             )}
             {isMobile && (
               <SearchBarFilterMobilePad
+                dateDebutDefault={formData.dateDebut}
+                dateFinDefault={formData.dateFin}
                 mobileFiltersToggled={mobileFiltersPad}
               />
             )}

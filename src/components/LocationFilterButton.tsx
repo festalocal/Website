@@ -2,9 +2,10 @@ import { useState } from "react";
 
 interface Props {
   toggled: boolean;
+  townLocation: string | null | undefined;
 }
 
-function LocationFilterButton({ toggled }: Props): JSX.Element {
+function LocationFilterButton({ toggled, townLocation }: Props): JSX.Element {
   const [hovered, setHovered] = useState<boolean>(false);
   return (
     <>
@@ -32,8 +33,12 @@ function LocationFilterButton({ toggled }: Props): JSX.Element {
             `}
         >
           <span className="material-symbols-outlined">location_on</span>
-
-          <p>Localisation</p>
+          <div className="flex flex-col whitespace-nowrap justify-center items-center">
+            <p>Localisation</p>
+            {townLocation !== null && townLocation !== "" && (
+              <p className="font-bold">{townLocation}</p>
+            )}
+          </div>
         </div>
       </div>
     </>

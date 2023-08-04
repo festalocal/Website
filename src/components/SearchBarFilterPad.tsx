@@ -7,6 +7,7 @@ const AgendaDateInput = lazy(() => import("./AgendaDateInput"));
 interface Props {
   setDateDebutText: Function;
   setDateFinText: Function;
+  setVilleButtonText: Function;
   dateFilterPad: boolean;
   villeFilterPad: boolean;
 }
@@ -14,6 +15,7 @@ interface Props {
 function SearchBarFilterPad({
   setDateDebutText,
   setDateFinText,
+  setVilleButtonText,
   dateFilterPad,
   villeFilterPad,
 }: Props): JSX.Element {
@@ -64,7 +66,10 @@ function SearchBarFilterPad({
             pattern={CITY_TITLE_REGEX}
             placeholder="Cherchez votre ville..."
             value={villeInput !== null ? villeInput : ""}
-            onChange={(e) => setVilleInput(e.target.value)}
+            onChange={(e) => {
+              setVilleInput(e.target.value);
+              setVilleButtonText(e.target.value);
+            }}
           />
         </div>
 

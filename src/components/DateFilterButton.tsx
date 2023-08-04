@@ -38,7 +38,9 @@ function DateFilterButton({
           <span className="material-symbols-outlined">event</span>
           <div className="flex flex-col whitespace-nowrap justify-center items-center">
             <p>{buttonText}</p>
-            {dateValue !== null ? (
+            {dateValue !== null &&
+            dateValue !== undefined &&
+            dateValue !== "" ? (
               <p className="font-bold">{dateValue}</p>
             ) : (
               <p>Date</p>

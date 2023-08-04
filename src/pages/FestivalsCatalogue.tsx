@@ -211,16 +211,16 @@ function FestivalsCatalogue(): JSX.Element {
             value={{
               titre: searchFiltersValues.titre,
               ville: searchFiltersValues.ville,
-              dateParam: null,
-              dateDebut: null,
-              dateFin: null,
+              dateParam: searchFiltersValues.dateParam,
+              dateDebut: searchFiltersValues.dateDebut,
+              dateFin: searchFiltersValues.dateFin,
             }}
           >
             <FestivalSearchBar key={Math.random()} />
           </urlToFormData.Provider>
         </Suspense>
       </div>
-      <div className="mx-auto pb-14 py-8 px-8 sm:px-12 md:px-16 lg:px-20 xl:px-24 grid gap-x-6 gap-y-12 lg:gap-x-8 lg:gap-y-14 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 bg-festa-beige">
+      <div className="mx-auto pb-14 py-8 px-8 sm:px-12 md:px-16 lg:px-20 xl:px-24 grid gap-x-6 gap-y-12 lg:gap-x-8 lg:gap-y-14 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5">
         {festivals.map((festival) => (
           <Suspense key={Math.random()}>
             <FestivalCard
@@ -232,13 +232,16 @@ function FestivalsCatalogue(): JSX.Element {
         ))}
 
         <div ref={observerTargert as React.LegacyRef<HTMLDivElement>}></div>
+        {isLoading && (
+          <p className="col-span-full text-center mx-auto">Chargement . . .</p>
+        )}
+        {!isLoading && festivals.length === 0 && (
+          <p className="col-span-full text-center mx-auto">
+            Nous n'avons pas trouvé de résultats suivants vos critères.
+          </p>
+        )}
       </div>
-      {isLoading && "Loading..."}
-      {!isLoading && festivals.length === 0 && (
-        <p className="text-center mx-auto">
-          Nous n'avons pas trouvez de resultats suivants vos criteres
-        </p>
-      )}
+
       {error && "Error: {error.message}"}
       <Suspense>
         <Footer

@@ -14,6 +14,35 @@ interface Props {
   startingFrom: boolean;
 }
 
+export const whichDateParamIsSet: Function = (
+  firstDate: string | null,
+  secondDate: string | null
+): DateFilterParameter => {
+  if (
+    firstDate !== null &&
+    firstDate !== "" &&
+    secondDate !== null &&
+    secondDate !== ""
+  ) {
+    return DateFilterParameter.IN_PERIOD;
+  }
+  if (
+    firstDate !== null &&
+    firstDate !== "" &&
+    (secondDate === null || secondDate === "")
+  ) {
+    return DateFilterParameter.AFTER;
+  }
+  if (
+    (firstDate === null || firstDate === "") &&
+    secondDate !== null &&
+    secondDate !== ""
+  ) {
+    return DateFilterParameter.BEFORE;
+  }
+  return DateFilterParameter.IN_PERIOD;
+};
+
 function AgendaDateInput({
   setDateDebutText,
   setDateFinText,
@@ -43,16 +72,17 @@ function AgendaDateInput({
       formData.dateFin = `${day.date.format("DD-MM-YYYY")}`;
       setDateFinText(`${day.date.format("DD/MM/YYYY")}`);
     }
-    if (formData.dateDebut !== null && formData.dateFin !== null) {
-      formData.dateParam = DateFilterParameter.IN_PERIOD;
-    }
-    if (formData.dateDebut !== null && formData.dateFin === null) {
-      formData.dateParam = DateFilterParameter.AFTER;
-    }
-    if (formData.dateDebut === null && formData.dateFin !== null) {
-      formData.dateParam = DateFilterParameter.BEFORE;
-      formData.dateDebut = formData.dateFin;
-      formData.dateFin = "";
+    switch (whichDateParamIsSet(formData.dateDebut, formData.dateFin)) {
+      case DateFilterParameter.IN_PERIOD:
+        formData.dateParam = DateFilterParameter.IN_PERIOD;
+        break;
+      case DateFilterParameter.AFTER:
+        formData.dateParam = DateFilterParameter.AFTER;
+        break;
+      case DateFilterParameter.BEFORE:
+        formData.dateParam = DateFilterParameter.BEFORE;
+        formData.dateDebut = formData.dateFin;
+        formData.dateFin = "";
     }
     hiddenFormDataInputs.dateParamInput.current.value = formData.dateParam;
     hiddenFormDataInputs.dateDebutInput.current.value = formData.dateDebut;
