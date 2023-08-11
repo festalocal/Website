@@ -16,7 +16,7 @@ export default {
       // Festa Local color palette
       colors: {
         "festa-yellow": "#F2C87D",
-        "festa-beige": "#fff7ed",
+        "festa-beige": "#FCEFDE",
         "festa-light-blue": "#A7CDEE",
         "festa-blue": "#4089C8",
         "festa-dark-blue": "#283F92",

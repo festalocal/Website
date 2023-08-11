@@ -9,7 +9,7 @@ function FindFestivalButton(): JSX.Element {
     <>
       <Link to="/fetes">
         <button className="flex flex-row px-8 py-5 bg-festa-dark-blue hover:bg-festa-light-blue rounded-full drop-shadow-lg">
-          <p className="px-4 text-white text-base">trouv'Ta fête</p>
+          <p className="px-4 text-white text-base">Trouv'ta fête</p>
           <span className="material-symbols-outlined">search</span>
         </button>
       </Link>
