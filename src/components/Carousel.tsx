@@ -147,7 +147,7 @@ function Carousel({ children }: Props): JSX.Element {
         </div>
 
         {/* Button slider controls */}
-        {hovered && !isMobile && (
+        {hovered && !isMobile && children.length > 1 && (
           <div
             key={"buttons"}
             className="hover:fade-in absolute inset-0 flex items-center justify-between p-4"
@@ -168,22 +168,24 @@ function Carousel({ children }: Props): JSX.Element {
         )}
 
         {/* Indicators for the current position of the displayed slide */}
-        <div key={Math.random()} className="absolute bottom-4 right-0 left-0">
-          <div
-            key={Math.random()}
-            className="flex items-center justify-center gap-2"
-          >
-            {children.map((_, i: number) => (
-              <div
-                key={Math.random()}
-                onClick={() => setCurr(i)}
-                className={`transition-all w-2 h-2 bg-white rounded-full ${
-                  curr === i ? "p-1" : "bg-opacity-50"
-                }`}
-              />
-            ))}
+        {children.length > 1 && (
+          <div key={Math.random()} className="absolute bottom-4 right-0 left-0">
+            <div
+              key={Math.random()}
+              className="flex items-center justify-center gap-2"
+            >
+              {children.map((_, i: number) => (
+                <div
+                  key={Math.random()}
+                  onClick={() => setCurr(i)}
+                  className={`transition-all w-2 h-2 bg-white rounded-full ${
+                    curr === i ? "p-1" : "bg-opacity-50"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );

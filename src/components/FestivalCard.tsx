@@ -1,5 +1,7 @@
-import { lazy } from "react";
+import { lazy, useState } from "react";
 import { Link } from "react-router-dom";
+import { getRandomImageOfCategory } from "../utils/ImagesByCategory";
+
 const Carousel = lazy(() => import("./Carousel"));
 interface Props {
   event: any;
@@ -48,14 +50,9 @@ export const displayDates: Function = (
  * @returns
  */
 function FestivalCard({ event, withDescription }: Props): JSX.Element {
-  const images: string[] = [
-    "/image1.webp",
-    "/image2.webp",
-    "/image3.webp",
-    "/image4.webp",
-    "/image5.webp",
-  ];
-
+  const [images, _] = useState<string[]>([
+    getRandomImageOfCategory(event.categorie),
+  ]);
   return (
     <>
       <div className="flex flex-col">

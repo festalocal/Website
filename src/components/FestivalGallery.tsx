@@ -1,5 +1,6 @@
-import { lazy } from "react";
+import { lazy, useState } from "react";
 import { displayDates } from "../components/FestivalCard";
+import { getAllImagesOfCategory } from "../utils/ImagesByCategory";
 const EnrollButton = lazy(() => import("./EnrollButton"));
 
 interface Props {
@@ -7,13 +8,9 @@ interface Props {
 }
 
 function FestivalGallery({ event }: Props): JSX.Element {
-  const images: string[] = [
-    "/image1.webp",
-    "/image2.webp",
-    "/image3.webp",
-    "/image4.webp",
-    "/image5.webp",
-  ];
+  const [images, _] = useState<string[] | undefined>(
+    getAllImagesOfCategory(event.categorie)
+  );
   return (
     <>
       <div className="grid grid-cols-5 items-center gap-5 lg:gap-7 xl:gap-8 2xl:gap-10">
@@ -77,13 +74,14 @@ function FestivalGallery({ event }: Props): JSX.Element {
               {event.titre != undefined && event.titre}
             </p>
             <div className="rounded-4xl md:columns-3 lg:columns-4">
-              {images.map((imgPath: string) => (
-                <img
-                  className="mb-4 shadow-inner drop-shadow-xl"
-                  src={imgPath}
-                  alt="Image de la fete"
-                />
-              ))}
+              {images !== undefined &&
+                images.map((imgPath: string) => (
+                  <img
+                    className="mb-4 shadow-inner drop-shadow-xl"
+                    src={imgPath}
+                    alt="Image de la fete"
+                  />
+                ))}
             </div>
             <p
               className="text-festa-dark-blue text-2xl font-semibold"

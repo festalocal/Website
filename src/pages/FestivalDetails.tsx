@@ -12,22 +12,6 @@ const FestivalGallery = lazy(() => import("../components/FestivalGallery"));
  * @returns
  */
 function FestivalDetails(): JSX.Element {
-  // boolean state to define if the device viewport is mobile or not
-  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 768);
-  // evenement state with it's setter
-  const [evenement, setEvenement] = useState<Object>({});
-  // Extracting the evend id for the url path
-  const params: Readonly<Params<string>> = useParams();
-  const evendId: string = params.id != undefined ? params.id : "";
-
-  const updateViewport = () => {
-    setIsMobile(window.innerWidth <= 768);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", updateViewport);
-  });
-
   /**
    * Fetch call that gets the festival of given Id from
    * the backend API.
@@ -70,12 +54,24 @@ function FestivalDetails(): JSX.Element {
       console.error("Error while Get fetch request :", error);
     }
   };
+  // boolean state to define if the device viewport is mobile or not
+  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 768);
+  // Extracting the evend id for the url path
+  const params: Readonly<Params<string>> = useParams();
+  const evendId: string = params.id != undefined ? params.id : "";
+  // evenement state with it's setter
+  const [evenement, setEvenement] = useState<Object | null>(null);
+
+  const updateViewport = () => {
+    setIsMobile(window.innerWidth <= 768);
+  };
 
   /* 
   Effect hook that synchronize the component evenement state
   with the backend external API.
   */
   useEffect(() => {
+    window.addEventListener("resize", updateViewport);
     // To cancel API fetch request when changing component or going to
     // another page.
     const cancelToken: CancelTokenSource = axios.CancelToken.source();
@@ -96,19 +92,21 @@ function FestivalDetails(): JSX.Element {
         </Suspense>
       </div>
       <div className="flex flex-col items-end gap-2 mx-auto pb-14 py-8 px-8 sm:px-12 md:px-16 lg:px-20 xl:px-24">
-        {isMobile ? (
-          <>
+        {isMobile && evenement !== null ? (
+          <Suspense key={evendId}>
             <FestivalCard
               key={evendId}
               event={evenement}
               withDescription={true}
             />
             <EnrollButton />
-          </>
+          </Suspense>
         ) : (
-          <>
-            <FestivalGallery key={evendId} event={evenement} />
-          </>
+          evenement !== null && (
+            <Suspense>
+              <FestivalGallery key={evendId} event={evenement} />
+            </Suspense>
+          )
         )}
       </div>
       <Suspense>
